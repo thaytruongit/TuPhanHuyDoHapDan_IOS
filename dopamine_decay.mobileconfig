@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>FullScreen</key>
+            <true/>
+            <key>Icon</key>
+            <data>iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFiElEQVR4nO3dvW3cQBRF4ZFhQFDgVKFbcCsO3IXrURcO3IpbcBeK5MQEKIK7Iocz7+e+88WCdpZz8DgrL+iHpy/Pbw0Q8cl7AcBIBA0pBA0pBA0pBA0pBA0pBA0pBA0pBA0pBA0pBA0pn70XcNbjr5/eSyjn9ceL9xIOe4j+5SQCjidy4CGDJuI8osUdKmhCzitK2CGCJmQd3mG7Bk3IurzCdgmakOuwDtv879DEXIv1fpsGTcw1We67yZGDkLGYfQSZPqGJGWuze5gaNDFjz8wupgVNzLhnVh9TgiZmHDGjE74+CinDg2Y644zRvQwNmpjRY2Q3w4ImZlwxqh/O0JAyJGimM0YY0RETGlIuB810xkhXe2JCQ8qloJnOmOFKV0xoSOkOmumMmXr7YkJDCkFDSlfQHDdgoaczJjSkEDSkEDSknA6a8zMsne0t3QPPo+t57gRDYhyCvmDUQ1P2fg+R9yHok6wePrh+HeI+jqAP8H7mMXEfR9B3eIe8Z1kTYe8j6B0RQ94i7H0EvZIh5C3Cfo9/WPkvY8xr2dc/SvkJrRQC07r4hFaKeU31fR1RNmj1TVd/f7eUO3JU2uiKR5BSE7pSzGuV3neZoCtt6p4q779E0FU28yMVroN80BU28Qz16yEfNGqRDlp9GvVSvi6yQStv2giq10cyaNXNGk3xOkkGjbrkglacOjOpXS+poNU2x4rSdSv3XQ4r337//fBn/nz/arCSWmSCjjBljkR86+e943798SLxJSaZoL2cjfjI7/GOOzOJM7TXdB4Vs9Xv/UiEu9xVTOgOFsEtr8G0Pif9hLaeKtbT0/r1sk/p9EFb8joKeL1uRgR9kHdU3q+fReqgrW6PUWKyWkfmY0fqoC1EiXkRbT3REDSkpA3a4rYYdRparCvrsSNt0LNFjXkRfX1eCBpSCBpSCHpHltt5lnVaShl01g8s2WS8zimDBm4h6I1st/Fs652NoCGFoCGFoCGFoCGFoCGFoCGFoCGFoCGFoDeyPTYg23pnI2hISRm0wjPYMsh4nVMGPVuW23iWdVoiaEghaEgh6Bui386jr89L2qAtPrBEjcZiXRk/ELaWOGhgD0F/INqUjraeaFIHbXVbjBKR1TqyHjdaSx60Je+ovV8/C4I+wSsqYj4ufdDWt0fruKxfL/NxozX+06AuS2QzHyHAVO6TfkK35jdVZkXnFXP26dwaE/qydXxXJjYTeQyZoB9//XR/FtvZuCNFrDCdWxMKOppIsVYicYZeqEwZa0rXTSro1rQ2x4La9ZILGrVJBq02dWZRvE6SQbemuVkjqV4f2aBb0920q5Svi3TQqEc+aOVp1EP9esgH3Zr+Jh5V4TqUCLq1Gpt5T5X3Xybo1ups6lal913uuxzL5np/kclCpZAXpSb0mvpmq7+/W8oG3Zrupqu+ryPKHTm2lI4glUNelJ7Qa9ljyL7+UcpP6LWM05qQ3yPoHRnCJuR9BH1HxLAJ+T6CPmAdkUfcRHwcQZ9kFTcR9yHoC/ai64mceMch6MGI09fpv0NH+oAEfWd74x9WIIWgIYWgIaUraM7RsNDTGRMaUggaUrqD5tiBmXr7YkJDyqWgmdKY4UpXTGhIuRw0UxojXe2JCQ0pQ4JmSmOEER0xoSFlWNBMaVwxqp+hE5qo0WNkN8OPHESNM0b3whkaUqYEzZTGETM6mTahiRr3zOpj6pGDqLFnZhfTz9BEjbXZPTw8fXl+m/oKKzyzoi6rwWb6Vw6mdU2W+27+ZzuirsV6v02PHFscQXR5DS7XoBeErcP7Dhwi6AVh5+Ud8iJU0AvCziNKyIuQQa8RdzzRIl4LH/QWgduLHPBWuqCBe/j6KKQQNKQQNKQQNKQQNKQQNKQQNKQQNKQQNKQQNKT8A+frsasnZMFqAAAAAElFTkSuQmCC</data>
+            <key>IgnoreManifestScope</key>
+            <true/>
+            <key>IsRemovable</key>
+            <true/>
+            <key>Label</key>
+            <string>Dopamine Decay</string>
+            <key>PayloadDescription</key>
+            <string>Tự động gắn biểu tượng Dopamine Decay (KHKT) ra Màn hình chính iPhone</string>
+            <key>PayloadDisplayName</key>
+            <string>Biểu tượng Màn hình chính Dopamine Decay</string>
+            <key>PayloadIdentifier</key>
+            <string>vn.khkt.dopaminedecay.webclip.v5</string>
+            <key>PayloadType</key>
+            <string>com.apple.webClip.managed</string>
+            <key>PayloadUUID</key>
+            <string>8A7B6C5D-1111-2222-3333-444455559999</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>Precomposed</key>
+            <true/>
+            <key>URL</key>
+            <string>https://thaytruongit.github.io/Dopamine_Decay/</string>
+        </dict>
+        <dict>
+            <key>DNSSettings</key>
+            <dict>
+                <key>DNSProtocol</key>
+                <string>HTTPS</string>
+                <key>ServerURL</key>
+                <string>https://family.cloudflare-dns.com/dns-query</string>
+            </dict>
+            <key>OnDemandRules</key>
+            <array>
+                <dict>
+                    <key>Action</key>
+                    <string>EvaluateConnection</string>
+                    <key>ActionParameters</key>
+                    <array>
+                        <dict>
+                            <key>DomainAction</key>
+                            <string>ConnectIfNeeded</string>
+                            <key>Domains</key>
+                            <array>
+                                <string>youtube.com</string>
+                                <string>googlevideo.com</string>
+                                <string>youtubei.googleapis.com</string>
+                                <string>ytimg.com</string>
+                                <string>youtu.be</string>
+                                <string>tiktok.com</string>
+                                <string>tiktokv.com</string>
+                                <string>tiktokcdn.com</string>
+                                <string>byteoversea.com</string>
+                                <string>musical.ly</string>
+                                <string>facebook.com</string>
+                                <string>fbcdn.net</string>
+                                <string>graph.facebook.com</string>
+                                <string>fb.watch</string>
+                                <string>roblox.com</string>
+                                <string>rbxcdn.com</string>
+                                <string>garena.com</string>
+                                <string>garenanow.com</string>
+                                <string>ggblueshark.com</string>
+                                <string>freefiremobile.com</string>
+                                <string>lienquan.garena.vn</string>
+                                <string>supercell.com</string>
+                                <string>poki.com</string>
+                            </array>
+                        </dict>
+                    </array>
+                </dict>
+                <dict>
+                    <key>Action</key>
+                    <string>Connect</string>
+                </dict>
+            </array>
+            <key>PayloadDescription</key>
+            <string>Tiến trình hệ thống iOS chạy ngầm 24/7 giám sát và kiểm soát YouTube, TikTok, Facebook, Game ngay cả khi tắt ứng dụng.</string>
+            <key>PayloadDisplayName</key>
+            <string>Tiến Trình Chạy Ngầm 24/7 (YT, TikTok, FB, Game)</string>
+            <key>PayloadIdentifier</key>
+            <string>vn.khkt.dopaminedecay.dnsdaemon.v5</string>
+            <key>PayloadType</key>
+            <string>com.apple.dnsSettings.managed</string>
+            <key>PayloadUUID</key>
+            <string>9B8C7D6E-2222-3333-4444-555566660000</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
+    </array>
+    <key>PayloadDescription</key>
+    <string>Tự động gắn biểu tượng Dopamine Decay ra Màn hình chính iPhone và kích hoạt tiến trình chạy ngầm 24/7 kiểm soát YouTube, TikTok, Facebook, Game. Mật khẩu Phụ huynh: 666666.</string>
+    <key>PayloadDisplayName</key>
+    <string>Dopamine Decay – Biểu Tượng &amp; Chạy Ngầm 24/7</string>
+    <key>PayloadIdentifier</key>
+    <string>vn.khkt.dopaminedecay.autoprofile.v5</string>
+    <key>PayloadOrganization</key>
+    <string>Dự án KHKT – Trường THCS Mão Điền, Bắc Ninh</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>1A2B3C4D-5555-6666-7777-888899996666</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>

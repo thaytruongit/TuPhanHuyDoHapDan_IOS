@@ -1,0 +1,16 @@
+{
+  "name": "Dopamine Decay (KHKT)",
+  "short_name": "DopamineDecay",
+  "description": "He thong tu phan huy do hap dan man hinh (3-12 tuoi) - KHKT 2026-2027",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#090d16",
+  "icons": [
+    {
+      "src": "./qr_code.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

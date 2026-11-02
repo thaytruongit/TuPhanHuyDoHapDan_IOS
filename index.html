@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Dopamine Decay" />
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFlElEQVR4nO3d3Y0URxSG4YNxAJCNI4CgLIFAIiiIwNlAAghf2C01o5nZ7uqq8/Od97mGnequl9M1yzKYAQAAAAAAAAAAAABQ2qvoBczy5uunX9FrqO7H+4/leyh5AcTrp1rkZRZLxPEqxJ16gUScV9a4Uy6KkOvIFnaqxRByXVnCTrEIQtYRHfYfkS9uRsxqovcz7E9T9IVjvYhpHTKhibmHiH12D5qYe/Heb7dHAiHD4wjiMqGJGWY+HSwPmpixt7qHpUETM+5Z2cWyoIkZz6zqI/wvVoCZlgTNdMYRKzqZHjQx44zZvUwNmpgxYmY3nKEhZVrQTGdcMaufKUETM2aY0RFHDki5HDTTGTNd7YkJDSmXgmY6Y4UrXTGhIWU4aKYzVhrtiwkNKQQNKUNBc9yAh5HOmNCQQtCQcvqflXPceO77uw+nf8/bb58XrETHmY8/+HPlQtSNxHv06xD5GII+aVbEZ16HuI8j6AO8Ij7y+sT9HEE/ER3yPduaCPu+U28Ku7whzBjyI13CPvrGkAm9UynkDRP7d3wf+n8VY96rvv5Z2k9opRCY1s0ntFLMe6rXdUTboNU3Xf36Hml35Oi00R2PIK0mdKeY9zpdd5ugO23qPV2uv0XQXTbzJR3ug3zQHTbxDPX7IR80epEOWn0ajVK+L7JBK2/aDKr3RzJo1c2aTfE+SQaNvuSCVpw6K6ndL6mg1TbHi9J9a/ezHF5ef/nnxV/z8++/HFbSi0zQGabMkYgf/frouL+/+yDxQ0wyQUc5G/GRrxMdd2USZ+io6TwrZq+v+5IMT7mrmNADPILbXoNpfU75Ce09Vbynp/frVZ/S5YP2FHUUiHrdigj6oOiool+/itJBez0es8TktY7Kx47SQXvIEvMm23qyIWhIKRu0x2Mx6zT0WFfVY0fZoFfLGvMm+/qiEDSkEDSkEPQdVR7nVdbpqWTQVd+wVFPxPpcMGniEoG9Ue4xXW+9qBA0pBA0pBA0pBA0pBA0pBA0pBA0pBA0pBH2j2scGVFvvagQNKSWDVvgMtgoq3ueSQa9W5TFeZZ2eCBpSCBpSCPqB7I/z7OuLUjZojzcsWaPxWFfFN4RmhYMG7iHoF2Sb0tnWk03poL0ei1ki8lpH1eOGWfGgPUVHHf36VRD0CVFREfNx5YP2fjx6x+X9epWPG2b8p0FDtshWfoQAU3lM+QltFjdVVkUXFXP16WzGhL5sH9+Vic1EnkMm6LffPod/FtvZuDNFrDCdzYSCziZTrJ1InKE3KlPGm9J9kwraTGtzPKjdL7mg0Ztk0GpTZxXF+yQZtJnmZs2ken9kgzbT3bSrlO+LdNDoRz5o5Wk0Qv1+yAdtpr+JR3W4Dy2CNuuxmc90uf42QZv12dRbna673c9ybJsb/YNMHjqFvGk1offUN1v9+h5pG7SZ7qarXtcR7Y4ct5SOIJ1D3rSe0HvVY6i+/lnaT+i9itOakH/36uxvePP1068VC8koc9idQv7x/uPhTpnQT2Sc2J1CHkHQB+wjioibiI8j6JO84ibiMQR9wb3oRiIn3nlOvyk06/XGELHOvCE04/vQEEPQkDIU9NnHADBipDMmNKQQNKQMB82xAyuN9sWEhpRLQTOlscKVrpjQkHI5aKY0ZrraExMaUqYEzZTGDDM6mjahiRpXzOqHIwekTA2aKY0RM7uZPqGJGmfM7mXJkYOoccSKTjhDQ8qyoJnSeGZVH0snNFHjnpVdLD9yEDX2VvfgcoYmapj5dOAeGh+B0I/nQHP/LgfTuhfv/Q75th1R9xCxz+FhcQTREzmwwv9ihWmtJXo/U8XEtK4rOuRNikXcIuw6soS8SbWYW4SdV7aQNykXdQ9xx8sa8V76Bd5D3H4qRLxXarHPEPl11eIFAAAAAAAAAAAAgP/8C3vv6BXeCFoUAAAAAElFTkSuQmCC" />
+  <link rel="manifest" href="./manifest.json" />
+  <title>Dopamine Decay – Giao Diện Trắng Sáng &amp; Tự Động Chạy Nền (KHKT)</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    input, textarea { user-select: text; }
+    body {
+      background: #f1f5f9;
+      color: #0f172a;
+      overflow-x: hidden;
+    }
+    .bright-glass {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    @keyframes pulseEmerald {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45); }
+      50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    }
+    .btn-run-pulse {
+      animation: pulseEmerald 2s infinite;
+    }
+    .decay-stage {
+      transition: filter 0.6s ease, opacity 0.5s ease;
+    }
+    .chk-bright {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      border: 2px solid #94a3b8;
+      background-color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+    .chk-bright:checked {
+      background-color: #10b981;
+      border-color: #10b981;
+    }
+    .chk-bright:checked::after {
+      content: "✓";
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 14px;
+    }
+    input[type="range"].range-bright {
+      width: 100%;
+      accent-color: #0284c7;
+      height: 7px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start py-2 px-2">
+
+  <!-- KHUNG ỨNG DỤNG GIAO DIỆN TRẮNG SÁNG HIỆN ĐẠI -->
+  <div class="w-full max-w-[440px] bg-slate-50 border border-slate-200 rounded-[36px] shadow-xl overflow-hidden flex flex-col relative min-h-[880px]">
+
+    <!-- Thanh Trạng Thái iOS Sáng -->
+    <div class="pt-3 pb-2 px-5 flex items-center justify-between bg-white border-b border-slate-200 z-30">
+      <div id="iosClock" class="text-xs font-extrabold text-slate-800">12:00</div>
+      <div class="bg-emerald-50 border border-emerald-300 px-3 py-1 rounded-full flex items-center gap-2 shadow-sm">
+        <span id="daemonDot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+        <span id="daemonLabel" class="text-[11px] font-extrabold text-emerald-800">Chạy nền tự động: ĐANG BẬT</span>
+      </div>
+      <div class="text-[11px] font-extrabold text-sky-700">Mức 4 Auto</div>
+    </div>
+
+    <!-- HEADER CHÍNH: TỰ ĐỘNG CHẠY NỀN + CÔNG TẮC TẮT/MỞ (CHỈ Ở ĐÂY MỚI CẦN MẬT KHẨU KHI TẮT) -->
+    <div class="bg-white px-4 py-3 border-b border-slate-200 shadow-sm space-y-2.5">
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-sky-600 text-white flex items-center justify-center text-xl shadow">
+            🧠
+          </div>
+          <div>
+            <h1 class="text-sm font-extrabold text-slate-900">Dopamine Decay (KHKT)</h1>
+            <p id="subStatusHeader" class="text-[11px] font-bold text-emerald-600">
+              🟢 Tự động chạy nền hiển nhiên • Ngầm định Mức 4
+            </p>
+          </div>
+        </div>
+
+        <!-- Công tắc Bật / Tắt duy nhất có khóa mật khẩu khi Tắt -->
+        <label onclick="handleMasterSwitch(event)" id="masterSwitchBox" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border-2 border-emerald-500 cursor-pointer shadow-sm">
+          <input type="checkbox" id="chkMaster" class="chk-bright" checked />
+          <span id="masterSwitchText" class="text-xs font-extrabold text-emerald-800">Bật</span>
+        </label>
+      </div>
+
+      <!-- NÚT BẬT ĐỂ CHẠY CHƯƠNG TRÌNH NGAY LẬP TỨC -->
+      <button type="button" onclick="startProgramNow()" id="btnStartProgram" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-xs shadow-md btn-run-pulse flex items-center justify-center gap-2">
+        <span>🚀 BẬT CHẠY CHƯƠNG TRÌNH NGAY (TỰ ĐỘNG KÍCH HOẠT MỨC 4)</span>
+      </button>
+
+      <!-- Thanh chỉ số thời gian thực -->
+      <div class="flex items-center justify-between bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200 text-xs">
+        <span id="currentLevelPill" class="px-2.5 py-0.5 rounded-full font-extrabold bg-rose-600 text-white">Mức 4: Điểm dừng</span>
+        <span class="font-mono text-slate-700">Tiến trình: <strong id="timerDisplay" class="text-sky-700">00:00 / 01:00</strong></span>
+        <span class="font-mono text-slate-700">T_máy: <strong id="phoneHourDisplay" class="text-amber-700">0p / 60p</strong></span>
+      </div>
+    </div>
+
+    <!-- NỘI DUNG CUỘN TRẮNG SÁNG (TẤT CẢ TÙY CHỌN DƯỚI ĐÂY KHÔNG CẦN MẬT KHẨU) -->
+    <div class="flex-1 overflow-y-auto px-3.5 py-3 space-y-3 pb-20">
+
+      <!-- =================================================================== -->
+      <!-- MỤC 1: THANH TRƯỢT KÉO THỜI GIAN TỐI THIỂU 60 GIÂY ĐỂ TEST THỰC NGHIỆM -->
+      <!-- =================================================================== -->
+      <div class="bg-white border-2 border-sky-400 rounded-2xl p-3.5 shadow-sm space-y-2.5">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-xs font-extrabold text-sky-800 uppercase">⏱️ 1. Thanh Trượt Thời Gian Thực Nghiệm (≥ 60 Giây)</h2>
+            <p class="text-[11px] text-slate-600">Kéo chọn thời gian chạy thực nghiệm (tối thiểu 60 giây). Hết thời gian tự động bật Mức 4.</p>
+          </div>
+          <span id="sliderBadge" class="px-2.5 py-1 rounded-full bg-sky-600 text-white font-extrabold text-xs shrink-0">60 giây</span>
+        </div>
+
+        <input type="range" id="timeSlider" class="range-bright" min="60" max="1800" step="10" value="60" oninput="onSliderInput(this.value)" onchange="onSliderChange(this.value)" />
+
+        <div class="flex justify-between text-[10px] font-bold text-slate-500">
+          <span class="text-sky-700">60 giây (Tối thiểu)</span>
+          <span>120 giây (2p)</span>
+          <span>300 giây (5p)</span>
+          <span>900 giây (15p)</span>
+          <span>1800 giây (30p)</span>
+        </div>
+
+        <!-- Nút chọn Cấp độ (Ngầm định tự động Mức 4) -->
+        <div class="pt-1 border-t border-slate-100">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-[11px] font-bold text-slate-700">Cấp độ suy giảm (Ngầm định tự động <strong>Mức 4</strong>):</span>
+            <button onclick="startCountdownFromZero()" class="text-[11px] font-extrabold text-sky-700 underline">▶ Chạy đếm từ 0s đến 60s</button>
+          </div>
+          <div class="grid grid-cols-6 gap-1">
+            <button onclick="selectLevel('auto')" id="lvlBtn-auto" class="py-1.5 rounded-lg border text-[11px] font-extrabold bg-slate-100 text-slate-700 border-slate-300">Tự động</button>
+            <button onclick="selectLevel(0)" id="lvlBtn-0" class="py-1.5 rounded-lg border text-[11px] font-extrabold bg-slate-100 text-slate-700 border-slate-300">Mức 0</button>
+            <button onclick="selectLevel(1)" id="lvlBtn-1" class="py-1.5 rounded-lg border text-[11px] font-extrabold bg-slate-100 text-slate-700 border-slate-300">Mức 1</button>
+            <button onclick="selectLevel(2)" id="lvlBtn-2" class="py-1.5 rounded-lg border text-[11px] font-extrabold bg-slate-100 text-slate-700 border-slate-300">Mức 2</button>
+            <button onclick="selectLevel(3)" id="lvlBtn-3" class="py-1.5 rounded-lg border text-[11px] font-extrabold bg-slate-100 text-slate-700 border-slate-300">Mức 3</button>
+            <button onclick="selectLevel(4)" id="lvlBtn-4" class="py-1.5 rounded-lg border text-[11px] font-extrabold bg-sky-600 text-white border-sky-600 shadow">Mức 4</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- MỤC 2: CHỌN HỒ SƠ LỨA TUỔI (CHỈNH TỰ DO KHÔNG CẦN MẬT KHẨU)          -->
+      <!-- =================================================================== -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-3.5 shadow-sm space-y-2">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xs font-extrabold text-slate-800 uppercase">🎯 2. Chọn Hồ Sơ Lứa Tuổi (3 – 12 Tuổi)</h2>
+          <span class="text-[10px] font-bold text-emerald-600">Không cần mật khẩu</span>
+        </div>
+        <div class="grid grid-cols-3 gap-2">
+          <button onclick="selectAge('3-6')" id="ageCard-3-6" class="p-2.5 rounded-xl border-2 text-center transition bg-slate-50 border-slate-200">
+            <div class="text-xl">👶</div>
+            <div class="text-xs font-extrabold text-slate-900 mt-0.5">3 – 6 tuổi</div>
+            <div class="text-[10px] font-semibold text-slate-500">Mầm non</div>
+          </button>
+          <button onclick="selectAge('7-9')" id="ageCard-7-9" class="p-2.5 rounded-xl border-2 text-center transition bg-slate-50 border-slate-200">
+            <div class="text-xl">🧒</div>
+            <div class="text-xs font-extrabold text-slate-900 mt-0.5">7 – 9 tuổi</div>
+            <div class="text-[10px] font-semibold text-slate-500">Tiểu học</div>
+          </button>
+          <button onclick="selectAge('10-12')" id="ageCard-10-12" class="p-2.5 rounded-xl border-2 text-center transition bg-sky-50 border-sky-500 shadow-sm">
+            <div class="text-xl">🧑</div>
+            <div class="text-xs font-extrabold text-slate-900 mt-0.5">10 – 12 tuổi</div>
+            <div class="text-[10px] font-semibold text-sky-700">THCS</div>
+          </button>
+        </div>
+        <div id="ageDescBox" class="p-2.5 rounded-xl bg-sky-50 border-l-4 border-sky-500 text-[11px] text-slate-700 leading-relaxed">
+          <strong>Cơ chế Ma sát nhận thức (10–12 tuổi):</strong> Ẩn số Like/View, giảm độ bão hòa màu về trắng đen 100%, làm trễ cuộn và yêu cầu gõ câu phản tư.
+        </div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- MỤC 3: TÍCH CHỌN 4 ỨNG DỤNG KIỂM SOÁT NGẦM (KHÔNG CẦN MẬT KHẨU)      -->
+      <!-- =================================================================== -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-3.5 shadow-sm space-y-2.5">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-xs font-extrabold text-slate-800 uppercase">✅ 3. Bộ Lọc 4 Ứng Dụng Kiểm Soát Ngầm</h2>
+            <p class="text-[10px] text-slate-500">Chỉ cần tích chọn để tự động kiểm soát ngầm (Tùy chỉnh tự do không cần mật khẩu)</p>
+          </div>
+          <span id="appCountBadge" class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-extrabold text-[10px]">4/4 Bật</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <label class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between cursor-pointer">
+            <span class="text-xs font-bold text-slate-800">▶️ YouTube</span>
+            <input type="checkbox" id="chkApp-youtube" class="chk-bright" checked onchange="toggleApp('youtube', this.checked)" />
+          </label>
+          <label class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between cursor-pointer">
+            <span class="text-xs font-bold text-slate-800">🎵 TikTok</span>
+            <input type="checkbox" id="chkApp-tiktok" class="chk-bright" checked onchange="toggleApp('tiktok', this.checked)" />
+          </label>
+          <label class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between cursor-pointer">
+            <span class="text-xs font-bold text-slate-800">📘 Facebook</span>
+            <input type="checkbox" id="chkApp-facebook" class="chk-bright" checked onchange="toggleApp('facebook', this.checked)" />
+          </label>
+          <label class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between cursor-pointer">
+            <span class="text-xs font-bold text-slate-800">🎮 Game</span>
+            <input type="checkbox" id="chkApp-game" class="chk-bright" checked onchange="toggleApp('game', this.checked)" />
+          </label>
+        </div>
+
+        <label class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between cursor-pointer">
+          <span class="text-[11px] font-bold text-emerald-900">🎓 Miễn giảm làm xám cho bài giảng học tập YouTube</span>
+          <input type="checkbox" id="chkEduWhitelist" class="chk-bright" checked onchange="toggleEduWhitelist(this.checked)" />
+        </label>
+
+        <div class="p-2.5 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-between">
+          <div>
+            <div class="text-[11px] font-extrabold text-amber-900">⏰ Nhắc nhở khi dùng máy quá 1 giờ (60 phút)</div>
+            <div id="oneHourSubText" class="text-[10px] text-amber-700">Đang theo dõi ngầm • Bấm nút bên cạnh để test ngay</div>
+          </div>
+          <button onclick="triggerOneHourModalNow()" class="px-2.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-white font-extrabold text-[10px] shadow-sm shrink-0">
+            Test &gt;1 Giờ
+          </button>
+        </div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- MỤC 4: MÀN HÌNH THỰC NGHIỆM TRỰC TIẾP (HIỂN THỊ NGAY TÁC DỤNG MỨC 4)  -->
+      <!-- =================================================================== -->
+      <div class="bg-white border-2 border-slate-300 rounded-2xl overflow-hidden shadow-md">
+        <div class="bg-slate-100 px-3.5 py-2 border-b border-slate-200 flex items-center justify-between">
+          <span class="text-xs font-extrabold text-slate-800">🔬 Màn Hình Kiểm Chứng Tác Dụng Trực Tiếp</span>
+          <span id="liveFilterBadge" class="text-[11px] font-mono font-bold text-rose-600">Màu: 0% | Âm: 15%</span>
+        </div>
+
+        <!-- Khung mô phỏng chịu tác động trực tiếp của bộ lọc -->
+        <div id="liveStage" class="decay-stage relative p-4 bg-gradient-to-br from-rose-500 via-purple-600 to-sky-500 text-white min-h-[220px] flex flex-col justify-between">
+          <div class="flex items-center justify-between text-xs">
+            <span id="stagePlatformLabel" class="px-2.5 py-0.5 rounded-full bg-black/40 font-bold">▶️ YouTube / TikTok / Game</span>
+            <span id="stageAutoplayLabel" class="px-2.5 py-0.5 rounded-full bg-black/40 font-bold">🛑 Đã chặn Autoplay</span>
+          </div>
+
+          <div class="my-3 text-center space-y-1">
+            <div class="text-4xl">🎬🎵🎮</div>
+            <h3 class="text-sm font-extrabold drop-shadow">LUỒNG VIDEO NGẮN &amp; TRÒ CHƠI TRỰC TUYẾN</h3>
+            <p id="stageEffectDesc" class="text-[11px] text-white/90">
+              Đang áp dụng Mức 4: Rút cạn 100% màu sắc kích thích, ẩn số Like/View và kích hoạt màn hình Điểm dừng!
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between gap-2">
+            <div id="stageSocialBadge" class="bg-black/40 px-3 py-1.5 rounded-xl text-xs font-bold">
+              ❤️ 142K Thích • 💬 8.9K
+            </div>
+            <button onclick="simulateUserSwipe()" class="flex-1 py-2 px-3 rounded-xl bg-white text-slate-900 font-extrabold text-xs shadow">
+              👆 Thử Vuốt / Cuộn Nhanh (+Phạt)
+            </button>
+          </div>
+
+          <!-- Bảng Điểm Dừng Mức 4 hiển thị ngay bên trong Khung Thực Nghiệm để người dùng thấy tác dụng lập tức -->
+          <div id="inlineLevel4Banner" class="mt-3 p-3 rounded-xl bg-white/95 text-slate-900 border-2 border-rose-500 shadow-lg space-y-2">
+            <div class="flex items-center justify-between">
+              <span id="inlineL4Title" class="text-xs font-extrabold text-rose-600">🛑 MỨC 4 ĐANG KÍCH HOẠT: ĐIỂM DỪNG NHẬN THỨC</span>
+              <button onclick="openFullLevel4Modal()" class="px-2 py-0.5 rounded bg-rose-600 text-white text-[10px] font-bold">Mở toàn màn hình</button>
+            </div>
+            <p id="inlineL4Desc" class="text-[11px] text-slate-700">
+              Màn hình đã chuyển trắng đen 100% và khóa luồng giải trí theo đúng thiết lập ngầm định Mức 4.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- MỤC 5: CÀI ĐẶT TRÊN IPHONE & XUẤT SỐ LIỆU CSV                       -->
+      <!-- =================================================================== -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-3.5 shadow-sm space-y-2">
+        <div class="grid grid-cols-2 gap-2">
+          <a href="data:application/x-apple-aspen-config;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXBwbGUvL0RURCBQTElTVCAxLjAvL0VOIiAiaHR0cDovL3d3dy5hcHBsZS5jb20vRFREcy9Qcm9wZXJ0eUxpc3QtMS4wLmR0ZCI+CjxwbGlzdCB2ZXJzaW9uPSIxLjAiPgo8ZGljdD4KICAgIDxrZXk+UGF5bG9hZENvbnRlbnQ8L2tleT4KICAgIDxhcnJheT4KICAgICAgICA8ZGljdD4KICAgICAgICAgICAgPGtleT5GdWxsU2NyZWVuPC9rZXk+CiAgICAgICAgICAgIDx0cnVlLz4KICAgICAgICAgICAgPGtleT5JY29uPC9rZXk+CiAgICAgICAgICAgIDxkYXRhPmlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFMUUFBQUMwQ0FZQUFBQTl6UVl5QUFBRmlFbEVRVlI0bk8zZHZXM2NRQlJGNFpGaFFGRGdWS0ZiY0NzTzNJWHJVUmNPM0lwYmNCZUs1TVFFS0lLN0lvY3o3K2UrODhXQ2RwWno4RGdyTCtpSHB5L1BidzBROGNsN0FjQklCQTBwQkEwcEJBMHBCQTBwQkEwcEJBMHBCQTBwQkEwcEJBMHBCQTBwbjcwWGNOYmpyNS9lU3lqbjljZUw5eElPZTRqKzVTUUNqaWR5NENHREp1SThvc1VkS21oQ3ppdEsyQ0dDSm1RZDNtRzdCazNJdXJ6Q2RnbWFrT3V3RHR2ODc5REVYSXYxZnBzR1RjdzFXZTY3eVpHRGtMR1lmUVNaUHFHSkdXdXplNWdhTkRGano4d3VwZ1ZOekxoblZoOVRnaVptSERHakU3NCtDaW5EZzJZNjQ0elJ2UXdObXBqUlkyUTN3NEltWmx3eHFoL08wSkF5SkdpbU0wWVkwUkVUR2xJdUI4MTB4a2hYZTJKQ1E4cWxvSm5PbU9GS1YweG9TT2tPbXVtTW1YcjdZa0pEQ2tGRFNsZlFIRGRnb2FjekpqU2tFRFNrRURTa25BNmE4ek1zbmUwdDNRUFBvK3Q1N2dSRFloeUN2bURVUTFQMmZnK1I5eUhvazZ3ZVByaCtIZUkranFBUDhIN21NWEVmUjlCM2VJZThaMWtUWWU4ajZCMFJROTRpN0gwRXZaSWg1QzNDZm85L1dQa3ZZOHhyMmRjL1N2a0pyUlFDMDdyNGhGYUtlVTMxZlIxUk5tajFUVmQvZjdlVU8zSlUydWlLUjVCU0U3cFN6R3VWM25lWm9DdHQ2cDRxNzc5RTBGVTI4eU1Wcm9OODBCVTI4UXoxNnlFZk5HcVJEbHA5R3ZWU3ZpNnlRU3R2MmdpcTEwY3lhTlhOR2szeE9ra0dqYnJrZ2xhY09qT3BYUytwb05VMng0clNkU3YzWFE0cjMzNy8vZkJuL256L2FyQ1NXbVNDampCbGprUjg2K2U5NDM3OThTTHhKU2Fab0wyY2pmakk3L0dPT3pPSk03VFhkQjRWczlYdi9VaUV1OXhWVE9nT0ZzRXRyOEcwUGlmOWhMYWVLdGJUMC9yMXNrL3A5RUZiOGpvS2VMMXVSZ1I5a0hkVTNxK2ZSZXFnclc2UFVXS3lXa2ZtWTBmcW9DMUVpWGtSYlQzUkVEU2twQTNhNHJZWWRScGFyQ3Zyc1NOdDBMTkZqWGtSZlgxZUNCcFNDQnBTQ0hwSGx0dDVsblZhU2hsMDFnOHMyV1M4emltREJtNGg2STFzdC9GczY1Mk5vQ0dGb0NHRm9DR0ZvQ0dGb0NHRm9DR0ZvQ0dGb0NHRm9EZXlQVFlnMjNwbkkyaElTUm0wd2pQWU1zaDRuVk1HUFZ1VzIzaVdkVm9pYUVnaGFFZ2g2QnVpMzg2anI4OUwycUF0UHJCRWpjWmlYUmsvRUxhV09HaGdEMEYvSU5xVWpyYWVhRklIYlhWYmpCS1IxVHF5SGpkYVN4NjBKZStvdlY4L0M0SSt3U3NxWWo0dWZkRFd0MGZydUt4ZkwvTnhvelgrMDZBdVMyUXpIeUhBVk82VGZrSzM1amRWWmtYbkZYUDI2ZHdhRS9xeWRYeFhKallUZVF5Wm9COS8vWFIvRnR2WnVDTkZyRENkV3hNS09wcElzVllpY1laZXFFd1phMHJYVFNybzFyUTJ4NExhOVpJTEdyVkpCcTAyZFdaUnZFNlNRYmVtdVZranFWNGYyYUJiMDkyMHE1U3ZpM1RRcUVjK2FPVnAxRVA5ZXNnSDNacitKaDVWNFRxVUNMcTFHcHQ1VDVYM1h5Ym8xdXBzNmxhbDkxM3V1eHpMNW5wL2tjbENwWkFYcFNiMG12cG1xNysvVzhvRzNacnVwcXUrcnlQS0hUbTJsSTRnbFVOZWxKN1FhOWxqeUw3K1VjcFA2TFdNMDVxUTN5UG9IUm5DSnVSOUJIMUh4TEFKK1Q2Q1BtQWRrVWZjUkh3Y1FaOWtGVGNSOXlIb0MvYWk2NG1jZU1jaDZNR0kwOWZwdjBOSCtvQUVmV2Q3NHg5V0lJV2dJWVdnSWFVcmFNN1JzTkRUR1JNYVVnZ2FVcnFENXRpQm1YcjdZa0pEeXFXZ21kS1k0VXBYVEdoSXVSdzBVeG9qWGUySkNRMHBRNEptU21PRUVSMHhvU0ZsV05CTWFWd3hxcCtoRTVxbzBXTmtOOE9QSEVTTk0wYjN3aGthVXFZRXpaVEdFVE02bVRhaGlScjN6T3BqNnBHRHFMRm5aaGZUejlCRWpiWFpQVHc4ZlhsK20vb0tLenl6b2k2cndXYjZWdzZtZFUyVysyNytaenVpcnNWNnYwMlBIRnNjUVhSNURTN1hvQmVFcmNQN0Rod2k2QVZoNStVZDhpSlUwQXZDemlOS3lJdVFRYThSZHp6UklsNExIL1FXZ2R1TEhQQld1cUNCZS9qNktLUVFOS1FRTktRUU5LUVFOS1FRTktRUU5LUVFOS1FRTktRUU5LVDhBK2Zyc2FzblpNRnFBQUFBQUVsRlRrU3VRbUNDPC9kYXRhPgogICAgICAgICAgICA8a2V5Pklnbm9yZU1hbmlmZXN0U2NvcGU8L2tleT4KICAgICAgICAgICAgPHRydWUvPgogICAgICAgICAgICA8a2V5PklzUmVtb3ZhYmxlPC9rZXk+CiAgICAgICAgICAgIDx0cnVlLz4KICAgICAgICAgICAgPGtleT5MYWJlbDwva2V5PgogICAgICAgICAgICA8c3RyaW5nPkRvcGFtaW5lIERlY2F5PC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZERlc2NyaXB0aW9uPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+VOG7sSDEkeG7mW5nIGfhuq9uIGJp4buDdSB0xrDhu6NuZyBEb3BhbWluZSBEZWNheSAoS0hLVCkgcmEgTcOgbiBow6xuaCBjaMOtbmggaVBob25lPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZERpc3BsYXlOYW1lPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+Qmnhu4N1IHTGsOG7o25nIE3DoG4gaMOsbmggY2jDrW5oIERvcGFtaW5lIERlY2F5PC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZElkZW50aWZpZXI8L2tleT4KICAgICAgICAgICAgPHN0cmluZz52bi5raGt0LmRvcGFtaW5lZGVjYXkud2ViY2xpcC52NTwvc3RyaW5nPgogICAgICAgICAgICA8a2V5PlBheWxvYWRUeXBlPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+Y29tLmFwcGxlLndlYkNsaXAubWFuYWdlZDwvc3RyaW5nPgogICAgICAgICAgICA8a2V5PlBheWxvYWRVVUlEPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+OEE3QjZDNUQtMTExMS0yMjIyLTMzMzMtNDQ0NDU1NTU5OTk5PC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZFZlcnNpb248L2tleT4KICAgICAgICAgICAgPGludGVnZXI+MTwvaW50ZWdlcj4KICAgICAgICAgICAgPGtleT5QcmVjb21wb3NlZDwva2V5PgogICAgICAgICAgICA8dHJ1ZS8+CiAgICAgICAgICAgIDxrZXk+VVJMPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+aHR0cHM6Ly90aGF5dHJ1b25naXQuZ2l0aHViLmlvL0RvcGFtaW5lX0RlY2F5Lzwvc3RyaW5nPgogICAgICAgIDwvZGljdD4KICAgICAgICA8ZGljdD4KICAgICAgICAgICAgPGtleT5ETlNTZXR0aW5nczwva2V5PgogICAgICAgICAgICA8ZGljdD4KICAgICAgICAgICAgICAgIDxrZXk+RE5TUHJvdG9jb2w8L2tleT4KICAgICAgICAgICAgICAgIDxzdHJpbmc+SFRUUFM8L3N0cmluZz4KICAgICAgICAgICAgICAgIDxrZXk+U2VydmVyVVJMPC9rZXk+CiAgICAgICAgICAgICAgICA8c3RyaW5nPmh0dHBzOi8vZmFtaWx5LmNsb3VkZmxhcmUtZG5zLmNvbS9kbnMtcXVlcnk8L3N0cmluZz4KICAgICAgICAgICAgPC9kaWN0PgogICAgICAgICAgICA8a2V5Pk9uRGVtYW5kUnVsZXM8L2tleT4KICAgICAgICAgICAgPGFycmF5PgogICAgICAgICAgICAgICAgPGRpY3Q+CiAgICAgICAgICAgICAgICAgICAgPGtleT5BY3Rpb248L2tleT4KICAgICAgICAgICAgICAgICAgICA8c3RyaW5nPkV2YWx1YXRlQ29ubmVjdGlvbjwvc3RyaW5nPgogICAgICAgICAgICAgICAgICAgIDxrZXk+QWN0aW9uUGFyYW1ldGVyczwva2V5PgogICAgICAgICAgICAgICAgICAgIDxhcnJheT4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpY3Q+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8a2V5PkRvbWFpbkFjdGlvbjwva2V5PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPHN0cmluZz5Db25uZWN0SWZOZWVkZWQ8L3N0cmluZz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxrZXk+RG9tYWluczwva2V5PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGFycmF5PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzdHJpbmc+eW91dHViZS5jb208L3N0cmluZz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3RyaW5nPmdvb2dsZXZpZGVvLmNvbTwvc3RyaW5nPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzdHJpbmc+eW91dHViZWkuZ29vZ2xlYXBpcy5jb208L3N0cmluZz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3RyaW5nPnl0aW1nLmNvbTwvc3RyaW5nPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzdHJpbmc+eW91dHUuYmU8L3N0cmluZz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3RyaW5nPnRpa3Rvay5jb208L3N0cmluZz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3RyaW5nPnRpa3Rva3YuY29tPC9zdHJpbmc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHN0cmluZz50aWt0b2tjZG4uY29tPC9zdHJpbmc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHN0cmluZz5ieXRlb3ZlcnNlYS5jb208L3N0cmluZz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3RyaW5nPm11c2ljYWwubHk8L3N0cmluZz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3RyaW5nPmZhY2Vib29rLmNvbTwvc3RyaW5nPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzdHJpbmc+ZmJjZG4ubmV0PC9zdHJpbmc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHN0cmluZz5ncmFwaC5mYWNlYm9vay5jb208L3N0cmluZz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3RyaW5nPmZiLndhdGNoPC9zdHJpbmc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHN0cmluZz5yb2Jsb3guY29tPC9zdHJpbmc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHN0cmluZz5yYnhjZG4uY29tPC9zdHJpbmc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHN0cmluZz5nYXJlbmEuY29tPC9zdHJpbmc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHN0cmluZz5nYXJlbmFub3cuY29tPC9zdHJpbmc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHN0cmluZz5nZ2JsdWVzaGFyay5jb208L3N0cmluZz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3RyaW5nPmZyZWVmaXJlbW9iaWxlLmNvbTwvc3RyaW5nPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzdHJpbmc+bGllbnF1YW4uZ2FyZW5hLnZuPC9zdHJpbmc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHN0cmluZz5zdXBlcmNlbGwuY29tPC9zdHJpbmc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHN0cmluZz5wb2tpLmNvbTwvc3RyaW5nPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9hcnJheT4KICAgICAgICAgICAgICAgICAgICAgICAgPC9kaWN0PgogICAgICAgICAgICAgICAgICAgIDwvYXJyYXk+CiAgICAgICAgICAgICAgICA8L2RpY3Q+CiAgICAgICAgICAgICAgICA8ZGljdD4KICAgICAgICAgICAgICAgICAgICA8a2V5PkFjdGlvbjwva2V5PgogICAgICAgICAgICAgICAgICAgIDxzdHJpbmc+Q29ubmVjdDwvc3RyaW5nPgogICAgICAgICAgICAgICAgPC9kaWN0PgogICAgICAgICAgICA8L2FycmF5PgogICAgICAgICAgICA8a2V5PlBheWxvYWREZXNjcmlwdGlvbjwva2V5PgogICAgICAgICAgICA8c3RyaW5nPlRp4bq/biB0csOsbmggaOG7hyB0aOG7kW5nIGlPUyBjaOG6oXkgbmfhuqdtIDI0LzcgZ2nDoW0gc8OhdCB2w6Aga2nhu4NtIHNvw6F0IFlvdVR1YmUsIFRpa1RvaywgRmFjZWJvb2ssIEdhbWUgbmdheSBj4bqjIGtoaSB04bqvdCDhu6luZyBk4bulbmcuPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZERpc3BsYXlOYW1lPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+VGnhur9uIFRyw6xuaCBDaOG6oXkgTmfhuqdtIDI0LzcgKFlULCBUaWtUb2ssIEZCLCBHYW1lKTwvc3RyaW5nPgogICAgICAgICAgICA8a2V5PlBheWxvYWRJZGVudGlmaWVyPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+dm4ua2hrdC5kb3BhbWluZWRlY2F5LmRuc2RhZW1vbi52NTwvc3RyaW5nPgogICAgICAgICAgICA8a2V5PlBheWxvYWRUeXBlPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+Y29tLmFwcGxlLmRuc1NldHRpbmdzLm1hbmFnZWQ8L3N0cmluZz4KICAgICAgICAgICAgPGtleT5QYXlsb2FkVVVJRDwva2V5PgogICAgICAgICAgICA8c3RyaW5nPjlCOEM3RDZFLTIyMjItMzMzMy00NDQ0LTU1NTU2NjY2MDAwMDwvc3RyaW5nPgogICAgICAgICAgICA8a2V5PlBheWxvYWRWZXJzaW9uPC9rZXk+CiAgICAgICAgICAgIDxpbnRlZ2VyPjE8L2ludGVnZXI+CiAgICAgICAgPC9kaWN0PgogICAgPC9hcnJheT4KICAgIDxrZXk+UGF5bG9hZERlc2NyaXB0aW9uPC9rZXk+CiAgICA8c3RyaW5nPlThu7EgxJHhu5luZyBn4bqvbiBiaeG7g3UgdMaw4bujbmcgRG9wYW1pbmUgRGVjYXkgcmEgTcOgbiBow6xuaCBjaMOtbmggaVBob25lIHbDoCBrw61jaCBob+G6oXQgdGnhur9uIHRyw6xuaCBjaOG6oXkgbmfhuqdtIDI0Lzcga2nhu4NtIHNvw6F0IFlvdVR1YmUsIFRpa1RvaywgRmFjZWJvb2ssIEdhbWUuIE3huq10IGto4bqpdSBQaOG7pSBodXluaDogNjY2NjY2Ljwvc3RyaW5nPgogICAgPGtleT5QYXlsb2FkRGlzcGxheU5hbWU8L2tleT4KICAgIDxzdHJpbmc+RG9wYW1pbmUgRGVjYXkg4oCTIEJp4buDdSBUxrDhu6NuZyAmYW1wOyBDaOG6oXkgTmfhuqdtIDI0Lzc8L3N0cmluZz4KICAgIDxrZXk+UGF5bG9hZElkZW50aWZpZXI8L2tleT4KICAgIDxzdHJpbmc+dm4ua2hrdC5kb3BhbWluZWRlY2F5LmF1dG9wcm9maWxlLnY1PC9zdHJpbmc+CiAgICA8a2V5PlBheWxvYWRPcmdhbml6YXRpb248L2tleT4KICAgIDxzdHJpbmc+ROG7sSDDoW4gS0hLVCDigJMgVHLGsOG7nW5nIFRIQ1MgTcOjbyDEkGnhu4FuLCBC4bqvYyBOaW5oPC9zdHJpbmc+CiAgICA8a2V5PlBheWxvYWRSZW1vdmFsRGlzYWxsb3dlZDwva2V5PgogICAgPGZhbHNlLz4KICAgIDxrZXk+UGF5bG9hZFR5cGU8L2tleT4KICAgIDxzdHJpbmc+Q29uZmlndXJhdGlvbjwvc3RyaW5nPgogICAgPGtleT5QYXlsb2FkVVVJRDwva2V5PgogICAgPHN0cmluZz4xQTJCM0M0RC01NTU1LTY2NjYtNzc3Ny04ODg4OTk5OTY2NjY8L3N0cmluZz4KICAgIDxrZXk+UGF5bG9hZFZlcnNpb248L2tleT4KICAgIDxpbnRlZ2VyPjE8L2ludGVnZXI+CjwvZGljdD4KPC9wbGlzdD4="
+             download="Dopamine_Decay_iOS.mobileconfig"
+             onclick="showToast('📲 Đang tải Hồ sơ iOS... Hãy bấm Cho phép!')"
+             class="py-2.5 px-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-xs text-center shadow-sm">
+            📲 Cài Hồ Sơ iPhone (1 Chạm)
+          </a>
+          <button onclick="togglePipWindow()" class="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs shadow-sm">
+            🖼️ Bật Đồng Hồ Nổi PiP
+          </button>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="exportCSV()" class="py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs border border-slate-300">
+            📊 Xuất Báo Cáo CSV
+          </button>
+          <button onclick="resetExperimentTimer()" class="py-2 px-3 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs border border-rose-200">
+            🔄 Đặt Lại Thời Gian
+          </button>
+        </div>
+        <canvas id="pipCanvas" width="360" height="140" class="hidden"></canvas>
+        <video id="pipVideo" muted playsinline class="hidden"></video>
+      </div>
+
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- HỘP THOẠI ĐIỂM DỪNG MỨC 4 TOÀN MÀN HÌNH (TRẮNG SÁNG)                  -->
+    <!-- ===================================================================== -->
+    <div id="fullStopModal" class="hidden absolute inset-0 bg-white/95 bright-glass z-40 flex flex-col items-center justify-center p-6 text-center">
+      <div id="modalL4Emoji" class="text-6xl mb-2 animate-bounce">🧭🧠⏳</div>
+      <span class="px-3 py-1 rounded-full bg-rose-100 text-rose-700 font-extrabold text-xs">
+        ĐÃ KÍCH HOẠT MỨC 4 – ĐIỂM DỪNG BẢO VỆ
+      </span>
+      <h2 id="modalL4Title" class="text-xl font-extrabold text-slate-900 mt-2">
+        Đã Chạm Ngưỡng Thời Gian Thực Nghiệm!
+      </h2>
+      <p id="modalL4Desc" class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+        Hệ thống đã tự động chuyển màn hình về chế độ giảm kích thích tối đa (Mức 4).
+      </p>
+
+      <!-- Trạm vận động 10 nhịp cho trẻ 7-9 tuổi -->
+      <div id="modalStretchZone" class="hidden w-full mt-4 p-4 rounded-2xl bg-sky-50 border-2 border-sky-400 space-y-2">
+        <div class="text-xs font-extrabold text-sky-900">Nhịp vươn vai nạp năng lượng: <span id="stretchCounterText" class="text-lg text-sky-700">0 / 10</span></div>
+        <button onclick="stepStretch()" class="w-full py-2.5 rounded-xl bg-sky-600 text-white font-extrabold text-xs shadow">
+          🤸 Bấm thực hiện 1 nhịp vươn vai (+1)
+        </button>
+      </div>
+
+      <!-- Hộp gõ câu phản tư cho trẻ 10-12 tuổi -->
+      <div id="modalReflectZone" class="w-full mt-4 space-y-2 text-left bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
+        <div class="text-[11px] text-slate-700 font-bold">Gõ lại câu sau để mở thêm 5 phút (Chống Copy-Paste):</div>
+        <div class="p-2 rounded-lg bg-white border border-slate-300 text-xs font-mono text-sky-700 font-bold">
+          em xin mở thêm năm phút để hoàn thành việc cần thiết
+        </div>
+        <input id="reflectInputBox" type="text" placeholder="Gõ câu phản tư tại đây..." class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-xs text-slate-900 font-semibold" />
+        <button onclick="submitReflectionText()" class="w-full py-2 rounded-xl bg-sky-600 text-white font-bold text-xs shadow-sm">
+          🔓 Xác nhận câu phản tư (+5 phút Trắng Đen)
+        </button>
+      </div>
+
+      <div class="w-full mt-4 space-y-2">
+        <button onclick="confirmVoluntaryStop()" class="w-full py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm shadow-lg">
+          ✅ Tự giác dừng xem &amp; Quay lại học tập
+        </button>
+        <button onclick="closeFullLevel4Modal()" class="w-full py-2 rounded-xl bg-slate-200 text-slate-700 font-bold text-xs">
+          Quay lại bảng điều khiển
+        </button>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- HỘP THOẠI NHẮC NHỞ KHI DÙNG ĐIỆN THOẠI QUÁ 1 GIỜ (60 PHÚT)            -->
+    <!-- ===================================================================== -->
+    <div id="oneHourModal" class="hidden absolute inset-0 bg-white/95 bright-glass z-50 flex flex-col items-center justify-center p-6 text-center">
+      <div class="text-6xl mb-3 animate-bounce">⏰👀</div>
+      <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-300 text-xs font-extrabold uppercase">
+        Cảnh Báo Sử Dụng Quá 1 Giờ Đồng Hồ
+      </span>
+      <h2 class="text-xl font-extrabold text-slate-900 mt-3">
+        Bạn Đã Dùng Điện Thoại Liên Tục Trên 1 Tiếng (60 Phút)!
+      </h2>
+      <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+        Hãy thực hiện quy tắc <strong>20-20-20</strong>: đặt điện thoại xuống, nhìn xa 6 mét và nghỉ mắt ít nhất 10–15 phút!
+      </p>
+      <button onclick="acknowledgeOneHour()" class="w-full mt-5 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm shadow-lg">
+        🌿 Đồng ý nghỉ mắt &amp; Đặt lại bộ đếm 1 giờ
+      </button>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- HỘP THOẠI MẬT KHẨU PHỤ HUYNH (CHỈ HIỆN KHI BẤM TẮT CHƯƠNG TRÌNH)       -->
+    <!-- ===================================================================== -->
+    <div id="pinModal" class="hidden absolute inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex flex-col items-center justify-center p-6">
+      <div class="w-full max-w-xs bg-white border-2 border-amber-400 rounded-3xl p-5 space-y-3.5 text-center shadow-2xl">
+        <div class="text-4xl">🔐</div>
+        <h3 class="text-base font-extrabold text-slate-900">Mật Khẩu Tắt Chương Trình</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Chỉ thao tác <strong>Tắt chương trình</strong> mới cần mật khẩu Phụ huynh (Ngầm định: <strong class="text-amber-600 font-mono">666666</strong>).
+        </p>
+        <input id="pinInput" type="password" inputmode="numeric" maxlength="10" placeholder="Nhập 666666..." class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border-2 border-slate-300 text-center text-base font-extrabold tracking-widest text-slate-900 focus:outline-none focus:border-amber-500" />
+        <div class="flex items-center gap-2 pt-1">
+          <button onclick="closePinModal()" class="flex-1 py-2.5 rounded-xl bg-slate-200 text-slate-700 font-bold text-xs">
+            Hủy (Giữ Bật)
+          </button>
+          <button onclick="confirmTurnOffWithPin()" class="flex-1 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-white font-extrabold text-xs shadow">
+            Xác nhận Tắt
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast thông báo -->
+    <div id="toastBox" class="hidden absolute top-14 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-4 py-2 rounded-full text-xs font-bold shadow-xl z-50 whitespace-nowrap">
+      Đã cập nhật!
+    </div>
+
+  </div>
+
+  <script>
+    // =========================================================================
+    // TRẠNG THÁI NGẦM ĐỊNH HIỂN NHIÊN:
+    // - masterEnabled = true (Tự động chạy nền ngay lập tức)
+    // - limitSeconds = 60 (Thanh trượt tối thiểu 60 giây)
+    // - selectedLevel = 4 (Ngầm định tự động Mức 4)
+    // - Chỉ khi TẮT chương trình mới hỏi mật khẩu (666666); mọi tùy chọn khác KHÔNG CẦN MẬT KHẨU!
+    // =========================================================================
+    const state = {
+      masterEnabled: true,
+      age: '10-12',
+      limitSeconds: 60,
+      activeSeconds: 60,        // Khởi đầu ở 60s để kích hoạt hiển nhiên Mức 4 ngay lập tức
+      selectedLevel: 4,         // Ngầm định tự động Mức 4
+      totalPhoneSeconds: 0,
+      swipes: 0,
+      eduWhitelist: true,
+      stretchCount: 0,
+      voluntaryExits: 3,
+      apps: {
+        youtube: true,
+        tiktok: true,
+        facebook: true,
+        game: true
+      }
+    };
+
+    const AGE_DESCRIPTIONS = {
+      '3-6': '<strong>Cơ chế Trình duyệt buồn ngủ (3–6 tuổi):</strong> Chuyển màu vàng ấm dịu mắt (Sepia), hạ nhỏ âm lượng về 12% và hiển thị Bạn Gấu đi ngủ để bé tự giác dừng xem.',
+      '7-9': '<strong>Cơ chế Hạ nhiệt &amp; Vận động (7–9 tuổi):</strong> Làm xám màn hình, giảm âm thanh và bật Trạm nạp năng lượng yêu cầu vươn vai 10 nhịp.',
+      '10-12': '<strong>Cơ chế Ma sát nhận thức (10–12 tuổi):</strong> Ẩn số Like/View, giảm độ bão hòa màu về trắng đen 100%, làm trễ cuộn và yêu cầu gõ câu phản tư.'
+    };
+
+    let audioCtx = null;
+    let keepAliveOsc = null;
+    let pipReady = false;
+
+    function showToast(msg) {
+      const el = document.getElementById('toastBox');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => el.classList.add('hidden'), 2400);
+    }
+
+    // Tự động khởi chạy âm thanh giữ nền 1Hz
+    function ensureBackgroundDaemon() {
+      if (!state.masterEnabled) return;
+      try {
+        const AudioClass = window.AudioContext || window.webkitAudioContext;
+        if (!audioCtx && AudioClass) audioCtx = new AudioClass();
+        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+        if (audioCtx && !keepAliveOsc) {
+          keepAliveOsc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          keepAliveOsc.type = 'sine';
+          keepAliveOsc.frequency.value = 1;
+          gain.gain.value = 0.001;
+          keepAliveOsc.connect(gain);
+          gain.connect(audioCtx.destination);
+          keepAliveOsc.start();
+        }
+      } catch (_e) {}
+    }
+
+    function playBeep(freq = 528, dur = 0.25) {
+      try {
+        ensureBackgroundDaemon();
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.22, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + dur);
+      } catch (_e) {}
+    }
+
+    // 1. Nút BẬT ĐỂ CHẠY CHƯƠNG TRÌNH NGAY
+    function startProgramNow() {
+      state.masterEnabled = true;
+      state.selectedLevel = 4;
+      state.activeSeconds = state.limitSeconds;
+      ensureBackgroundDaemon();
+      initPipCanvas();
+      playBeep(660, 0.25);
+      renderAll();
+      openFullLevel4Modal();
+      showToast('🚀 Chương trình đang chạy nền & kích hoạt Mức 4!');
+    }
+
+    // 2. Công tắc Bật / Tắt chương trình (Chỉ khi TẮT mới cần mật khẩu 666666)
+    function handleMasterSwitch(e) {
+      e.preventDefault();
+      if (!state.masterEnabled) {
+        // Đang tắt -> Bật lên ngay không cần mật khẩu!
+        state.masterEnabled = true;
+        ensureBackgroundDaemon();
+        playBeep(660, 0.2);
+        showToast('🟢 Đã BẬT chạy nền chương trình!');
+        renderAll();
+      } else {
+        // Đang bật -> Muốn tắt phải nhập mật khẩu 666666
+        document.getElementById('pinInput').value = '';
+        document.getElementById('pinModal').classList.remove('hidden');
+        setTimeout(() => document.getElementById('pinInput').focus(), 100);
+      }
+    }
+
+    function closePinModal() {
+      document.getElementById('pinModal').classList.add('hidden');
+      renderAll();
+    }
+
+    function confirmTurnOffWithPin() {
+      const val = document.getElementById('pinInput').value.trim();
+      if (val === '666666' || val === '1234') {
+        state.masterEnabled = false;
+        document.getElementById('pinModal').classList.add('hidden');
+        showToast('⚠️ Đã TẮT chương trình theo mật khẩu Phụ huynh.');
+        renderAll();
+      } else {
+        playBeep(220, 0.3);
+        showToast('❌ Sai mật khẩu! Mặc định là 666666');
+      }
+    }
+
+    // 3. Thanh trượt kéo thời gian tối thiểu 60 giây (Không cần mật khẩu)
+    function onSliderInput(val) {
+      const sec = Math.max(60, parseInt(val, 10) || 60);
+      state.limitSeconds = sec;
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      document.getElementById('sliderBadge').textContent = s === 0 ? `${sec} giây (${m}p)` : `${sec} giây`;
+    }
+
+    function onSliderChange(val) {
+      const sec = Math.max(60, parseInt(val, 10) || 60);
+      state.limitSeconds = sec;
+      state.activeSeconds = 0;
+      state.selectedLevel = 'auto';
+      playBeep(528, 0.12);
+      showToast(`⏱️ Đã đặt thanh trượt ${sec} giây: Đang tự động đếm tiến tới Mức 4!`);
+      renderAll();
+    }
+
+    function startCountdownFromZero() {
+      state.masterEnabled = true;
+      state.activeSeconds = 0;
+      state.selectedLevel = 'auto';
+      playBeep(580, 0.15);
+      showToast(`▶ Bắt đầu đếm từ 00:00 đến ${state.limitSeconds} giây (Tự động lên Mức 4)!`);
+      renderAll();
+    }
+
+    // 4. Chọn Cấp độ M0 -> M4 hoặc Tự động (Không cần mật khẩu)
+    function selectLevel(lvl) {
+      state.masterEnabled = true;
+      state.selectedLevel = lvl;
+      if (lvl === 'auto') {
+        state.activeSeconds = 0;
+        showToast('🔄 Đang chạy tự động từ Mức 0 -> Mức 4 theo thanh trượt ' + state.limitSeconds + 's');
+      } else {
+        playBeep(528, 0.12);
+        showToast('⚡ Đã chuyển sang Mức ' + lvl);
+        if (lvl === 4) {
+          openFullLevel4Modal();
+        }
+      }
+      renderAll();
+    }
+
+    // 5. Chọn độ tuổi (Không cần mật khẩu)
+    function selectAge(age) {
+      state.age = age;
+      playBeep(600, 0.1);
+      showToast('🎯 Đã chọn lứa tuổi: ' + age + ' tuổi');
+      renderAll();
+    }
+
+    // 6. Tích chọn 4 ứng dụng (Không cần mật khẩu)
+    function toggleApp(appKey, isChecked) {
+      state.apps[appKey] = isChecked;
+      showToast(`${isChecked ? '✅ Đã bật' : '⚪ Đã tắt'} kiểm soát ngầm ${appKey.toUpperCase()}`);
+      renderAll();
+    }
+
+    function toggleEduWhitelist(isChecked) {
+      state.eduWhitelist = isChecked;
+      showToast(isChecked ? '🎓 Đã bật miễn giảm cho bài giảng học tập' : '⚪ Đã tắt miễn giảm bài giảng');
+      renderAll();
+    }
+
+    function simulateUserSwipe() {
+      state.swipes += 1;
+      state.activeSeconds = Math.min(state.limitSeconds, state.activeSeconds + 5);
+      playBeep(440, 0.08);
+      showToast('👆 Đã ghi nhận thao tác lướt nhanh (+5 giây phạt)');
+      renderAll();
+    }
+
+    function getEffectiveLevel() {
+      if (!state.masterEnabled) return 0;
+      if (state.selectedLevel !== 'auto') return Number(state.selectedLevel);
+      const ratio = state.activeSeconds / Math.max(60, state.limitSeconds);
+      if (ratio >= 1.0) return 4;
+      if (ratio >= 0.75) return 3;
+      if (ratio >= 0.50) return 2;
+      if (ratio >= 0.25) return 1;
+      return 0;
+    }
+
+    function formatMMSS(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+
+    function openFullLevel4Modal() {
+      document.getElementById('fullStopModal').classList.remove('hidden');
+      renderAll();
+    }
+
+    function closeFullLevel4Modal() {
+      document.getElementById('fullStopModal').classList.add('hidden');
+    }
+
+    function stepStretch() {
+      state.stretchCount += 1;
+      playBeep(500 + state.stretchCount * 30, 0.12);
+      document.getElementById('stretchCounterText').textContent = state.stretchCount + ' / 10';
+      if (state.stretchCount >= 10) {
+        state.stretchCount = 0;
+        confirmVoluntaryStop();
+      }
+    }
+
+    document.getElementById('reflectInputBox').addEventListener('paste', e => {
+      e.preventDefault();
+      showToast('⚠️ Không được Copy-Paste! Hãy tự gõ câu phản tư.');
+    });
+
+    function submitReflectionText() {
+      const val = document.getElementById('reflectInputBox').value.trim().toLowerCase();
+      if (val === 'em xin mở thêm năm phút để hoàn thành việc cần thiết') {
+        state.selectedLevel = 3;
+        state.activeSeconds = Math.floor(state.limitSeconds * 0.75);
+        document.getElementById('reflectInputBox').value = '';
+        closeFullLevel4Modal();
+        showToast('✅ Đã mở thêm thời gian ở chế độ Trắng Đen (Mức 3)!');
+        renderAll();
+      } else {
+        showToast('⚠️ Câu gõ chưa khớp, vui lòng gõ chính xác!');
+      }
+    }
+
+    function confirmVoluntaryStop() {
+      state.voluntaryExits += 1;
+      state.activeSeconds = 0;
+      state.selectedLevel = 'auto';
+      closeFullLevel4Modal();
+      playBeep(528, 0.3);
+      showToast('🌟 Tuyệt vời! Đã ghi nhận hành vi tự giác dừng xem và đặt lại bộ đếm.');
+      renderAll();
+    }
+
+    function triggerOneHourModalNow() {
+      state.totalPhoneSeconds = 3600;
+      playBeep(432, 0.4);
+      document.getElementById('oneHourModal').classList.remove('hidden');
+      renderAll();
+    }
+
+    function acknowledgeOneHour() {
+      state.totalPhoneSeconds = 0;
+      document.getElementById('oneHourModal').classList.add('hidden');
+      playBeep(528, 0.25);
+      showToast('🌿 Đã đặt lại bộ đếm 1 giờ!');
+      renderAll();
+    }
+
+    function resetExperimentTimer() {
+      state.activeSeconds = 0;
+      state.totalPhoneSeconds = 0;
+      state.swipes = 0;
+      state.selectedLevel = 'auto';
+      showToast('🔄 Đã đặt lại bộ đếm về 00:00 (Chế độ tự động)');
+      renderAll();
+    }
+
+    function exportCSV() {
+      const activeApps = Object.keys(state.apps).filter(k => state.apps[k]).join('+');
+      const rows = [
+        ['Ngay', 'Trang_Thai', 'Lua_Tuoi', 'Ung_Dung_Kiem_Soat', 'Thanh_Truot_Giay', 'Thoi_Gian_Da_Chay', 'Cap_Do_Hien_Tai', 'So_Lan_Tu_Giac_Dung'],
+        [new Date().toISOString().slice(0, 10), state.masterEnabled ? 'DANG_BAT' : 'TAT', state.age, activeApps, state.limitSeconds, state.activeSeconds, getEffectiveLevel(), state.voluntaryExits]
+      ];
+      const csv = '\uFEFF' + rows.map(r => r.join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'so_lieu_thuc_nghiem_Dopamine_Decay.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast('📊 Đã tải xuống tệp CSV thực nghiệm!');
+    }
+
+    function initPipCanvas() {
+      if (pipReady) return;
+      try {
+        const canvas = document.getElementById('pipCanvas');
+        const video = document.getElementById('pipVideo');
+        drawPip();
+        if (canvas.captureStream) {
+          video.srcObject = canvas.captureStream(15);
+          video.play().catch(() => {});
+          pipReady = true;
+        }
+      } catch (_e) {}
+    }
+
+    function drawPip() {
+      const canvas = document.getElementById('pipCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const lvl = getEffectiveLevel();
+      ctx.fillStyle = lvl >= 4 ? '#be123c' : '#047857';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 15px sans-serif';
+      ctx.fillText('DOPAMINE DECAY - CHẠY NỀN 24/7', 14, 28);
+      ctx.font = 'bold 26px monospace';
+      ctx.fillText(`${formatMMSS(state.activeSeconds)} / ${formatMMSS(state.limitSeconds)} | Mức ${lvl}`, 14, 70);
+      ctx.fillStyle = '#fde047';
+      ctx.font = 'bold 13px sans-serif';
+      ctx.fillText(lvl >= 4 ? '🛑 ĐÃ KÍCH HOẠT MỨC 4: HÃY DỪNG XEM!' : '🟢 Đang tự động kiểm soát YT, TikTok, FB, Game', 14, 110);
+    }
+
+    async function togglePipWindow() {
+      initPipCanvas();
+      const video = document.getElementById('pipVideo');
+      try {
+        if (document.pictureInPictureElement) {
+          await document.exitPictureInPicture();
+        } else if (video.requestPictureInPicture) {
+          await video.play();
+          await video.requestPictureInPicture();
+        } else if (video.webkitSetPresentationMode) {
+          video.webkitSetPresentationMode('picture-in-picture');
+        } else {
+          showToast('🟢 Tiến trình chạy nền đã tự động kích hoạt!');
+        }
+      } catch (_e) {
+        showToast('🟢 Tiến trình chạy nền đã tự động kích hoạt!');
+      }
+    }
+
+    function renderAll() {
+      const lvl = getEffectiveLevel();
+
+      // Header & Master switch
+      document.getElementById('chkMaster').checked = state.masterEnabled;
+      document.getElementById('masterSwitchText').textContent = state.masterEnabled ? 'Đang Bật' : 'Đang Tắt';
+      document.getElementById('masterSwitchBox').className = state.masterEnabled
+        ? 'flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border-2 border-emerald-500 cursor-pointer shadow-sm'
+        : 'flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-50 border-2 border-rose-500 cursor-pointer shadow-sm';
+      document.getElementById('daemonLabel').textContent = state.masterEnabled
+        ? 'Chạy nền tự động: ĐANG BẬT'
+        : 'Chạy nền: ĐÃ TẮT';
+      document.getElementById('daemonDot').className = state.masterEnabled
+        ? 'w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping'
+        : 'w-2.5 h-2.5 rounded-full bg-rose-500';
+
+      // Level pill & timers
+      const lvlNames = ['Mức 0: An toàn', 'Mức 1: Giảm màu nhẹ', 'Mức 2: Pha loãng', 'Mức 3: Trắng đen 100%', 'Mức 4: ĐIỂM DỪNG'];
+      const pill = document.getElementById('currentLevelPill');
+      pill.textContent = !state.masterEnabled ? 'Đã Tắt' : lvlNames[lvl];
+      pill.className = lvl >= 4
+        ? 'px-2.5 py-0.5 rounded-full font-extrabold bg-rose-600 text-white'
+        : (lvl >= 2 ? 'px-2.5 py-0.5 rounded-full font-extrabold bg-amber-500 text-white' : 'px-2.5 py-0.5 rounded-full font-extrabold bg-emerald-600 text-white');
+
+      document.getElementById('timerDisplay').textContent = `${formatMMSS(state.activeSeconds)} / ${formatMMSS(state.limitSeconds)}`;
+      document.getElementById('phoneHourDisplay').textContent = `${Math.floor(state.totalPhoneSeconds / 60)}p / 60p`;
+
+      // Level buttons highlight
+      ['auto', 0, 1, 2, 3, 4].forEach(item => {
+        const btn = document.getElementById('lvlBtn-' + item);
+        if (!btn) return;
+        const isSel = String(state.selectedLevel) === String(item);
+        btn.className = isSel
+          ? 'py-1.5 rounded-lg border text-[11px] font-extrabold bg-sky-600 text-white border-sky-600 shadow'
+          : 'py-1.5 rounded-lg border text-[11px] font-extrabold bg-slate-100 text-slate-700 border-slate-300';
+      });
+
+      // Age cards highlight
+      ['3-6', '7-9', '10-12'].forEach(a => {
+        const card = document.getElementById('ageCard-' + a);
+        const isSel = state.age === a;
+        card.className = isSel
+          ? 'p-2.5 rounded-xl border-2 text-center transition bg-sky-50 border-sky-500 shadow-sm'
+          : 'p-2.5 rounded-xl border-2 text-center transition bg-slate-50 border-slate-200 opacity-80';
+      });
+      document.getElementById('ageDescBox').innerHTML = AGE_DESCRIPTIONS[state.age];
+
+      // 4 Apps count
+      const activeCount = Object.values(state.apps).filter(Boolean).length;
+      document.getElementById('appCountBadge').textContent = `${activeCount}/4 Đang bật`;
+
+      // Apply visual filter to Live Stage
+      const stage = document.getElementById('liveStage');
+      const satList = state.age === '3-6' ? [100, 75, 50, 25, 15] : [100, 65, 30, 0, 0];
+      const volList = [100, 85, 60, 35, 15];
+      const sat = satList[lvl];
+      const vol = volList[lvl];
+      document.getElementById('liveFilterBadge').textContent = `Màu: ${sat}% | Âm: ${vol}%`;
+
+      if (!state.masterEnabled) {
+        stage.style.filter = 'none';
+      } else if (state.age === '3-6') {
+        const sp = [0, 25, 45, 65, 75][lvl];
+        stage.style.filter = `saturate(${sat}%) sepia(${sp}%)`;
+      } else {
+        const gr = [0, 35, 70, 100, 100][lvl];
+        stage.style.filter = `saturate(${sat}%) grayscale(${gr}%)`;
+      }
+
+      document.getElementById('stageSocialBadge').style.opacity = lvl >= 1 ? '0.15' : '1';
+      document.getElementById('inlineLevel4Banner').classList.toggle('hidden', !(state.masterEnabled && lvl >= 4));
+
+      // Update Full Level 4 Modal content by age
+      const stretchZone = document.getElementById('modalStretchZone');
+      const reflectZone = document.getElementById('modalReflectZone');
+      stretchZone.classList.add('hidden');
+      reflectZone.classList.add('hidden');
+
+      if (state.age === '3-6') {
+        document.getElementById('modalL4Emoji').textContent = '🌙🐻💤';
+        document.getElementById('modalL4Title').textContent = 'Oáp... Bạn Điện Thoại Buồn Ngủ Rồi!';
+        document.getElementById('modalL4Desc').textContent = 'Màn hình đã chuyển vàng ấm bảo vệ mắt và nhỏ dần âm thanh. Bé bấm nút đắp chăn cho máy đi ngủ nhé!';
+      } else if (state.age === '7-9') {
+        document.getElementById('modalL4Emoji').textContent = '🔋🏃‍♂️👀';
+        document.getElementById('modalL4Title').textContent = 'Trạm Nạp Năng Lượng Vận Động (10 Nhịp)!';
+        document.getElementById('modalL4Desc').textContent = 'Năng lượng màu sắc đã cạn! Em hãy đứng dậy vươn vai 10 nhịp để bảo vệ mắt và cột sống nhé.';
+        stretchZone.classList.remove('hidden');
+      } else {
+        document.getElementById('modalL4Emoji').textContent = '🧭🧠⏳';
+        document.getElementById('modalL4Title').textContent = 'Điểm Dừng Nhận Thức (Mức 4)';
+        document.getElementById('modalL4Desc').textContent = 'Màn hình đã chuyển sang trắng đen 100% để cắt đứt vòng lặp kích thích Dopamine.';
+        reflectZone.classList.remove('hidden');
+      }
+
+      drawPip();
+    }
+
+    // Vòng lặp tự động chạy nền mỗi giây ngay khi mở trang
+    setInterval(() => {
+      const d = new Date();
+      document.getElementById('iosClock').textContent =
+        String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+
+      if (!state.masterEnabled) return;
+
+      state.totalPhoneSeconds += 1;
+      if (state.totalPhoneSeconds === 3600) {
+        triggerOneHourModalNow();
+      }
+
+      if (state.selectedLevel === 'auto') {
+        if (state.activeSeconds < state.limitSeconds) {
+          state.activeSeconds += 1;
+          if (state.activeSeconds >= state.limitSeconds) {
+            playBeep(432, 0.4);
+            openFullLevel4Modal();
+          }
+        }
+      }
+
+      renderAll();
+    }, 1000);
+
+    document.addEventListener('touchstart', function bootAudioOnce() {
+      ensureBackgroundDaemon();
+      initPipCanvas();
+      document.removeEventListener('touchstart', bootAudioOnce);
+    }, { passive: true });
+
+    window.addEventListener('load', () => {
+      renderAll();
+    });
+  </script>
+</body>
+</html>
