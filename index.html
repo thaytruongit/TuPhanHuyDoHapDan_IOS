@@ -13,6 +13,12 @@
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --yt-sat: 100%;
+      --yt-gray: 0%;
+      --yt-sepia: 0%;
+      --yt-bright: 100%;
+    }
     * {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
       -webkit-tap-highlight-color: transparent;
@@ -25,27 +31,48 @@
       padding: 0;
       overflow-x: hidden;
     }
-    /* Vùng giao diện YouTube chịu tác động trực tiếp của bộ lọc suy giảm màu sắc */
-    #youtubeAppViewport {
-      transition: filter 0.6s ease, -webkit-filter 0.6s ease;
-      min-height: 100vh;
-      background: #ffffff;
+    /* Áp dụng bộ lọc trực tiếp lên cả Viewport, khung Video, Iframe và trạng thái Toàn màn hình (:fullscreen) */
+    #youtubeAppViewport,
+    #playerStageWrapper,
+    #mainYoutubeIframe,
+    #playerStageWrapper:fullscreen,
+    #playerStageWrapper:-webkit-full-screen,
+    #mainYoutubeIframe:fullscreen,
+    #mainYoutubeIframe:-webkit-full-screen {
+      filter: saturate(var(--yt-sat)) grayscale(var(--yt-gray)) sepia(var(--yt-sepia)) brightness(var(--yt-bright)) !important;
+      -webkit-filter: saturate(var(--yt-sat)) grayscale(var(--yt-gray)) sepia(var(--yt-sepia)) brightness(var(--yt-bright)) !important;
+      transition: filter 0.5s ease, -webkit-filter 0.5s ease;
     }
-    /* Nút tròn nhỏ nổi ở góc màn hình (Floating Circular Button) */
+
+    /* Chế độ Phóng to Toàn màn hình giữ nguyên bộ lọc giảm kích thích 100% trên mọi thiết bị (kể cả iPhone/iPad/PC) */
+    .yt-custom-fullscreen {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: none !important;
+      z-index: 9980 !important;
+      background: #000000 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    /* Nút tròn nhỏ nổi ở góc màn hình (Luôn nổi trên cả chế độ Fullscreen) */
     #floatingCircleBtn {
       position: fixed;
       bottom: 22px;
       right: 18px;
-      width: 54px;
-      height: 54px;
+      width: 56px;
+      height: 56px;
       border-radius: 9999px;
-      z-index: 9990;
+      z-index: 9995;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.28);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.32);
       transition: transform 0.2s ease, background-color 0.3s ease;
       user-select: none;
     }
@@ -53,17 +80,11 @@
       transform: scale(0.92);
     }
     @keyframes pulseSoft {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.45), 0 8px 24px rgba(15, 23, 42, 0.28); }
-      50% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0), 0 8px 24px rgba(15, 23, 42, 0.28); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45), 0 8px 24px rgba(15, 23, 42, 0.28); }
+      50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0), 0 8px 24px rgba(15, 23, 42, 0.28); }
     }
     .orb-pulse {
       animation: pulseSoft 2s infinite;
-    }
-    input[type="range"].yt-slider {
-      width: 100%;
-      accent-color: #dc2626;
-      height: 6px;
-      cursor: pointer;
     }
     .no-scrollbar::-webkit-scrollbar {
       display: none;
@@ -75,10 +96,10 @@
   <!-- ===================================================================== -->
   <!-- 1. GIAO DIỆN YOUTUBE FOR KID TOÀN MÀN HÌNH (CHẠY TRỰC TIẾP KHI MỞ APP) -->
   <!-- ===================================================================== -->
-  <div id="youtubeAppViewport" class="flex flex-col pb-20">
+  <div id="youtubeAppViewport" class="flex flex-col pb-20 min-h-screen bg-white">
 
-    <!-- Lớp phủ màu vàng ấm Sepia cho nhóm 3–6 tuổi -->
-    <div id="sepiaWarmOverlay" class="pointer-events-none fixed inset-0 z-30 transition-opacity duration-700 opacity-0" style="background: rgba(217, 119, 6, 0.35); mix-blend-mode: multiply;"></div>
+    <!-- Lớp phủ màu vàng ấm Sepia cho nhóm 3–6 tuổi (Nổi trên cả Fullscreen) -->
+    <div id="sepiaWarmOverlay" class="pointer-events-none fixed inset-0 z-[9985] transition-opacity duration-700 opacity-0" style="background: rgba(217, 119, 6, 0.35); mix-blend-mode: multiply;"></div>
 
     <!-- Thanh Header chuẩn YouTube Trắng Sáng -->
     <header class="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-slate-200 px-3 py-2.5 flex items-center justify-between gap-2">
@@ -87,11 +108,9 @@
         <div class="w-8 h-6 rounded-lg bg-[#FF0000] flex items-center justify-center shadow-sm">
           <svg class="w-3.5 h-3.5 text-white fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         </div>
-        <div class="flex flex-col">
-          <div class="flex items-center gap-1">
-            <span class="font-extrabold text-sm tracking-tight text-slate-900">YouTube</span>
-            <span class="px-1.5 py-0.2 rounded bg-red-600 text-white font-extrabold text-[10px]">for Kid</span>
-          </div>
+        <div class="flex items-center gap-1">
+          <span class="font-extrabold text-sm tracking-tight text-slate-900">YouTube</span>
+          <span class="px-1.5 py-0.2 rounded bg-red-600 text-white font-extrabold text-[10px]">for Kid</span>
         </div>
       </div>
 
@@ -113,15 +132,28 @@
       <button onclick="filterCategory('edu', this)" class="cat-chip px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold shrink-0">🎓 Bài giảng Học tập (Giữ 100% Màu)</button>
     </div>
 
-    <!-- TRÌNH PHÁT VIDEO YOUTUBE CHÍNH (TRỰC TIẾP) -->
-    <div class="w-full max-w-4xl mx-auto bg-black aspect-video sticky top-[53px] z-10 shadow-md relative">
+    <!-- TRÌNH PHÁT VIDEO YOUTUBE CHÍNH (CÓ HỖ TRỢ FULLSCREEN GIỮ NGUYÊN GIẢM KÍCH THÍCH) -->
+    <div id="playerStageWrapper" class="w-full max-w-4xl mx-auto bg-black aspect-video sticky top-[53px] z-10 shadow-md relative group">
+      <!-- Thêm fs=0 để chặn nút fullscreen mặc định của iframe làm mất bộ lọc, thay bằng nút Fullscreen có bộ lọc ngay góc dưới phải video -->
       <iframe id="mainYoutubeIframe"
               class="w-full h-full"
-              src="https://www.youtube-nocookie.com/embed/tpiyEe_CqB4?autoplay=1&playsinline=1&rel=0"
+              src="https://www.youtube-nocookie.com/embed/tpiyEe_CqB4?autoplay=1&playsinline=1&rel=0&fs=0&modestbranding=1"
               title="YouTube for Kid Player"
               frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+
+      <!-- Nút Phóng To Toàn Màn Hình (Fullscreen) giữ nguyên 100% bộ lọc giảm kích thích -->
+      <button id="btnCustomFullscreen"
+              onclick="toggleFilteredFullscreen()"
+              class="absolute bottom-3 right-3 z-30 px-3 py-1.5 rounded-lg bg-black/80 hover:bg-red-600 text-white font-extrabold text-xs border border-white/30 flex items-center gap-1.5 shadow-lg cursor-pointer">
+        <span id="fsIcon">⛶</span>
+        <span id="fsText">Toàn màn hình (Giữ bộ lọc)</span>
+      </button>
+
+      <!-- Nhãn trạng thái cấp độ nổi gọn ở góc trên bên trái video khi đang Fullscreen -->
+      <div id="fsBadgeOverlay" class="hidden absolute top-4 left-4 z-30 px-3 py-1 rounded-full bg-black/75 text-white font-extrabold text-xs border border-white/20">
+        🧠 <span id="fsLevelLabel">Mức 0: 100% Màu</span>
+      </div>
     </div>
 
     <!-- Thông tin Video đang phát -->
@@ -139,14 +171,17 @@
           <div class="w-7 h-7 rounded-full bg-red-600 text-white font-extrabold flex items-center justify-center text-xs">YT</div>
           <div>
             <div id="playingChannelName" class="font-bold text-slate-800">Kênh Thiếu Nhi Vui Nhộn</div>
-            <div id="playingViewCount" class="social-metric text-[11px] text-slate-500">1.2M lượt xem • Đang kiểm soát bảo vệ mắt</div>
+            <div id="playingViewCount" class="social-metric text-[11px] text-slate-500">1.2M lượt xem • Đang bảo vệ mắt</div>
           </div>
         </div>
 
-        <!-- Cụm nút Like / Share (Sẽ tự động ẩn từ Mức 1 trở lên để giảm kích thích Dopamine) -->
-        <div id="socialButtonsBar" class="social-metric flex items-center gap-2">
-          <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-800 font-bold text-xs">👍 48K</span>
-          <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-800 font-bold text-xs">👎</span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleFilteredFullscreen()" class="px-3 py-1 rounded-full bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 font-extrabold text-xs">
+            ⛶ Xem Full màn hình
+          </button>
+          <div id="socialButtonsBar" class="social-metric flex items-center gap-1.5">
+            <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 font-bold text-xs">👍 48K</span>
+          </div>
         </div>
       </div>
     </div>
@@ -155,7 +190,7 @@
     <div class="w-full max-w-4xl mx-auto px-3 py-3">
       <div class="flex items-center justify-between mb-2.5">
         <span class="text-xs font-extrabold text-slate-700 uppercase">Video YouTube Đề Xuất</span>
-        <span id="filterHintText" class="text-[11px] font-bold text-rose-600">Đang áp dụng Mức 4 (Trắng Đen 100%)</span>
+        <span id="filterHintText" class="text-[11px] font-bold text-emerald-700">Mặc định Mức 0 (100% màu) • Đang đếm kiểm thử 120s</span>
       </div>
 
       <div id="videoFeedGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -168,15 +203,15 @@
   <!-- ===================================================================== -->
   <!-- 2. BIỂU TƯỢNG NHỎ HÌNH TRÒN Ở GÓC MÀN HÌNH (TẠM ẨN BẢNG ĐIỀU KHIỂN)   -->
   <!-- ===================================================================== -->
-  <div id="floatingCircleBtn" onclick="toggleConfigPanel()" class="bg-red-600 text-white border-2 border-white orb-pulse" title="Bấm để mở cấu hình YouTube for Kid">
-    <span id="orbIcon" class="text-base leading-none">⚙️</span>
-    <span id="orbTimer" class="text-[10px] font-extrabold font-mono leading-tight mt-0.5">Mức 4</span>
+  <div id="floatingCircleBtn" onclick="toggleConfigPanel()" class="bg-emerald-600 text-white border-2 border-white orb-pulse" title="Bấm để mở cấu hình YouTube for Kid">
+    <span id="orbIcon" class="text-xs font-extrabold leading-none">Mức 0</span>
+    <span id="orbTimer" class="text-[10px] font-extrabold font-mono leading-tight mt-0.5">00:00</span>
   </div>
 
   <!-- ===================================================================== -->
   <!-- 3. BẢNG CẤU HÌNH TRẮNG SÁNG (CHỈ HIỆN KHI BẤM VÀO NÚT TRÒN GÓC DƯỚI) -->
   <!-- ===================================================================== -->
-  <div id="configPopoverModal" class="hidden fixed inset-0 z-[9995] bg-slate-900/40 backdrop-blur-xs flex items-end sm:items-center justify-center p-2 sm:p-4">
+  <div id="configPopoverModal" class="hidden fixed inset-0 z-[9996] bg-slate-900/40 backdrop-blur-xs flex items-end sm:items-center justify-center p-2 sm:p-4">
     <div class="w-full max-w-[420px] bg-white border-2 border-slate-200 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[88vh]">
 
       <!-- Header Bảng Cấu Hình -->
@@ -187,7 +222,7 @@
           </div>
           <div>
             <h2 class="text-xs font-extrabold text-slate-900">Cấu Hình YouTube for Kid</h2>
-            <p class="text-[10px] font-bold text-emerald-600">Tự động chạy nền • Chỉ Tắt mới cần mật khẩu</p>
+            <p class="text-[10px] font-bold text-emerald-600">Mặc định Mức 0 • Chỉ khi Tắt mới cần mật khẩu</p>
           </div>
         </div>
         <button onclick="toggleConfigPanel()" class="px-2.5 py-1 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-800 font-extrabold text-xs">
@@ -198,7 +233,7 @@
       <!-- Nội dung cấu hình (Trắng sáng, tinh gọn) -->
       <div class="p-4 overflow-y-auto space-y-3.5 text-xs">
 
-        <!-- Công tắc Bật / Tắt chương trình + Nút Bật chạy ngay -->
+        <!-- Công tắc Bật / Tắt chương trình -->
         <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 space-y-2.5">
           <div class="flex items-center justify-between">
             <div>
@@ -220,38 +255,50 @@
               <button onclick="cancelPinOff()" class="px-2.5 py-1.5 rounded-lg bg-slate-200 text-slate-700 font-bold text-xs">Hủy</button>
             </div>
           </div>
-
-          <button onclick="activateProgramNow()" class="w-full py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs shadow flex items-center justify-center gap-1.5">
-            <span>🚀 BẬT CHẠY CHƯƠNG TRÌNH NGAY (NGẦM ĐỊNH MỨC 4)</span>
-          </button>
         </div>
 
-        <!-- 1. Thanh trượt kéo thời gian tối thiểu 60 giây -->
-        <div class="p-3 rounded-2xl bg-sky-50/70 border border-sky-200 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="font-extrabold text-sky-950">⏱️ 1. Thanh trượt thời gian (≥ 60 giây):</span>
-            <span id="sliderValueText" class="px-2 py-0.5 rounded-full bg-sky-600 text-white font-extrabold text-[11px]">60 giây</span>
-          </div>
-          <input type="range" id="expTimeSlider" class="yt-slider" min="60" max="1800" step="10" value="60" oninput="onSlideTime(this.value)" onchange="onCommitTime(this.value)" />
-          <div class="flex justify-between text-[10px] font-semibold text-slate-500">
-            <span>60s (Tối thiểu)</span>
-            <span>300s (5p)</span>
-            <span>900s (15p)</span>
-            <span>1800s (30p)</span>
+        <!-- 1. Ô TÍCH CHẠY KIỂM THỬ 120 GIÂY (TỪ MỨC 0 ĐẾN MỨC 4 TRÌNH DIỄN BAN GIÁM KHẢO) -->
+        <div class="p-3 rounded-2xl bg-sky-50 border-2 border-sky-400 space-y-2.5">
+          <label class="flex items-start justify-between gap-2 cursor-pointer">
+            <div>
+              <div class="font-extrabold text-sky-950 text-xs">⚡ 1. Tích chạy kiểm thử 120 giây (Mức 0 ➔ Mức 4)</div>
+              <p class="text-[10.5px] text-slate-600 mt-0.5 leading-snug">
+                Trình diễn Ban Giám khảo: Bắt đầu ở <strong>Mức 0</strong>, cứ mỗi 30 giây tự động tăng 1 mức: <strong>0s (M0) ➔ 30s (M1) ➔ 60s (M2) ➔ 90s (M3) ➔ 120s (M4)</strong>.
+              </p>
+            </div>
+            <input type="checkbox" id="chkTest120s" class="w-5 h-5 accent-sky-600 mt-0.5 shrink-0" checked onchange="toggleTest120sMode(this.checked)" />
+          </label>
+
+          <!-- Thanh tiến trình 120 giây trực quan -->
+          <div class="bg-white p-2 rounded-xl border border-sky-200 space-y-1">
+            <div class="flex justify-between text-[10.5px] font-bold">
+              <span id="progressStepText" class="text-sky-800">Đang chạy tự động: Mức 0</span>
+              <span id="progressTimeText" class="font-mono text-slate-700">00:00 / 02:00 (120s)</span>
+            </div>
+            <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div id="progressBar120s" class="h-full bg-gradient-to-r from-emerald-500 via-amber-500 to-rose-600 transition-all duration-500" style="width: 0%;"></div>
+            </div>
+            <div class="flex justify-between text-[9.5px] font-bold text-slate-400">
+              <span class="text-emerald-600">0s: M0</span>
+              <span>30s: M1</span>
+              <span>60s: M2</span>
+              <span>90s: M3</span>
+              <span class="text-rose-600">120s: M4</span>
+            </div>
           </div>
 
           <div class="pt-1">
             <div class="flex items-center justify-between mb-1">
-              <span class="text-[11px] font-bold text-slate-700">Chọn nhanh Cấp độ (Ngầm định <strong>Mức 4</strong>):</span>
-              <button onclick="runAutoCountdown60s()" class="text-[11px] font-extrabold text-sky-700 underline">▶ Chạy đếm 0s ➔ 60s</button>
+              <span class="text-[11px] font-bold text-slate-700">Hoặc chọn thử ngay từng mức (Mặc định <strong>Tự động từ M0</strong>):</span>
+              <button onclick="restartFromLevel0()" class="text-[11px] font-extrabold text-sky-700 underline">🔄 Chạy lại từ 0s</button>
             </div>
             <div class="grid grid-cols-6 gap-1">
-              <button onclick="setModeLevel('auto')" id="modeBtn-auto" class="py-1.5 rounded-lg border text-[10.5px] font-extrabold bg-white text-slate-700 border-slate-300">Tự động</button>
+              <button onclick="setModeLevel('auto')" id="modeBtn-auto" class="py-1.5 rounded-lg border text-[10.5px] font-extrabold bg-sky-600 text-white border-sky-600">Tự động</button>
               <button onclick="setModeLevel(0)" id="modeBtn-0" class="py-1.5 rounded-lg border text-[10.5px] font-extrabold bg-white text-slate-700 border-slate-300">Mức 0</button>
               <button onclick="setModeLevel(1)" id="modeBtn-1" class="py-1.5 rounded-lg border text-[10.5px] font-extrabold bg-white text-slate-700 border-slate-300">Mức 1</button>
               <button onclick="setModeLevel(2)" id="modeBtn-2" class="py-1.5 rounded-lg border text-[10.5px] font-extrabold bg-white text-slate-700 border-slate-300">Mức 2</button>
               <button onclick="setModeLevel(3)" id="modeBtn-3" class="py-1.5 rounded-lg border text-[10.5px] font-extrabold bg-white text-slate-700 border-slate-300">Mức 3</button>
-              <button onclick="setModeLevel(4)" id="modeBtn-4" class="py-1.5 rounded-lg border text-[10.5px] font-extrabold bg-red-600 text-white border-red-600">Mức 4</button>
+              <button onclick="setModeLevel(4)" id="modeBtn-4" class="py-1.5 rounded-lg border text-[10.5px] font-extrabold bg-white text-slate-700 border-slate-300">Mức 4</button>
             </div>
           </div>
         </div>
@@ -309,19 +356,19 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- 4. MÀN HÌNH ĐIỂM DỪNG MỨC 4 ĐÈ LÊN YOUTUBE (KHI CHẠM NGƯỠNG)          -->
+  <!-- 4. MÀN HÌNH ĐIỂM DỪNG MỨC 4 ĐÈ LÊN YOUTUBE (KHI CHẠM 120 GIÂY)         -->
   <!-- ===================================================================== -->
   <div id="level4StopOverlay" class="hidden fixed inset-0 z-[9992] bg-white/95 backdrop-blur-md flex flex-col items-center justify-center p-5 text-center">
     <div class="w-full max-w-md bg-white border-2 border-red-500 rounded-3xl p-6 shadow-2xl space-y-3">
       <div id="l4Icon" class="text-6xl animate-bounce">🧭🧠⏳</div>
       <div class="inline-block px-3 py-1 rounded-full bg-red-100 text-red-700 font-extrabold text-xs">
-        YOUTUBE FOR KID – ĐÃ KÍCH HOẠT MỨC 4
+        YOUTUBE FOR KID – ĐÃ CHẠM MỨC 4 (120 GIÂY)
       </div>
       <h2 id="l4Title" class="text-xl font-extrabold text-slate-900">
         Điểm Dừng Bảo Vệ Đôi Mắt!
       </h2>
       <p id="l4Desc" class="text-xs text-slate-600 leading-relaxed">
-        Video YouTube đã được chuyển sang chế độ giảm kích thích tối đa (Mức 4).
+        Video YouTube đã giảm kích thích từ Mức 0 đến Mức 4 (Trắng Đen 100%).
       </p>
 
       <!-- Trạm vận động 10 nhịp (7-9 tuổi) -->
@@ -340,16 +387,16 @@
         </div>
         <input id="l4ReflectInput" type="text" placeholder="Gõ lại câu trên tại đây..." class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-xs font-semibold" />
         <button onclick="submitReflect()" class="w-full py-2 rounded-xl bg-slate-800 text-white font-bold text-xs">
-          🔓 Xác nhận câu phản tư (+5 phút Trắng Đen)
+          🔓 Xác nhận câu phản tư (+Xem ở Mức 3 Trắng Đen)
         </button>
       </div>
 
       <div class="space-y-2 pt-2">
         <button onclick="voluntaryStopWatching()" class="w-full py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm shadow-lg">
-          ✅ Tự giác nghỉ mắt &amp; Đặt lại bộ đếm
+          ✅ Tự giác nghỉ mắt &amp; Đặt lại về Mức 0 (00:00)
         </button>
         <button onclick="dismissStopOverlayToWatchGrayscale()" class="w-full py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs">
-          👀 Đóng bảng này để quan sát giao diện YouTube bị làm xám (Mức 4)
+          👀 Đóng bảng này để xem Video YouTube ở trạng thái Mức 4
         </button>
       </div>
     </div>
@@ -358,7 +405,7 @@
   <!-- ===================================================================== -->
   <!-- 5. HỘP THOẠI NHẮC NHỞ KHI XEM YOUTUBE QUÁ 1 GIỜ (60 PHÚT)             -->
   <!-- ===================================================================== -->
-  <div id="oneHourAlertOverlay" class="hidden fixed inset-0 z-[9996] bg-white/95 backdrop-blur-md flex flex-col items-center justify-center p-5 text-center">
+  <div id="oneHourAlertOverlay" class="hidden fixed inset-0 z-[9997] bg-white/95 backdrop-blur-md flex flex-col items-center justify-center p-5 text-center">
     <div class="w-full max-w-md bg-white border-2 border-amber-500 rounded-3xl p-6 shadow-2xl space-y-3">
       <div class="text-6xl animate-bounce">⏰👀</div>
       <div class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-800 font-extrabold text-xs">
@@ -382,7 +429,6 @@
   </div>
 
   <script>
-    // Danh sách Video YouTube thực tế hiển thị ngay trên trang chủ YouTube for Kid
     const YOUTUBE_VIDEOS = [
       { id: 'tpiyEe_CqB4', title: 'Thế Giới Động Vật Dễ Thương & Vui Nhộn Cho Bé', channel: 'Kênh Thiếu Nhi Vui Nhộn', views: '1.2M lượt xem', cat: 'kids', edu: false },
       { id: 'jfKfPfyJRdk', title: 'Nhạc Không Lời Tập Trung Học Tập & Đọc Sách', channel: 'Lofi Girl YouTube', views: '3.4M lượt xem', cat: 'music', edu: false },
@@ -392,16 +438,20 @@
       { id: 'LXb3EKWsInQ', title: 'Khám Phá Thiên Nhiên Hoang Dã Độ Phân Giải 4K', channel: 'Nature Discovery', views: '2.1M lượt xem', cat: 'shorts', edu: false }
     ];
 
+    // MẶC ĐỊNH BẮT ĐẦU TỪ MỨC 0 (activeSeconds = 0, modeLevel = 'auto')
+    // TÍCH SẴN CHẾ ĐỘ KIỂM THỬ 120 GIÂY (0s: M0 -> 30s: M1 -> 60s: M2 -> 90s: M3 -> 120s: M4)
     const state = {
-      masterEnabled: true,     // Tự động chạy nền hiển nhiên
+      masterEnabled: true,
       age: '10-12',
-      limitSeconds: 60,        // Thanh trượt tối thiểu 60 giây
-      activeSeconds: 60,       // Khởi chạy ở Mức 4 hiển nhiên
-      modeLevel: 4,            // Ngầm định tự động Mức 4
+      test120sMode: true,
+      limitSeconds: 120,
+      activeSeconds: 0,
+      modeLevel: 'auto',
       totalHourSeconds: 0,
       eduExempt: true,
       currentVideoEdu: false,
-      stopOverlayDismissed: true, // Để khi vừa mở app, người dùng nhìn thấy ngay giao diện YouTube đang bị chuyển Trắng Đen (Mức 4) và bấm phát video được luôn!
+      stopOverlayDismissed: false,
+      isCustomFullscreen: false,
       stretchReps: 0,
       voluntaryCount: 3,
       currentCategory: 'all'
@@ -415,7 +465,64 @@
       window.__ytToastTimer = setTimeout(() => t.classList.add('hidden'), 2400);
     }
 
-    // Dựng lưới Video YouTube
+    // CHỨC NĂNG TOÀN MÀN HÌNH (FULLSCREEN) GIỮ NGUYÊN 100% BỘ LỌC GIẢM KÍCH THÍCH
+    async function toggleFilteredFullscreen() {
+      const stage = document.getElementById('playerStageWrapper');
+      const fsIcon = document.getElementById('fsIcon');
+      const fsText = document.getElementById('fsText');
+      const fsBadge = document.getElementById('fsBadgeOverlay');
+
+      if (!state.isCustomFullscreen && !document.fullscreenElement && !document.webkitFullscreenElement) {
+        state.isCustomFullscreen = true;
+        stage.classList.add('yt-custom-fullscreen');
+        fsIcon.textContent = '✕';
+        fsText.textContent = 'Thoát toàn màn hình';
+        fsBadge.classList.remove('hidden');
+
+        // Nếu trình duyệt hỗ trợ Fullscreen trên thẻ bao ngoài (#playerStageWrapper) thì kích hoạt luôn
+        try {
+          if (stage.requestFullscreen) {
+            await stage.requestFullscreen();
+          } else if (stage.webkitRequestFullscreen) {
+            await stage.webkitRequestFullscreen();
+          }
+        } catch (_e) {}
+        showToast('⛶ Đã bật Toàn màn hình (Giữ nguyên bộ lọc giảm kích thích)!');
+      } else {
+        exitFilteredFullscreen();
+      }
+      renderApp();
+    }
+
+    async function exitFilteredFullscreen() {
+      const stage = document.getElementById('playerStageWrapper');
+      const fsIcon = document.getElementById('fsIcon');
+      const fsText = document.getElementById('fsText');
+      const fsBadge = document.getElementById('fsBadgeOverlay');
+
+      state.isCustomFullscreen = false;
+      stage.classList.remove('yt-custom-fullscreen');
+      fsIcon.textContent = '⛶';
+      fsText.textContent = 'Toàn màn hình (Giữ bộ lọc)';
+      fsBadge.classList.add('hidden');
+
+      try {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          await document.exitFullscreen();
+        } else if (document.webkitFullscreenElement && document.webkitExitFullscreen) {
+          await document.webkitExitFullscreen();
+        }
+      } catch (_e) {}
+      renderApp();
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement && state.isCustomFullscreen) {
+        exitFilteredFullscreen();
+      }
+      renderApp();
+    });
+
     function renderVideoGrid() {
       const grid = document.getElementById('videoFeedGrid');
       const filtered = YOUTUBE_VIDEOS.filter(v => state.currentCategory === 'all' || v.cat === state.currentCategory);
@@ -463,7 +570,7 @@
     function playYoutubeVideo(id, title, channel, views, isEdu) {
       state.currentVideoEdu = !!isEdu;
       const iframe = document.getElementById('mainYoutubeIframe');
-      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1&rel=0`;
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1&rel=0&fs=0&modestbranding=1`;
       document.getElementById('playingVideoTitle').textContent = title;
       document.getElementById('playingChannelName').textContent = channel;
       document.getElementById('playingViewCount').textContent = views;
@@ -500,14 +607,12 @@
       }
     }
 
-    // Bật / Tắt bảng cấu hình từ biểu tượng hình tròn nhỏ góc màn hình
     function toggleConfigPanel() {
       const modal = document.getElementById('configPopoverModal');
       modal.classList.toggle('hidden');
       renderApp();
     }
 
-    // Công tắc Bật / Tắt bảo vệ (Chỉ khi Tắt mới cần mật khẩu 666666)
     function handleMasterToggle(e) {
       e.preventDefault();
       if (!state.masterEnabled) {
@@ -539,39 +644,25 @@
       renderApp();
     }
 
-    function activateProgramNow() {
-      state.masterEnabled = true;
-      state.modeLevel = 4;
-      state.activeSeconds = state.limitSeconds;
+    // Tích chọn kiểm thử 120 giây (Mức 0 -> Mức 4)
+    function toggleTest120sMode(isChecked) {
+      state.test120sMode = isChecked;
+      state.limitSeconds = isChecked ? 120 : 1500;
+      state.activeSeconds = 0;
+      state.modeLevel = 'auto';
       state.stopOverlayDismissed = false;
-      document.getElementById('configPopoverModal').classList.add('hidden');
-      showToast('🚀 Đã kích hoạt Mức 4 trên toàn bộ YouTube for Kid!');
+      showToast(isChecked
+        ? '⚡ Đã bật kiểm thử 120 giây: Bắt đầu từ Mức 0 (0s) ➔ Mức 4 (120s)!'
+        : '⏱️ Đã chuyển sang thời gian chuẩn theo lứa tuổi (Bắt đầu từ Mức 0)');
       renderApp();
     }
 
-    function onSlideTime(val) {
-      const sec = Math.max(60, parseInt(val, 10) || 60);
-      state.limitSeconds = sec;
-      document.getElementById('sliderValueText').textContent = sec + ' giây';
-    }
-
-    function onCommitTime(val) {
-      const sec = Math.max(60, parseInt(val, 10) || 60);
-      state.limitSeconds = sec;
-      state.activeSeconds = 0;
-      state.modeLevel = 'auto';
-      state.stopOverlayDismissed = true;
-      showToast(`⏱️ Đã đặt ${sec} giây: Đang tự động đếm tiến tới Mức 4!`);
-      renderApp();
-    }
-
-    function runAutoCountdown60s() {
+    function restartFromLevel0() {
       state.masterEnabled = true;
       state.activeSeconds = 0;
       state.modeLevel = 'auto';
-      state.stopOverlayDismissed = true;
-      document.getElementById('configPopoverModal').classList.add('hidden');
-      showToast(`▶ Đang đếm từ 00:00 đến ${state.limitSeconds}s (Quan sát nút tròn góc dưới)!`);
+      state.stopOverlayDismissed = false;
+      showToast('🔄 Đã đặt lại về Mức 0 (00:00) và bắt đầu đếm kiểm thử 120 giây!');
       renderApp();
     }
 
@@ -580,11 +671,11 @@
       state.modeLevel = lvl;
       if (lvl === 'auto') {
         state.activeSeconds = 0;
-        state.stopOverlayDismissed = true;
-        showToast('🔄 Đang đếm tự động từ Mức 0 -> Mức 4');
+        state.stopOverlayDismissed = false;
+        showToast('🔄 Đang chạy tự động từ Mức 0 ➔ Mức 4 (120 giây)');
       } else {
         state.stopOverlayDismissed = (lvl < 4);
-        showToast('⚡ Đã áp dụng Mức ' + lvl + ' lên YouTube!');
+        showToast('⚡ Đã chuyển sang kiểm thử: Mức ' + lvl);
       }
       renderApp();
     }
@@ -599,7 +690,8 @@
       if (!state.masterEnabled) return 0;
       if (state.currentVideoEdu && state.eduExempt) return 0;
       if (state.modeLevel !== 'auto') return Number(state.modeLevel);
-      const ratio = state.activeSeconds / Math.max(60, state.limitSeconds);
+      const maxSec = state.test120sMode ? 120 : state.limitSeconds;
+      const ratio = state.activeSeconds / Math.max(60, maxSec);
       if (ratio >= 1.0) return 4;
       if (ratio >= 0.75) return 3;
       if (ratio >= 0.50) return 2;
@@ -644,8 +736,8 @@
       state.voluntaryCount += 1;
       state.activeSeconds = 0;
       state.modeLevel = 'auto';
-      state.stopOverlayDismissed = true;
-      showToast('🌟 Đã ghi nhận tự giác nghỉ mắt & bắt đầu chu kỳ mới!');
+      state.stopOverlayDismissed = false;
+      showToast('🌟 Đã ghi nhận tự giác nghỉ mắt & đặt lại về Mức 0 (00:00)!');
       renderApp();
     }
 
@@ -671,7 +763,7 @@
 
     function exportReportCSV() {
       const rows = [
-        ['Ngay', 'Ung_Dung', 'Lua_Tuoi', 'Thanh_Truot_Giay', 'Thoi_Gian_Da_Xem', 'Cap_Do', 'So_Lan_Tu_Giac_Nghi'],
+        ['Ngay', 'Ung_Dung', 'Lua_Tuoi', 'Chu_Ky_Giay', 'Thoi_Gian_Da_Xem', 'Cap_Do', 'So_Lan_Tu_Giac_Nghi'],
         [new Date().toISOString().slice(0, 10), 'YouTube_for_Kid', state.age, state.limitSeconds, state.activeSeconds, getEffectiveLevel(), state.voluntaryCount]
       ];
       const csv = '\uFEFF' + rows.map(r => r.join(',')).join('\n');
@@ -687,49 +779,58 @@
 
     function renderApp() {
       const lvl = getEffectiveLevel();
-      const viewport = document.getElementById('youtubeAppViewport');
+      const root = document.documentElement;
       const sepiaLayer = document.getElementById('sepiaWarmOverlay');
       const orb = document.getElementById('floatingCircleBtn');
+      const orbIcon = document.getElementById('orbIcon');
       const orbTimer = document.getElementById('orbTimer');
+      const maxSec = state.test120sMode ? 120 : state.limitSeconds;
 
       // 1. Cập nhật Biểu tượng tròn nhỏ ở góc màn hình
       if (!state.masterEnabled) {
         orb.className = 'bg-slate-500 text-white border-2 border-white';
-        orbTimer.textContent = 'Tắt';
-      } else if (state.modeLevel === 'auto') {
-        const colors = ['bg-emerald-600', 'bg-amber-500', 'bg-orange-600', 'bg-rose-600', 'bg-red-600'];
-        orb.className = `${colors[lvl]} text-white border-2 border-white orb-pulse`;
-        orbTimer.textContent = `${state.activeSeconds}s`;
+        orbIcon.textContent = 'Đã tắt';
+        orbTimer.textContent = '⚙️';
       } else {
         const colors = ['bg-emerald-600', 'bg-amber-500', 'bg-orange-600', 'bg-rose-600', 'bg-red-600'];
         orb.className = `${colors[lvl]} text-white border-2 border-white orb-pulse`;
-        orbTimer.textContent = `Mức ${lvl}`;
+        orbIcon.textContent = `Mức ${lvl}`;
+        orbTimer.textContent = state.modeLevel === 'auto' ? `${formatMMSS(state.activeSeconds)}` : 'Cố định';
       }
 
-      // 2. Áp dụng bộ lọc trực tiếp lên toàn bộ giao diện & video YouTube
+      // 2. Cập nhật biến CSS toàn cục (--yt-sat, --yt-gray, --yt-sepia) để tác động lên cả chế độ Fullscreen!
       if (!state.masterEnabled || (state.currentVideoEdu && state.eduExempt)) {
-        viewport.style.filter = 'none';
-        viewport.style.webkitFilter = 'none';
+        root.style.setProperty('--yt-sat', '100%');
+        root.style.setProperty('--yt-gray', '0%');
+        root.style.setProperty('--yt-sepia', '0%');
+        root.style.setProperty('--yt-bright', '100%');
         sepiaLayer.style.opacity = '0';
         document.getElementById('filterHintText').textContent = state.currentVideoEdu
           ? '🎓 Bài giảng Học tập: Giữ nguyên 100% Màu sắc'
-          : 'Đang ở chế độ 100% màu gốc';
+          : 'Đang tắt bộ lọc (100% màu gốc)';
+        document.getElementById('fsLevelLabel').textContent = 'Mức 0: 100% Màu';
       } else if (state.age === '3-6') {
         const sat = [100, 75, 50, 25, 15][lvl];
         const sp = [0, 25, 45, 65, 75][lvl];
-        const f = `saturate(${sat}%) sepia(${sp}%)`;
-        viewport.style.filter = f;
-        viewport.style.webkitFilter = f;
+        const br = [100, 96, 90, 82, 75][lvl];
+        root.style.setProperty('--yt-sat', `${sat}%`);
+        root.style.setProperty('--yt-gray', '0%');
+        root.style.setProperty('--yt-sepia', `${sp}%`);
+        root.style.setProperty('--yt-bright', `${br}%`);
         sepiaLayer.style.opacity = lvl >= 2 ? '0.35' : '0';
-        document.getElementById('filterHintText').textContent = `Đang áp dụng Mức ${lvl} (Vàng ấm dịu mắt - Màu: ${sat}%)`;
+        document.getElementById('filterHintText').textContent = `Đang ở Mức ${lvl} (Vàng ấm dịu mắt - Màu: ${sat}%)`;
+        document.getElementById('fsLevelLabel').textContent = `Mức ${lvl}: Màu ${sat}% (Vàng ấm)`;
       } else {
         const sat = [100, 65, 30, 0, 0][lvl];
         const gr = [0, 35, 70, 100, 100][lvl];
-        const f = `saturate(${sat}%) grayscale(${gr}%)`;
-        viewport.style.filter = f;
-        viewport.style.webkitFilter = f;
+        const br = [100, 98, 95, 90, 85][lvl];
+        root.style.setProperty('--yt-sat', `${sat}%`);
+        root.style.setProperty('--yt-gray', `${gr}%`);
+        root.style.setProperty('--yt-sepia', '0%');
+        root.style.setProperty('--yt-bright', `${br}%`);
         sepiaLayer.style.opacity = '0';
-        document.getElementById('filterHintText').textContent = `Đang áp dụng Mức ${lvl} (Màu sắc còn: ${sat}%)`;
+        document.getElementById('filterHintText').textContent = `Đang ở Mức ${lvl} (Màu sắc còn: ${sat}%) • Chu kỳ ${maxSec}s`;
+        document.getElementById('fsLevelLabel').textContent = `Mức ${lvl}: Màu ${sat}%`;
       }
 
       // Ẩn số Like/View từ Mức 1 trở lên
@@ -737,17 +838,23 @@
         el.style.opacity = (state.masterEnabled && !state.currentVideoEdu && lvl >= 1) ? '0' : '1';
       });
 
-      // 3. Đồng bộ trạng thái trong Bảng Cấu Hình
+      // 3. Đồng bộ thanh tiến trình 120 giây trong Bảng Cấu Hình
       document.getElementById('chkMasterSwitch').checked = state.masterEnabled;
       document.getElementById('switchStateText').textContent = state.masterEnabled ? 'Đang Bật' : 'Đang Tắt';
+      document.getElementById('chkTest120s').checked = state.test120sMode;
       document.getElementById('hourText').textContent = `${Math.floor(state.totalHourSeconds / 60)}p/60p`;
+
+      const pct = Math.min(100, Math.round((state.activeSeconds / maxSec) * 100));
+      document.getElementById('progressBar120s').style.width = `${pct}%`;
+      document.getElementById('progressStepText').textContent = `Đang ở Mức ${lvl} (Màu: ${state.age === '3-6' ? [100,75,50,25,15][lvl] : [100,65,30,0,0][lvl]}%)`;
+      document.getElementById('progressTimeText').textContent = `${formatMMSS(state.activeSeconds)} / ${formatMMSS(maxSec)}`;
 
       ['auto', 0, 1, 2, 3, 4].forEach(m => {
         const b = document.getElementById('modeBtn-' + m);
         if (!b) return;
         const active = String(state.modeLevel) === String(m);
         b.className = active
-          ? 'py-1.5 rounded-lg border text-[10.5px] font-extrabold bg-red-600 text-white border-red-600 shadow-xs'
+          ? 'py-1.5 rounded-lg border text-[10.5px] font-extrabold bg-sky-600 text-white border-sky-600 shadow-xs'
           : 'py-1.5 rounded-lg border text-[10.5px] font-extrabold bg-white text-slate-700 border-slate-300';
       });
 
@@ -770,7 +877,7 @@
       if (state.age === '3-6') {
         document.getElementById('l4Icon').textContent = '🌙🐻💤';
         document.getElementById('l4Title').textContent = 'Oáp... Bạn YouTube Buồn Ngủ Rồi!';
-        document.getElementById('l4Desc').textContent = 'Màn hình đã chuyển vàng ấm bảo vệ mắt. Bé ngoan bấm nút cho YouTube đi ngủ nhé!';
+        document.getElementById('l4Desc').textContent = 'Màn hình đã chuyển vàng ấm bảo vệ mắt sau 120 giây thực nghiệm. Bé ngoan bấm nút cho YouTube đi ngủ nhé!';
       } else if (state.age === '7-9') {
         document.getElementById('l4Icon').textContent = '🔋🏃‍♂️👀';
         document.getElementById('l4Title').textContent = 'Trạm Nạp Năng Lượng (10 Nhịp Vươn Vai)!';
@@ -779,7 +886,7 @@
       } else {
         document.getElementById('l4Icon').textContent = '🧭🧠⏳';
         document.getElementById('l4Title').textContent = 'Điểm Dừng Nhận Thức (Mức 4)';
-        document.getElementById('l4Desc').textContent = 'Video YouTube đã tự động chuyển sang Trắng Đen 100% để giảm kích thích thị giác.';
+        document.getElementById('l4Desc').textContent = 'Video YouTube đã tự động chuyển sang Trắng Đen 100% sau chu kỳ 120 giây thực nghiệm.';
         reflectBox.classList.remove('hidden');
       }
 
@@ -788,7 +895,7 @@
       renderVideoGrid();
     }
 
-    // Vòng lặp chạy ngầm mỗi giây
+    // Vòng lặp chạy ngầm mỗi giây: Đếm mượt mà từ Mức 0 (0s) -> Mức 1 (30s) -> Mức 2 (60s) -> Mức 3 (90s) -> Mức 4 (120s)
     setInterval(() => {
       if (!state.masterEnabled) return;
 
@@ -797,10 +904,16 @@
         triggerOneHourAlert();
       }
 
+      const maxSec = state.test120sMode ? 120 : state.limitSeconds;
       if (state.modeLevel === 'auto' && !state.currentVideoEdu) {
-        if (state.activeSeconds < state.limitSeconds) {
+        if (state.activeSeconds < maxSec) {
+          const prevLvl = getEffectiveLevel();
           state.activeSeconds += 1;
-          if (state.activeSeconds >= state.limitSeconds) {
+          const newLvl = getEffectiveLevel();
+          if (newLvl > prevLvl) {
+            showToast(`⚡ Đã chuyển sang Mức ${newLvl} (${state.activeSeconds}s / ${maxSec}s)!`);
+          }
+          if (state.activeSeconds >= maxSec) {
             state.stopOverlayDismissed = false;
           }
         }
