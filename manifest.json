@@ -1,0 +1,16 @@
+{
+  "name": "YouTube for Kid",
+  "short_name": "YouTube for Kid",
+  "description": "YouTube for Kid - Tự động điều chỉnh độ hấp dẫn màn hình bảo vệ mắt trẻ em",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff0000",
+  "icons": [
+    {
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAD8klEQVR4nO3ZW27bMBRFUbno/KfsfhQK0tRxJD4vL9eagAlo54SyjwMAAAAAAIBLHrMPUOp5HM/ZZ8jusWAfSxxYvHFEjzzs4UQcX8S4wx1IyOuJFHaIg4g4j9lxT/1wIec1K+xfMz70OMSc3aznO/yvSMj7GbnWQxdazHsa+dyHBS3mvY16/t3/FQiZr3peQboutJh5pWcX3YIWM+/06qNL0GLmih6dNA9azNzRupemQYuZEi27mfZLIfTQLGjrTI1W/TQJWsy00KKj6qDFTEu1PblDk0pV0NaZHmq6Kg5azPRU2pcrB6kUBW2dGaGkMwtNKoImldtBu24w0t3eLDSp3AraOjPDne4sNKkImlQuB+26wUxX+7PQpCJoUhE0qQiaVC4F7YWQCK50aKFJRdCkImhSETSpCJpUBE0qgiaVvYN++no9m72DPo6/UQs7DUGfhJ2CoL8S9dIE/Yq1Xpag3xH2cgR9hbCXIeg7hB2eoEsIOyxB1xB1OIKuZa1DEXQrwg5B0K0JeypB9yLsKQTdm7CHEvQooh5C0CNZ6+4EPYOwuxH0TMJuTtARCLsZQUci7GqCjkjUxQQdlbUuIujohH2LoFch7EsEvRphvyXoVQn7JUGvTtT/EHQG1vqDoDMRtqBT2jhsQWe2YdiC3sFGYQt6JxtELejdJF9rQe8qadiC3l2ysH/PPgCTPR6zT9CUoHeVLOSToHeTNOSToHeRPOSTl8IdbBLzcVjo3DYK+STojDYM+SToTDYO+SToDIT8QdArE/J/BL0iIX9L0CsR8o8EvQIhX+aHlejEfIuFjkrIRQQdjZCrCDoKITch6NmE3JSgZxFyF4IeTchdCXoUIQ/he+gRxDyMhe5JyMMJugchTyPoloQ8naBbEHIYgq4h5HAEXULIYQn6DiGHJ+grhLwMP6z8RMxLsdDfEfKSBP2VkJcm6JOQUxC0kFPZ+6VQzOnsHTTpCJpUBE0qgiYVQZOKoElF0KQiaFK5FPTjOPwCwXRXOrTQpCJoUhE0qQiaVC4H7cWQma72Z6FJRdCkcito1w5muNOdhSaV20FbaUa625uFJhVBk0pR0K4djFDSmYUmleKgrTQ9lfZVtdCipoearlw5SKU6aCtNS7U9NVloUdNCi46aXTlETY1W/bhDk0rToK00JVp203yhRc0drXvpcuUQNVf06KTbHVrUvNOrj64vhaLmlZ5dDAvueRzPUZ9FTCMGbtjXdtZ6b6Oe/9DvoUW9p5HPfVpgriD5zRiwab8UWuvcZj3fEFFZ6zxmD1WIoD8T93pmR/xZmIN8Jez4IoV8CnegV8QdR8SIPwt9uHdE3l/0eAEAAAAAYLQ/RybtONXuV4cAAAAASUVORK5CYII=",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
