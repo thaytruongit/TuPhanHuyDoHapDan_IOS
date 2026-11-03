@@ -31,7 +31,6 @@
       padding: 0;
       overflow-x: hidden;
     }
-    /* Áp dụng bộ lọc mượt mà, ổn định tuyệt đối không nhấp nháy */
     #youtubeAppViewport,
     #playerStageWrapper,
     #mainYoutubeIframe,
@@ -44,8 +43,6 @@
       transition: filter 0.35s ease, -webkit-filter 0.35s ease;
       will-change: filter;
     }
-
-    /* Chế độ Phóng to Toàn màn hình giữ nguyên bộ lọc giảm kích thích 100% */
     .yt-custom-fullscreen {
       position: fixed !important;
       inset: 0 !important;
@@ -58,14 +55,13 @@
       align-items: center !important;
       justify-content: center !important;
     }
-
     /* BIỂU TƯỢNG NHỎ HÌNH TRÒN LUÔN NỔI Ở GÓC DƯỚI BÊN PHẢI MÀN HÌNH */
     #floatingCircleBtn {
       position: fixed;
       bottom: 22px;
       right: 18px;
-      width: 60px;
-      height: 60px;
+      width: 62px;
+      height: 62px;
       border-radius: 9999px;
       z-index: 9995;
       display: flex;
@@ -102,6 +98,38 @@
   </style>
 </head>
 <body>
+
+  <!-- ===================================================================== -->
+  <!-- CỤM CHỨC NĂNG MỚI: TẠO NÚT TẮT RA MÀN HÌNH & THU NHỎ CHẠY NỀN NGAY     -->
+  <!-- ===================================================================== -->
+  <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white px-3 py-2.5 border-b border-slate-700 shadow-md">
+    <div class="max-w-4xl mx-auto flex flex-col gap-2">
+      <div class="grid grid-cols-2 gap-2">
+        <!-- NÚT 1: THU NHỎ ỨNG DỤNG CHẠY NỀN NGAY LẬP TỨC & MỞ YOUTUBE -->
+        <button type="button"
+                onclick="instantMinimizeAndRunBackground()"
+                class="py-2.5 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs shadow-lg flex items-center justify-center gap-1.5 cursor-pointer">
+          <span>⚡ THU NHỎ CHẠY NỀN &amp; MỞ YOUTUBE NGAY</span>
+        </button>
+
+        <!-- NÚT 2: TẠO NÚT TẮT RA MÀN HÌNH CHÍNH (1 CHẠM) -->
+        <a href="data:application/x-apple-aspen-config;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXBwbGUvL0RURCBQTElTVCAxLjAvL0VOIiAiaHR0cDovL3d3dy5hcHBsZS5jb20vRFREcy9Qcm9wZXJ0eUxpc3QtMS4wLmR0ZCI+CjxwbGlzdCB2ZXJzaW9uPSIxLjAiPgo8ZGljdD4KICAgIDxrZXk+UGF5bG9hZENvbnRlbnQ8L2tleT4KICAgIDxhcnJheT4KICAgICAgICA8IS0tIE7DmlQgVOG6rlQgMSBUUsOKTiBNw4BOIEjDjE5IIENIw41OSDogWU9VVFVCRSBGT1IgS0lEIC0tPgogICAgICAgIDxkaWN0PgogICAgICAgICAgICA8a2V5PkZ1bGxTY3JlZW48L2tleT4KICAgICAgICAgICAgPHRydWUvPgogICAgICAgICAgICA8a2V5Pkljb248L2tleT4KICAgICAgICAgICAgPGRhdGE+aVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQUxRQUFBQzBDQVlBQUFBOXpRWXlBQUFEOGtsRVFWUjRuTzNaVzI3Yk1CUkZVYm5vL0tmc2ZoUUswdFJ4SkQ0dkw5ZWFnQWxvNTRTeWp3TUFBQUFBQUlCTEhyTVBVT3A1SE0vWlo4anVzV0FmU3h4WXZIRkVqenpzNFVRY1g4UzR3eDFJeU91SkZIYUlnNGc0ajlseFQvMXdJZWMxSyt4Zk16NzBPTVNjM2F6bk8veXZTTWo3R2JuV1F4ZGF6SHNhK2R5SEJTM212WTE2L3QzL0ZRaVpyM3BlUWJvdXRKaDVwV2NYM1lJV00rLzA2cU5MMEdMbWloNmROQTlhek56UnVwZW1RWXVaRWkyN21mWkxJZlRRTEdqclRJMVcvVFFKV3N5MDBLS2o2cURGVEV1MVBibERrMHBWME5hWkhtcTZLZzVhelBSVTJwY3JCNmtVQlcyZEdhR2tNd3ROS29JbWxkdEJ1MjR3MHQzZUxEU3AzQXJhT2pQRG5lNHNOS2tJbWxRdUIrMjZ3VXhYKzdQUXBDSm9VaEUwcVFpYVZDNEY3WVdRQ0s1MGFLRkpSZENrSW1oU0VUU3BDSnBVQkUwcWdpYVZ2WU4rK25vOW03MkRQbzYvVVFzN0RVR2ZoSjJDb0w4UzlkSUUvWXExWHBhZzN4SDJjZ1I5aGJDWEllZzdoQjJlb0VzSU95eEIxeEIxT0lLdVphMURFWFFyd2c1QjBLMEpleXBCOXlMc0tRVGRtN0NIRXZRb29oNUMwQ05aNis0RVBZT3d1eEgwVE1KdVR0QVJDTHNaUVVjaTdHcUNqa2pVeFFRZGxiVXVJdWpvaEgyTG9GY2g3RXNFdlJwaHZ5WG9WUW43SlVHdlR0VC9FSFFHMXZxRG9ETVJ0cUJUMmpoc1FXZTJZZGlDM3NGR1lRdDZKeHRFTGVqZEpGOXJRZThxYWRpQzNsMnlzSC9QUGdDVFBSNnpUOUNVb0hlVkxPU1RvSGVUTk9TVG9IZVJQT1NUbDhJZGJCTHpjVmpvM0RZSytTVG9qRFlNK1NUb1REWU8rU1RvRElUOFFkQXJFL0ovQkwwaUlYOUwwQ3NSOG84RXZRSWhYK2FIbGVqRWZJdUZqa3JJUlFRZGpaQ3JDRG9LSVRjaDZObUUzSlNnWnhGeUY0SWVUY2hkQ1hvVUlRL2hlK2dSeER5TWhlNUp5TU1KdWdjaFR5UG9sb1E4bmFCYkVISVlncTRoNUhBRVhVTElZUW42RGlHSEorZ3JoTHdNUDZ6OFJNeExzZERmRWZLU0JQMlZrSmNtNkpPUVV4QzBrRlBaKzZWUXpPbnNIVFRwQ0pwVUJFMHFnaVlWUVpPS29FbEYwS1FpYUZLNUZQVGpPUHdDd1hSWE9yVFFwQ0pvVWhFMHFRaWFWQzRIN2NXUW1hNzJaNkZKUmRDa2NpdG8xdzVtdU5PZGhTYVYyMEZiYVVhNjI1dUZKaFZCazBwUjBLNGRqRkRTbVlVbWxlS2dyVFE5bGZaVnRkQ2lwb2Vhcmx3NVNLVTZhQ3ROUzdVOU5WbG9VZE5DaTQ2YVhUbEVUWTFXL2JoRGswclRvSzAwSlZwMjAzeWhSYzBkclh2cGN1VVFOVmYwNktUYkhWclV2Tk9yajY0dmhhTG1sWjVkREF2dWVSelBVWjlGVENNR2J0alhkdFo2YjZPZS85RHZvVVc5cDVIUGZWcGdyaUQ1elJpd2FiOFVXdXZjWmozZkVGRlo2enhtRDFXSW9EOFQ5M3BtUi94Wm1JTjhKZXo0SW9WOENuZWdWOFFkUjhTSVB3dDl1SGRFM2wvMGVBRUFBQUFBWUxRL1J5YnRPTlh1VjRjQUFBQUFTVVZPUks1Q1lJST08L2RhdGE+CiAgICAgICAgICAgIDxrZXk+SWdub3JlTWFuaWZlc3RTY29wZTwva2V5PgogICAgICAgICAgICA8dHJ1ZS8+CiAgICAgICAgICAgIDxrZXk+SXNSZW1vdmFibGU8L2tleT4KICAgICAgICAgICAgPHRydWUvPgogICAgICAgICAgICA8a2V5PkxhYmVsPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+WW91VHViZSBmb3IgS2lkPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZERlc2NyaXB0aW9uPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+TsO6dCB04bqvdCBt4bufIOG7qW5nIGThu6VuZyBZb3VUdWJlIGZvciBLaWQgdHLDqm4gTcOgbiBow6xuaCBjaMOtbmggaVBob25lPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZERpc3BsYXlOYW1lPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+WW91VHViZSBmb3IgS2lkPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZElkZW50aWZpZXI8L2tleT4KICAgICAgICAgICAgPHN0cmluZz52bi5raGt0LnlvdXR1YmVmb3JraWQubWFpbmNsaXA8L3N0cmluZz4KICAgICAgICAgICAgPGtleT5QYXlsb2FkVHlwZTwva2V5PgogICAgICAgICAgICA8c3RyaW5nPmNvbS5hcHBsZS53ZWJDbGlwLm1hbmFnZWQ8L3N0cmluZz4KICAgICAgICAgICAgPGtleT5QYXlsb2FkVVVJRDwva2V5PgogICAgICAgICAgICA8c3RyaW5nPjhBN0I2QzVELTExMTEtMjIyMi0zMzMzLTk5OTk4ODg4MTExMTwvc3RyaW5nPgogICAgICAgICAgICA8a2V5PlBheWxvYWRWZXJzaW9uPC9rZXk+CiAgICAgICAgICAgIDxpbnRlZ2VyPjE8L2ludGVnZXI+CiAgICAgICAgICAgIDxrZXk+UHJlY29tcG9zZWQ8L2tleT4KICAgICAgICAgICAgPHRydWUvPgogICAgICAgICAgICA8a2V5PlVSTDwva2V5PgogICAgICAgICAgICA8c3RyaW5nPmh0dHBzOi8vdGhheXRydW9uZ2l0LmdpdGh1Yi5pby9Eb3BhbWluZV9EZWNheS88L3N0cmluZz4KICAgICAgICA8L2RpY3Q+CgogICAgICAgIDwhLS0gTsOaVCBU4bquVCAyIFRSw4pOIE3DgE4gSMOMTkggQ0jDjU5IOiBUSFUgTkjhu44gQ0jhuqBZIE7hu4BOICYgTeG7niBZT1VUVUJFIE5HQVkgLS0+CiAgICAgICAgPGRpY3Q+CiAgICAgICAgICAgIDxrZXk+RnVsbFNjcmVlbjwva2V5PgogICAgICAgICAgICA8dHJ1ZS8+CiAgICAgICAgICAgIDxrZXk+SWNvbjwva2V5PgogICAgICAgICAgICA8ZGF0YT5pVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBTFFBQUFDMENBWUFBQUE5elFZeUFBQUQ4a2xFUVZSNG5PM1pXMjdiTUJSRlVibm8vS2ZzZmhRSzB0UnhKRDR2TDllYWdBbG81NFN5andNQUFBQUFBSUJMSHJNUFVPcDVITS9aWjhqdXNXQWZTeHhZdkhGRWp6enM0VVFjWDhTNHd4MUl5T3VKRkhhSWc0ZzRqOWx4VC8xd0llYzFLK3hmTXo3ME9NU2MzYXpuTy95dlNNajdHYm5XUXhkYXpIc2ErZHlIQlMzbXZZMTYvdDMvRlFpWnIzcGVRYm91dEpoNXBXY1gzWUlXTSsvMDZxTkwwR0xtaWg2ZE5BOWF6TnpSdXBlbVFZdVpFaTI3bWZaTElmVFFMR2pyVEkxVy9UUUpXc3kwMEtLajZxREZURXUxUGJsRGswcFYwTmFaSG1xNktnNWF6UFJVMnBjckI2a1VCVzJkR2FHa013dE5Lb0ltbGR0QnUyNHcwdDNlTERTcDNBcmFPalBEbmU0c05La0ltbFF1QisyNndVeFgrN1BRcENKb1VoRTBxUWlhVkM0RjdZV1FDSzUwYUtGSlJkQ2tJbWhTRVRTcENKcFVCRTBxZ2lhVnZZTisrbm85bTcyRFBvNi9VUXM3RFVHZmhKMkNvTDhTOWRJRS9ZcTFYcGFnM3hIMmNnUjloYkNYSWVnN2hCMmVvRXNJT3l4QjF4QjFPSUt1WmExREVYUXJ3ZzVCMEswSmV5cEI5eUxzS1FUZG03Q0hFdlFvb2g1QzBDTlo2KzRFUFlPd3V4SDBUTUp1VHRBUkNMc1pRVWNpN0dxQ2pralV4UVFkbGJVdUl1am9oSDJMb0ZjaDdFc0V2UnBodnlYb1ZRbjdKVUd2VHRUL0VIUUcxdnFEb0RNUnRxQlQyamhzUVdlMllkaUMzc0ZHWVF0Nkp4dEVMZWpkSkY5clFlOHFhZGlDM2wyeXNIL1BQZ0NUUFI2elQ5Q1VvSGVWTE9TVG9IZVROT1NUb0hlUlBPU1RsOElkYkJMemNWam8zRFlLK1NUb2pEWU0rU1RvVERZTytTVG9ESVQ4UWRBckUvSi9CTDBpSVg5TDBDc1I4bzhFdlFJaFgrYUhsZWpFZkl1RmprcklSUVFkalpDckNEb0tJVGNoNk5tRTNKU2daeEZ5RjRJZVRjaGRDWG9VSVEvaGUrZ1J4RHlNaGU1SnlNTUp1Z2NoVHlQb2xvUThuYUJiRUhJWWdxNGg1SEFFWFVMSVlRbjZEaUdISitncmhMd01QNno4Uk14THNkRGZFZktTQlAyVmtKY202Sk9RVXhDMGtGUForNlZRek9uc0hUVHBDSnBVQkUwcWdpWVZRWk9Lb0VsRjBLUWlhRks1RlBUak9Qd0N3WFJYT3JUUXBDSm9VaEUwcVFpYVZDNEg3Y1dRbWE3Mlo2RkpSZENrY2l0bzF3NW11Tk9kaFNhVjIwRmJhVWE2MjV1RkpoVkJrMHBSMEs0ZGpGRFNtWVVtbGVLZ3JUUTlsZlpWdGRDaXBvZWFybHc1U0tVNmFDdE5TN1U5TlZsb1VkTkNpNDZhWFRsRVRZMVcvYmhEazByVG9LMDBKVnAyMDN5aFJjMGRyWHZwY3VVUU5WZjA2S1RiSFZyVXZOT3JqNjR2aGFMbWxaNWREQXZ1ZVJ6UFVaOUZUQ01HYnRqWGR0WjZiNk9lLzlEdm9VVzlwNUhQZlZwZ3JpRDV6Uml3YWI4VVd1dmNaajNmRUZGWjZ6eG1EMVdJb0Q4VDkzcG1SL3habUlOOEplejRJb1Y4Q25lZ1Y4UWRSOFNJUHd0OXVIZEUzbC8wZUFFQUFBQUFZTFEvUnlidE9OWHVWNGNBQUFBQVNVVk9SSzVDWUlJPTwvZGF0YT4KICAgICAgICAgICAgPGtleT5JZ25vcmVNYW5pZmVzdFNjb3BlPC9rZXk+CiAgICAgICAgICAgIDx0cnVlLz4KICAgICAgICAgICAgPGtleT5Jc1JlbW92YWJsZTwva2V5PgogICAgICAgICAgICA8dHJ1ZS8+CiAgICAgICAgICAgIDxrZXk+TGFiZWw8L2tleT4KICAgICAgICAgICAgPHN0cmluZz5DaOG6oXkgTuG7gW4gWVQ8L3N0cmluZz4KICAgICAgICAgICAgPGtleT5QYXlsb2FkRGVzY3JpcHRpb248L2tleT4KICAgICAgICAgICAgPHN0cmluZz5Ow7p0IHThuq90IHRodSBuaOG7jyDhu6luZyBk4bulbmcgY2jhuqF5IG7hu4FuIG5nYXkgbOG6rXAgdOG7qWMgdsOgIMSRaeG7gXUga2hp4buDbiBZb3VUdWJlPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZERpc3BsYXlOYW1lPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+TsO6dCBU4bqvdCBUaHUgTmjhu48gQ2jhuqF5IE7hu4FuIFlvdVR1YmU8L3N0cmluZz4KICAgICAgICAgICAgPGtleT5QYXlsb2FkSWRlbnRpZmllcjwva2V5PgogICAgICAgICAgICA8c3RyaW5nPnZuLmtoa3QueW91dHViZWZvcmtpZC5hdXRvcnVuY2xpcDwvc3RyaW5nPgogICAgICAgICAgICA8a2V5PlBheWxvYWRUeXBlPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+Y29tLmFwcGxlLndlYkNsaXAubWFuYWdlZDwvc3RyaW5nPgogICAgICAgICAgICA8a2V5PlBheWxvYWRVVUlEPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+OEE3QjZDNUQtMTExMS0yMjIyLTMzMzMtOTk5OTg4ODgyMjIyPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZFZlcnNpb248L2tleT4KICAgICAgICAgICAgPGludGVnZXI+MTwvaW50ZWdlcj4KICAgICAgICAgICAgPGtleT5QcmVjb21wb3NlZDwva2V5PgogICAgICAgICAgICA8dHJ1ZS8+CiAgICAgICAgICAgIDxrZXk+VVJMPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+aHR0cHM6Ly90aGF5dHJ1b25naXQuZ2l0aHViLmlvL0RvcGFtaW5lX0RlY2F5Lz9hdXRvcnVuPTE8L3N0cmluZz4KICAgICAgICA8L2RpY3Q+CiAgICA8L2FycmF5PgogICAgPGtleT5QYXlsb2FkRGVzY3JpcHRpb248L2tleT4KICAgIDxzdHJpbmc+VOG6oW8gbsO6dCB04bqvdCBZb3VUdWJlIGZvciBLaWQgdsOgIG7DunQgdOG6r3QgVGh1IG5o4buPIGNo4bqheSBu4buBbiBuZ2F5IGzhuq1wIHThu6ljIHJhIE3DoG4gaMOsbmggY2jDrW5oIGlQaG9uZS48L3N0cmluZz4KICAgIDxrZXk+UGF5bG9hZERpc3BsYXlOYW1lPC9rZXk+CiAgICA8c3RyaW5nPk7DunQgVOG6r3QgTcOgbiBIw6xuaCAmYW1wOyBUaHUgTmjhu48gQ2jhuqF5IE7hu4FuIFlvdVR1YmUgKEtIS1QpPC9zdHJpbmc+CiAgICA8a2V5PlBheWxvYWRJZGVudGlmaWVyPC9rZXk+CiAgICA8c3RyaW5nPnZuLmtoa3QueW91dHViZWZvcmtpZC5wcm9maWxlLnY3PC9zdHJpbmc+CiAgICA8a2V5PlBheWxvYWRPcmdhbml6YXRpb248L2tleT4KICAgIDxzdHJpbmc+ROG7sSDDoW4gS0hLVCDigJMgVHLGsOG7nW5nIFRIQ1MgTcOjbyDEkGnhu4FuLCBC4bqvYyBOaW5oPC9zdHJpbmc+CiAgICA8a2V5PlBheWxvYWRSZW1vdmFsRGlzYWxsb3dlZDwva2V5PgogICAgPGZhbHNlLz4KICAgIDxrZXk+UGF5bG9hZFR5cGU8L2tleT4KICAgIDxzdHJpbmc+Q29uZmlndXJhdGlvbjwvc3RyaW5nPgogICAgPGtleT5QYXlsb2FkVVVJRDwva2V5PgogICAgPHN0cmluZz4xQTJCM0M0RC01NTU1LTY2NjYtNzc3Ny05OTk5ODg4ODc3Nzc8L3N0cmluZz4KICAgIDxrZXk+UGF5bG9hZFZlcnNpb248L2tleT4KICAgIDxpbnRlZ2VyPjE8L2ludGVnZXI+CjwvZGljdD4KPC9wbGlzdD4="
+           download="Nut_Tat_YouTube_for_Kid.mobileconfig"
+           onclick="onCreateHomeShortcutClick()"
+           class="py-2.5 px-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs shadow-lg flex items-center justify-center gap-1.5 text-center cursor-pointer">
+          <span>📲 TẠO NÚT TẮT RA MÀN HÌNH CHÍNH</span>
+        </a>
+      </div>
+
+      <!-- Dòng trạng thái hướng dẫn ngắn gọn -->
+      <div class="flex items-center justify-between text-[10.5px] text-slate-300 px-1">
+        <span>🟢 <strong>Thu nhỏ chạy nền:</strong> Tự bung cửa sổ nhỏ góc dưới phải đè lên App YouTube thật</span>
+        <button onclick="openShortcutGuideModal()" class="text-amber-300 font-extrabold underline shrink-0 ml-2">
+          ⚙️ Bật tự làm xám App YouTube iOS
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ===================================================================== -->
   <!-- THANH TRƯỢT KIỂM THỬ NHANH NỔI GỌN TRÊN ĐẦU TRANG CHO BAN GIÁM KHẢO    -->
@@ -149,7 +177,7 @@
     <!-- Lớp phủ màu vàng ấm Sepia cho nhóm 3–6 tuổi -->
     <div id="sepiaWarmOverlay" class="pointer-events-none fixed inset-0 z-[9985] transition-opacity duration-500 opacity-0" style="background: rgba(217, 119, 6, 0.35); mix-blend-mode: multiply;"></div>
 
-    <!-- Thanh Header chuẩn YouTube + Nút chạy đè lên App YouTube gốc trên iPhone -->
+    <!-- Thanh Header chuẩn YouTube -->
     <header class="bg-white border-b border-slate-200 px-3 py-2.5 flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2 shrink-0 cursor-pointer" onclick="playYoutubeVideo('tpiyEe_CqB4', 'Thế Giới Động Vật Dễ Thương Cho Bé', 'Kênh Thiếu Nhi Vui Nhộn', '1.2M lượt xem', false)">
         <div class="w-8 h-6 rounded-lg bg-[#FF0000] flex items-center justify-center shadow-sm">
@@ -169,9 +197,9 @@
         </button>
       </div>
 
-      <!-- Nút mở App YouTube gốc trên iPhone kèm Biểu tượng chạy nền nổi đè lên trên -->
-      <button onclick="launchNativeYoutubeAppWithFloatingOrb()" class="px-2.5 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-[10.5px] shadow-sm flex items-center gap-1 shrink-0" title="Mở ứng dụng YouTube gốc trên iPhone kèm biểu tượng thu nhỏ chạy nền">
-        <span>📲 Chạy Nền Trong App YouTube iOS</span>
+      <!-- Nút Thu nhỏ chạy nền ngay lập tức -->
+      <button onclick="instantMinimizeOnly()" class="px-2.5 py-1.5 rounded-full bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-[10.5px] shadow-sm flex items-center gap-1 shrink-0">
+        <span>🗕 Thu Nhỏ Chạy Nền Ngay</span>
       </button>
     </header>
 
@@ -193,7 +221,6 @@
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
 
-      <!-- Nút Phóng To Toàn Màn Hình giữ nguyên 100% bộ lọc -->
       <button id="btnCustomFullscreen"
               onclick="toggleFilteredFullscreen()"
               class="absolute bottom-3 right-3 z-30 px-3 py-1.5 rounded-lg bg-black/80 hover:bg-red-600 text-white font-extrabold text-xs border border-white/30 flex items-center gap-1.5 shadow-lg cursor-pointer">
@@ -226,8 +253,8 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <button onclick="toggleFilteredFullscreen()" class="px-3 py-1 rounded-full bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 font-extrabold text-xs">
-            ⛶ Xem Full màn hình
+          <button onclick="instantMinimizeAndRunBackground()" class="px-3 py-1 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-extrabold text-xs">
+            🗕 Thu nhỏ &amp; Mở App YT
           </button>
           <div id="socialButtonsBar" class="social-metric flex items-center gap-1.5">
             <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 font-bold text-xs">👍 48K</span>
@@ -247,16 +274,16 @@
       </div>
     </div>
 
-    <!-- Canvas & Video ẩn phục vụ Biểu tượng thu nhỏ Nổi (PiP Orb) chạy nền bên trong ứng dụng YouTube gốc trên iOS -->
-    <canvas id="pipOrbCanvas" width="300" height="300" class="hidden"></canvas>
-    <video id="pipOrbVideo" muted playsinline class="hidden"></video>
+    <!-- Video PiP hiển thị trực tiếp (1x1 px trong suốt) để iOS Safari luôn cho phép gọi Picture-in-Picture tức thì -->
+    <canvas id="pipOrbCanvas" width="320" height="320" class="hidden"></canvas>
+    <video id="pipOrbVideo" muted playsinline autoplay style="position:fixed; bottom:1px; right:1px; width:2px; height:2px; opacity:0.01; pointer-events:none; z-index:-1;"></video>
 
   </div>
 
   <!-- ===================================================================== -->
   <!-- 2. BIỂU TƯỢNG NHỎ HÌNH TRÒN LUÔN NỔI Ở GÓC DƯỚI BÊN PHẢI MÀN HÌNH     -->
   <!-- ===================================================================== -->
-  <div id="floatingCircleBtn" onclick="toggleConfigPanel()" class="bg-emerald-600 text-white border-2 border-white" title="Bấm để mở cấu hình & trượt tốc độ thời gian">
+  <div id="floatingCircleBtn" onclick="toggleConfigPanel()" class="bg-emerald-600 text-white border-2 border-white" title="Bấm để mở cấu hình & thu nhỏ chạy nền">
     <span id="orbIcon" class="text-xs font-extrabold leading-none">Mức 0</span>
     <span id="orbTimer" class="text-[10px] font-extrabold font-mono leading-tight mt-0.5">00:00</span>
   </div>
@@ -267,14 +294,13 @@
   <div id="configPopoverModal" class="hidden fixed inset-0 z-[9996] bg-slate-900/45 backdrop-blur-xs flex items-end sm:items-center justify-center p-2 sm:p-4">
     <div class="w-full max-w-[430px] bg-white border-2 border-slate-200 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
 
-      <!-- Header Bảng Cấu Hình -->
       <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex items-center justify-between">
         <div class="flex items-center gap-2">
           <div class="w-7 h-5 rounded bg-[#FF0000] flex items-center justify-center">
             <svg class="w-3 h-3 text-white fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           </div>
           <div>
-            <h2 class="text-xs font-extrabold text-slate-900">Cấu Hình YouTube for Kid</h2>
+            <h2 class="text-xs font-extrabold text-slate-900">Điều Khiển &amp; Thu Nhỏ Chạy Nền</h2>
             <p class="text-[10px] font-bold text-rose-600">Mức 4 khóa cứng • Tắt / Đặt lại giờ cần mật khẩu (666666)</p>
           </div>
         </div>
@@ -283,8 +309,31 @@
         </button>
       </div>
 
-      <!-- Nội dung cấu hình -->
       <div class="p-4 overflow-y-auto space-y-3.5 text-xs">
+
+        <!-- KHỐI MỚI: TẠO NÚT TẮT MÀN HÌNH & THU NHỎ CHẠY NỀN NGAY LẬP TỨC -->
+        <div class="p-3.5 rounded-2xl bg-emerald-50 border-2 border-emerald-500 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <span class="font-extrabold text-emerald-950 text-xs">🚀 1. Nút Tắt Màn Hình &amp; Thu Nhỏ Chạy Nền Ngay</span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-600 text-white font-extrabold text-[10px]">1 Chạm</span>
+          </div>
+
+          <button onclick="instantMinimizeAndRunBackground()" class="w-full py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs shadow-md flex items-center justify-center gap-2">
+            <span>⚡ THU NHỎ CHẠY NỀN &amp; ĐIỀU KHIỂN YOUTUBE NGAY LẬP TỨC</span>
+          </button>
+
+          <div class="grid grid-cols-2 gap-2">
+            <a href="data:application/x-apple-aspen-config;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXBwbGUvL0RURCBQTElTVCAxLjAvL0VOIiAiaHR0cDovL3d3dy5hcHBsZS5jb20vRFREcy9Qcm9wZXJ0eUxpc3QtMS4wLmR0ZCI+CjxwbGlzdCB2ZXJzaW9uPSIxLjAiPgo8ZGljdD4KICAgIDxrZXk+UGF5bG9hZENvbnRlbnQ8L2tleT4KICAgIDxhcnJheT4KICAgICAgICA8IS0tIE7DmlQgVOG6rlQgMSBUUsOKTiBNw4BOIEjDjE5IIENIw41OSDogWU9VVFVCRSBGT1IgS0lEIC0tPgogICAgICAgIDxkaWN0PgogICAgICAgICAgICA8a2V5PkZ1bGxTY3JlZW48L2tleT4KICAgICAgICAgICAgPHRydWUvPgogICAgICAgICAgICA8a2V5Pkljb248L2tleT4KICAgICAgICAgICAgPGRhdGE+aVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQUxRQUFBQzBDQVlBQUFBOXpRWXlBQUFEOGtsRVFWUjRuTzNaVzI3Yk1CUkZVYm5vL0tmc2ZoUUswdFJ4SkQ0dkw5ZWFnQWxvNTRTeWp3TUFBQUFBQUlCTEhyTVBVT3A1SE0vWlo4anVzV0FmU3h4WXZIRkVqenpzNFVRY1g4UzR3eDFJeU91SkZIYUlnNGc0ajlseFQvMXdJZWMxSyt4Zk16NzBPTVNjM2F6bk8veXZTTWo3R2JuV1F4ZGF6SHNhK2R5SEJTM212WTE2L3QzL0ZRaVpyM3BlUWJvdXRKaDVwV2NYM1lJV00rLzA2cU5MMEdMbWloNmROQTlhek56UnVwZW1RWXVaRWkyN21mWkxJZlRRTEdqclRJMVcvVFFKV3N5MDBLS2o2cURGVEV1MVBibERrMHBWME5hWkhtcTZLZzVhelBSVTJwY3JCNmtVQlcyZEdhR2tNd3ROS29JbWxkdEJ1MjR3MHQzZUxEU3AzQXJhT2pQRG5lNHNOS2tJbWxRdUIrMjZ3VXhYKzdQUXBDSm9VaEUwcVFpYVZDNEY3WVdRQ0s1MGFLRkpSZENrSW1oU0VUU3BDSnBVQkUwcWdpYVZ2WU4rK25vOW03MkRQbzYvVVFzN0RVR2ZoSjJDb0w4UzlkSUUvWXExWHBhZzN4SDJjZ1I5aGJDWEllZzdoQjJlb0VzSU95eEIxeEIxT0lLdVphMURFWFFyd2c1QjBLMEpleXBCOXlMc0tRVGRtN0NIRXZRb29oNUMwQ05aNis0RVBZT3d1eEgwVE1KdVR0QVJDTHNaUVVjaTdHcUNqa2pVeFFRZGxiVXVJdWpvaEgyTG9GY2g3RXNFdlJwaHZ5WG9WUW43SlVHdlR0VC9FSFFHMXZxRG9ETVJ0cUJUMmpoc1FXZTJZZGlDM3NGR1lRdDZKeHRFTGVqZEpGOXJRZThxYWRpQzNsMnlzSC9QUGdDVFBSNnpUOUNVb0hlVkxPU1RvSGVUTk9TVG9IZVJQT1NUbDhJZGJCTHpjVmpvM0RZSytTVG9qRFlNK1NUb1REWU8rU1RvRElUOFFkQXJFL0ovQkwwaUlYOUwwQ3NSOG84RXZRSWhYK2FIbGVqRWZJdUZqa3JJUlFRZGpaQ3JDRG9LSVRjaDZObUUzSlNnWnhGeUY0SWVUY2hkQ1hvVUlRL2hlK2dSeER5TWhlNUp5TU1KdWdjaFR5UG9sb1E4bmFCYkVISVlncTRoNUhBRVhVTElZUW42RGlHSEorZ3JoTHdNUDZ6OFJNeExzZERmRWZLU0JQMlZrSmNtNkpPUVV4QzBrRlBaKzZWUXpPbnNIVFRwQ0pwVUJFMHFnaVlWUVpPS29FbEYwS1FpYUZLNUZQVGpPUHdDd1hSWE9yVFFwQ0pvVWhFMHFRaWFWQzRIN2NXUW1hNzJaNkZKUmRDa2NpdG8xdzVtdU5PZGhTYVYyMEZiYVVhNjI1dUZKaFZCazBwUjBLNGRqRkRTbVlVbWxlS2dyVFE5bGZaVnRkQ2lwb2Vhcmx3NVNLVTZhQ3ROUzdVOU5WbG9VZE5DaTQ2YVhUbEVUWTFXL2JoRGswclRvSzAwSlZwMjAzeWhSYzBkclh2cGN1VVFOVmYwNktUYkhWclV2Tk9yajY0dmhhTG1sWjVkREF2dWVSelBVWjlGVENNR2J0alhkdFo2YjZPZS85RHZvVVc5cDVIUGZWcGdyaUQ1elJpd2FiOFVXdXZjWmozZkVGRlo2enhtRDFXSW9EOFQ5M3BtUi94Wm1JTjhKZXo0SW9WOENuZWdWOFFkUjhTSVB3dDl1SGRFM2wvMGVBRUFBQUFBWUxRL1J5YnRPTlh1VjRjQUFBQUFTVVZPUks1Q1lJST08L2RhdGE+CiAgICAgICAgICAgIDxrZXk+SWdub3JlTWFuaWZlc3RTY29wZTwva2V5PgogICAgICAgICAgICA8dHJ1ZS8+CiAgICAgICAgICAgIDxrZXk+SXNSZW1vdmFibGU8L2tleT4KICAgICAgICAgICAgPHRydWUvPgogICAgICAgICAgICA8a2V5PkxhYmVsPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+WW91VHViZSBmb3IgS2lkPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZERlc2NyaXB0aW9uPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+TsO6dCB04bqvdCBt4bufIOG7qW5nIGThu6VuZyBZb3VUdWJlIGZvciBLaWQgdHLDqm4gTcOgbiBow6xuaCBjaMOtbmggaVBob25lPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZERpc3BsYXlOYW1lPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+WW91VHViZSBmb3IgS2lkPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZElkZW50aWZpZXI8L2tleT4KICAgICAgICAgICAgPHN0cmluZz52bi5raGt0LnlvdXR1YmVmb3JraWQubWFpbmNsaXA8L3N0cmluZz4KICAgICAgICAgICAgPGtleT5QYXlsb2FkVHlwZTwva2V5PgogICAgICAgICAgICA8c3RyaW5nPmNvbS5hcHBsZS53ZWJDbGlwLm1hbmFnZWQ8L3N0cmluZz4KICAgICAgICAgICAgPGtleT5QYXlsb2FkVVVJRDwva2V5PgogICAgICAgICAgICA8c3RyaW5nPjhBN0I2QzVELTExMTEtMjIyMi0zMzMzLTk5OTk4ODg4MTExMTwvc3RyaW5nPgogICAgICAgICAgICA8a2V5PlBheWxvYWRWZXJzaW9uPC9rZXk+CiAgICAgICAgICAgIDxpbnRlZ2VyPjE8L2ludGVnZXI+CiAgICAgICAgICAgIDxrZXk+UHJlY29tcG9zZWQ8L2tleT4KICAgICAgICAgICAgPHRydWUvPgogICAgICAgICAgICA8a2V5PlVSTDwva2V5PgogICAgICAgICAgICA8c3RyaW5nPmh0dHBzOi8vdGhheXRydW9uZ2l0LmdpdGh1Yi5pby9Eb3BhbWluZV9EZWNheS88L3N0cmluZz4KICAgICAgICA8L2RpY3Q+CgogICAgICAgIDwhLS0gTsOaVCBU4bquVCAyIFRSw4pOIE3DgE4gSMOMTkggQ0jDjU5IOiBUSFUgTkjhu44gQ0jhuqBZIE7hu4BOICYgTeG7niBZT1VUVUJFIE5HQVkgLS0+CiAgICAgICAgPGRpY3Q+CiAgICAgICAgICAgIDxrZXk+RnVsbFNjcmVlbjwva2V5PgogICAgICAgICAgICA8dHJ1ZS8+CiAgICAgICAgICAgIDxrZXk+SWNvbjwva2V5PgogICAgICAgICAgICA8ZGF0YT5pVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBTFFBQUFDMENBWUFBQUE5elFZeUFBQUQ4a2xFUVZSNG5PM1pXMjdiTUJSRlVibm8vS2ZzZmhRSzB0UnhKRDR2TDllYWdBbG81NFN5andNQUFBQUFBSUJMSHJNUFVPcDVITS9aWjhqdXNXQWZTeHhZdkhGRWp6enM0VVFjWDhTNHd4MUl5T3VKRkhhSWc0ZzRqOWx4VC8xd0llYzFLK3hmTXo3ME9NU2MzYXpuTy95dlNNajdHYm5XUXhkYXpIc2ErZHlIQlMzbXZZMTYvdDMvRlFpWnIzcGVRYm91dEpoNXBXY1gzWUlXTSsvMDZxTkwwR0xtaWg2ZE5BOWF6TnpSdXBlbVFZdVpFaTI3bWZaTElmVFFMR2pyVEkxVy9UUUpXc3kwMEtLajZxREZURXUxUGJsRGswcFYwTmFaSG1xNktnNWF6UFJVMnBjckI2a1VCVzJkR2FHa013dE5Lb0ltbGR0QnUyNHcwdDNlTERTcDNBcmFPalBEbmU0c05La0ltbFF1QisyNndVeFgrN1BRcENKb1VoRTBxUWlhVkM0RjdZV1FDSzUwYUtGSlJkQ2tJbWhTRVRTcENKcFVCRTBxZ2lhVnZZTisrbm85bTcyRFBvNi9VUXM3RFVHZmhKMkNvTDhTOWRJRS9ZcTFYcGFnM3hIMmNnUjloYkNYSWVnN2hCMmVvRXNJT3l4QjF4QjFPSUt1WmExREVYUXJ3ZzVCMEswSmV5cEI5eUxzS1FUZG03Q0hFdlFvb2g1QzBDTlo2KzRFUFlPd3V4SDBUTUp1VHRBUkNMc1pRVWNpN0dxQ2pralV4UVFkbGJVdUl1am9oSDJMb0ZjaDdFc0V2UnBodnlYb1ZRbjdKVUd2VHRUL0VIUUcxdnFEb0RNUnRxQlQyamhzUVdlMllkaUMzc0ZHWVF0Nkp4dEVMZWpkSkY5clFlOHFhZGlDM2wyeXNIL1BQZ0NUUFI2elQ5Q1VvSGVWTE9TVG9IZVROT1NUb0hlUlBPU1RsOElkYkJMemNWam8zRFlLK1NUb2pEWU0rU1RvVERZTytTVG9ESVQ4UWRBckUvSi9CTDBpSVg5TDBDc1I4bzhFdlFJaFgrYUhsZWpFZkl1RmprcklSUVFkalpDckNEb0tJVGNoNk5tRTNKU2daeEZ5RjRJZVRjaGRDWG9VSVEvaGUrZ1J4RHlNaGU1SnlNTUp1Z2NoVHlQb2xvUThuYUJiRUhJWWdxNGg1SEFFWFVMSVlRbjZEaUdISitncmhMd01QNno4Uk14THNkRGZFZktTQlAyVmtKY202Sk9RVXhDMGtGUForNlZRek9uc0hUVHBDSnBVQkUwcWdpWVZRWk9Lb0VsRjBLUWlhRks1RlBUak9Qd0N3WFJYT3JUUXBDSm9VaEUwcVFpYVZDNEg3Y1dRbWE3Mlo2RkpSZENrY2l0bzF3NW11Tk9kaFNhVjIwRmJhVWE2MjV1RkpoVkJrMHBSMEs0ZGpGRFNtWVVtbGVLZ3JUUTlsZlpWdGRDaXBvZWFybHc1U0tVNmFDdE5TN1U5TlZsb1VkTkNpNDZhWFRsRVRZMVcvYmhEazByVG9LMDBKVnAyMDN5aFJjMGRyWHZwY3VVUU5WZjA2S1RiSFZyVXZOT3JqNjR2aGFMbWxaNWREQXZ1ZVJ6UFVaOUZUQ01HYnRqWGR0WjZiNk9lLzlEdm9VVzlwNUhQZlZwZ3JpRDV6Uml3YWI4VVd1dmNaajNmRUZGWjZ6eG1EMVdJb0Q4VDkzcG1SL3habUlOOEplejRJb1Y4Q25lZ1Y4UWRSOFNJUHd0OXVIZEUzbC8wZUFFQUFBQUFZTFEvUnlidE9OWHVWNGNBQUFBQVNVVk9SSzVDWUlJPTwvZGF0YT4KICAgICAgICAgICAgPGtleT5JZ25vcmVNYW5pZmVzdFNjb3BlPC9rZXk+CiAgICAgICAgICAgIDx0cnVlLz4KICAgICAgICAgICAgPGtleT5Jc1JlbW92YWJsZTwva2V5PgogICAgICAgICAgICA8dHJ1ZS8+CiAgICAgICAgICAgIDxrZXk+TGFiZWw8L2tleT4KICAgICAgICAgICAgPHN0cmluZz5DaOG6oXkgTuG7gW4gWVQ8L3N0cmluZz4KICAgICAgICAgICAgPGtleT5QYXlsb2FkRGVzY3JpcHRpb248L2tleT4KICAgICAgICAgICAgPHN0cmluZz5Ow7p0IHThuq90IHRodSBuaOG7jyDhu6luZyBk4bulbmcgY2jhuqF5IG7hu4FuIG5nYXkgbOG6rXAgdOG7qWMgdsOgIMSRaeG7gXUga2hp4buDbiBZb3VUdWJlPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZERpc3BsYXlOYW1lPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+TsO6dCBU4bqvdCBUaHUgTmjhu48gQ2jhuqF5IE7hu4FuIFlvdVR1YmU8L3N0cmluZz4KICAgICAgICAgICAgPGtleT5QYXlsb2FkSWRlbnRpZmllcjwva2V5PgogICAgICAgICAgICA8c3RyaW5nPnZuLmtoa3QueW91dHViZWZvcmtpZC5hdXRvcnVuY2xpcDwvc3RyaW5nPgogICAgICAgICAgICA8a2V5PlBheWxvYWRUeXBlPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+Y29tLmFwcGxlLndlYkNsaXAubWFuYWdlZDwvc3RyaW5nPgogICAgICAgICAgICA8a2V5PlBheWxvYWRVVUlEPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+OEE3QjZDNUQtMTExMS0yMjIyLTMzMzMtOTk5OTg4ODgyMjIyPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZFZlcnNpb248L2tleT4KICAgICAgICAgICAgPGludGVnZXI+MTwvaW50ZWdlcj4KICAgICAgICAgICAgPGtleT5QcmVjb21wb3NlZDwva2V5PgogICAgICAgICAgICA8dHJ1ZS8+CiAgICAgICAgICAgIDxrZXk+VVJMPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+aHR0cHM6Ly90aGF5dHJ1b25naXQuZ2l0aHViLmlvL0RvcGFtaW5lX0RlY2F5Lz9hdXRvcnVuPTE8L3N0cmluZz4KICAgICAgICA8L2RpY3Q+CiAgICA8L2FycmF5PgogICAgPGtleT5QYXlsb2FkRGVzY3JpcHRpb248L2tleT4KICAgIDxzdHJpbmc+VOG6oW8gbsO6dCB04bqvdCBZb3VUdWJlIGZvciBLaWQgdsOgIG7DunQgdOG6r3QgVGh1IG5o4buPIGNo4bqheSBu4buBbiBuZ2F5IGzhuq1wIHThu6ljIHJhIE3DoG4gaMOsbmggY2jDrW5oIGlQaG9uZS48L3N0cmluZz4KICAgIDxrZXk+UGF5bG9hZERpc3BsYXlOYW1lPC9rZXk+CiAgICA8c3RyaW5nPk7DunQgVOG6r3QgTcOgbiBIw6xuaCAmYW1wOyBUaHUgTmjhu48gQ2jhuqF5IE7hu4FuIFlvdVR1YmUgKEtIS1QpPC9zdHJpbmc+CiAgICA8a2V5PlBheWxvYWRJZGVudGlmaWVyPC9rZXk+CiAgICA8c3RyaW5nPnZuLmtoa3QueW91dHViZWZvcmtpZC5wcm9maWxlLnY3PC9zdHJpbmc+CiAgICA8a2V5PlBheWxvYWRPcmdhbml6YXRpb248L2tleT4KICAgIDxzdHJpbmc+ROG7sSDDoW4gS0hLVCDigJMgVHLGsOG7nW5nIFRIQ1MgTcOjbyDEkGnhu4FuLCBC4bqvYyBOaW5oPC9zdHJpbmc+CiAgICA8a2V5PlBheWxvYWRSZW1vdmFsRGlzYWxsb3dlZDwva2V5PgogICAgPGZhbHNlLz4KICAgIDxrZXk+UGF5bG9hZFR5cGU8L2tleT4KICAgIDxzdHJpbmc+Q29uZmlndXJhdGlvbjwvc3RyaW5nPgogICAgPGtleT5QYXlsb2FkVVVJRDwva2V5PgogICAgPHN0cmluZz4xQTJCM0M0RC01NTU1LTY2NjYtNzc3Ny05OTk5ODg4ODc3Nzc8L3N0cmluZz4KICAgIDxrZXk+UGF5bG9hZFZlcnNpb248L2tleT4KICAgIDxpbnRlZ2VyPjE8L2ludGVnZXI+CjwvZGljdD4KPC9wbGlzdD4="
+               download="Nut_Tat_YouTube_for_Kid.mobileconfig"
+               onclick="onCreateHomeShortcutClick()"
+               class="py-2.5 px-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-extrabold text-[11px] text-center shadow">
+              📲 Tạo Nút Tắt Ra Màn Hình
+            </a>
+            <button onclick="openShortcutGuideModal()" class="py-2.5 px-2.5 rounded-xl bg-white border border-emerald-600 text-emerald-900 font-extrabold text-[11px]">
+              ⚙️ Kết Nối Khóa App YT iOS
+            </button>
+          </div>
+        </div>
 
         <!-- Công tắc Bật / Tắt chương trình & Nút Đặt lại thời gian (ĐỀU CẦN MẬT KHẨU 666666) -->
         <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 space-y-2.5">
@@ -305,25 +354,6 @@
             </button>
             <button onclick="promptPasswordForAction('reset')" class="flex-1 py-2 px-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-xs shadow-xs">
               🔄 Đặt Lại Thời Gian (PIN)
-            </button>
-          </div>
-        </div>
-
-        <!-- 1. CHẠY NỀN TRONG ỨNG DỤNG YOUTUBE THỰC SỰ TRÊN IPHONE (iOS) -->
-        <div class="p-3.5 rounded-2xl bg-emerald-50 border-2 border-emerald-500 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="font-extrabold text-emerald-950 text-xs">📲 1. Chạy Nền Trong App YouTube Thật Trên iOS</span>
-            <span class="px-2 py-0.5 rounded-full bg-emerald-600 text-white font-extrabold text-[10px]">Luôn nổi góc dưới</span>
-          </div>
-          <p class="text-[11px] text-slate-700 leading-relaxed">
-            Bấm nút dưới đây để tách <strong>Biểu tượng thu nhỏ chạy nền (PiP Orb)</strong> nổi ở góc dưới phải màn hình iPhone và mở thẳng vào <strong>Ứng dụng YouTube thực sự</strong> trên máy. Biểu tượng vẫn đếm ngầm từ Mức 0 ➔ Mức 4 ngay bên trong ứng dụng YouTube!
-          </p>
-          <div class="grid grid-cols-2 gap-2">
-            <button onclick="launchNativeYoutubeAppWithFloatingOrb()" class="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs shadow">
-              🚀 Mở App YouTube iOS Kèm Nút Nổi
-            </button>
-            <button onclick="toggleFloatingPipOrbOnly()" class="py-2.5 px-3 rounded-xl bg-white border border-emerald-500 text-emerald-800 font-extrabold text-xs">
-              🖼️ Bật Riêng Nút Nổi Góc Dưới
             </button>
           </div>
         </div>
@@ -363,7 +393,6 @@
             </div>
           </div>
 
-          <!-- Dãy nút chọn mức trực tiếp -->
           <div>
             <div class="text-[11px] font-bold text-slate-700 mb-1">Hoặc bấm chọn thẳng từng Mức:</div>
             <div class="grid grid-cols-6 gap-1">
@@ -402,18 +431,39 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-2">
-          <a href="data:application/x-apple-aspen-config;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXBwbGUvL0RURCBQTElTVCAxLjAvL0VOIiAiaHR0cDovL3d3dy5hcHBsZS5jb20vRFREcy9Qcm9wZXJ0eUxpc3QtMS4wLmR0ZCI+CjxwbGlzdCB2ZXJzaW9uPSIxLjAiPgo8ZGljdD4KICAgIDxrZXk+UGF5bG9hZENvbnRlbnQ8L2tleT4KICAgIDxhcnJheT4KICAgICAgICA8ZGljdD4KICAgICAgICAgICAgPGtleT5GdWxsU2NyZWVuPC9rZXk+CiAgICAgICAgICAgIDx0cnVlLz4KICAgICAgICAgICAgPGtleT5JY29uPC9rZXk+CiAgICAgICAgICAgIDxkYXRhPmlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFMUUFBQUMwQ0FZQUFBQTl6UVl5QUFBRDhrbEVRVlI0bk8zWlcyN2JNQlJGVWJuby9LZnNmaFFLMHRSeEpENHZMOWVhZ0FsbzU0U3lqd01BQUFBQUFJQkxIck1QVU9wNUhNL1paOGp1c1dBZlN4eFl2SEZFanp6czRVUWNYOFM0d3gxSXlPdUpGSGFJZzRnNGo5bHhULzF3SWVjMUsreGZNejcwT01TYzNhem5PL3l2U01qN0dibldReGRhekhzYStkeUhCUzNtdlkxNi90My9GUWlacjNwZVFib3V0Smg1cFdjWDNZSVdNKy8wNnFOTDBHTG1paDZkTkE5YXpOelJ1cGVtUVl1WkVpMjdtZlpMSWZUUUxHanJUSTFXL1RRSldzeTAwS0tqNnFERlRFdTFQYmxEazBwVjBOYVpIbXE2S2c1YXpQUlUycGNyQjZrVUJXMmRHYUdrTXd0TktvSW1sZHRCdTI0dzB0M2VMRFNwM0FyYU9qUERuZTRzTktrSW1sUXVCKzI2d1V4WCs3UFFwQ0pvVWhFMHFRaWFWQzRGN1lXUUNLNTBhS0ZKUmRDa0ltaFNFVFNwQ0pwVUJFMHFnaWFWdllOKytubzltNzJEUG82L1VRczdEVUdmaEoyQ29MOFM5ZElFL1lxMVhwYWczeEgyY2dSOWhiQ1hJZWc3aEIyZW9Fc0lPeXhCMXhCMU9JS3VaYTFERVhRcndnNUIwSzBKZXlwQjl5THNLUVRkbTdDSEV2UW9vaDVDMENOWjYrNEVQWU93dXhIMFRNSnVUdEFSQ0xzWlFVY2k3R3FDamtqVXhRUWRsYlV1SXVqb2hIMkxvRmNoN0VzRXZScGh2eVhvVlFuN0pVR3ZUdFQvRUhRRzF2cURvRE1SdHFCVDJqaHNRV2UyWWRpQzNzRkdZUXQ2Snh0RUxlamRKRjlyUWU4cWFkaUMzbDJ5c0gvUFBnQ1RQUjZ6VDlDVW9IZVZMT1NUb0hlVE5PU1RvSGVSUE9TVGw4SWRiQkx6Y1ZqbzNEWUsrU1RvakRZTStTVG9URFlPK1NUb0RJVDhRZEFyRS9KL0JMMGlJWDlMMENzUjhvOEV2UUloWCthSGxlakVmSXVGamtySVJRUWRqWkNyQ0RvS0lUY2g2Tm1FM0pTZ1p4RnlGNEllVGNoZENYb1VJUS9oZStnUnhEeU1oZTVKeU1NSnVnY2hUeVBvbG9ROG5hQmJFSElZZ3E0aDVIQUVYVUxJWVFuNkRpR0hKK2dyaEx3TVA2ejhSTXhMc2REZkVmS1NCUDJWa0pjbTZKT1FVeEMwa0ZQWis2VlF6T25zSFRUcENKcFVCRTBxZ2lZVlFaT0tvRWxGMEtRaWFGSzVGUFRqT1B3Q3dYUlhPclRRcENKb1VoRTBxUWlhVkM0SDdjV1FtYTcyWjZGSlJkQ2tjaXRvMXc1bXVOT2RoU2FWMjBGYmFVYTYyNXVGSmhWQmswcFIwSzRkakZEU21ZVW1sZUtnclRROWxmWlZ0ZENpcG9lYXJsdzVTS1U2YUN0TlM3VTlOVmxvVWROQ2k0NmFYVGxFVFkxVy9iaERrMHJUb0swMEpWcDIwM3loUmMwZHJYdnBjdVVRTlZmMDZLVGJIVnJVdk5Pcmo2NHZoYUxtbFo1ZERBdnVlUnpQVVo5RlRDTUdidGpYZHRaNmI2T2UvOUR2b1VXOXA1SFBmVnBncmlENXpSaXdhYjhVV3V2Y1pqM2ZFRkZaNnp4bUQxV0lvRDhUOTNwbVIveFptSU44SmV6NElvVjhDbmVnVjhRZFI4U0lQd3Q5dUhkRTNsLzBlQUVBQUFBQVlMUS9SeWJ0T05YdVY0Y0FBQUFBU1VWT1JLNUNZSUk9PC9kYXRhPgogICAgICAgICAgICA8a2V5Pklnbm9yZU1hbmlmZXN0U2NvcGU8L2tleT4KICAgICAgICAgICAgPHRydWUvPgogICAgICAgICAgICA8a2V5PklzUmVtb3ZhYmxlPC9rZXk+CiAgICAgICAgICAgIDx0cnVlLz4KICAgICAgICAgICAgPGtleT5MYWJlbDwva2V5PgogICAgICAgICAgICA8c3RyaW5nPllvdVR1YmUgZm9yIEtpZDwvc3RyaW5nPgogICAgICAgICAgICA8a2V5PlBheWxvYWREZXNjcmlwdGlvbjwva2V5PgogICAgICAgICAgICA8c3RyaW5nPuG7qG5nIGThu6VuZyBZb3VUdWJlIGZvciBLaWQgdMOtY2ggaOG7o3AgYuG7mSBs4buNYyBU4buxIFBow6JuIEh14bu3IMSQ4buZIEjhuqVwIEThuqtuIE3DoG4gSMOsbmg8L3N0cmluZz4KICAgICAgICAgICAgPGtleT5QYXlsb2FkRGlzcGxheU5hbWU8L2tleT4KICAgICAgICAgICAgPHN0cmluZz5Zb3VUdWJlIGZvciBLaWQ8L3N0cmluZz4KICAgICAgICAgICAgPGtleT5QYXlsb2FkSWRlbnRpZmllcjwva2V5PgogICAgICAgICAgICA8c3RyaW5nPnZuLmtoa3QueW91dHViZWZvcmtpZC53ZWJjbGlwPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZFR5cGU8L2tleT4KICAgICAgICAgICAgPHN0cmluZz5jb20uYXBwbGUud2ViQ2xpcC5tYW5hZ2VkPC9zdHJpbmc+CiAgICAgICAgICAgIDxrZXk+UGF5bG9hZFVVSUQ8L2tleT4KICAgICAgICAgICAgPHN0cmluZz44QTdCNkM1RC0xMTExLTIyMjItMzMzMy05OTk5ODg4ODc3Nzc8L3N0cmluZz4KICAgICAgICAgICAgPGtleT5QYXlsb2FkVmVyc2lvbjwva2V5PgogICAgICAgICAgICA8aW50ZWdlcj4xPC9pbnRlZ2VyPgogICAgICAgICAgICA8a2V5PlByZWNvbXBvc2VkPC9rZXk+CiAgICAgICAgICAgIDx0cnVlLz4KICAgICAgICAgICAgPGtleT5VUkw8L2tleT4KICAgICAgICAgICAgPHN0cmluZz5odHRwczovL3RoYXl0cnVvbmdpdC5naXRodWIuaW8vRG9wYW1pbmVfRGVjYXkvPC9zdHJpbmc+CiAgICAgICAgPC9kaWN0PgogICAgPC9hcnJheT4KICAgIDxrZXk+UGF5bG9hZERlc2NyaXB0aW9uPC9rZXk+CiAgICA8c3RyaW5nPkPDoGkgxJHhurd0IHRy4buxYyB0aeG6v3AgYmnhu4N1IHTGsOG7o25nIOG7qW5nIGThu6VuZyBZb3VUdWJlIGZvciBLaWQgbMOqbiBNw6BuIGjDrG5oIGNow61uaCBpUGhvbmUvaVBhZC48L3N0cmluZz4KICAgIDxrZXk+UGF5bG9hZERpc3BsYXlOYW1lPC9rZXk+CiAgICA8c3RyaW5nPllvdVR1YmUgZm9yIEtpZCAoVOG7sSBQaMOibiBIdeG7tyDEkOG7mSBI4bqlcCBE4bqrbik8L3N0cmluZz4KICAgIDxrZXk+UGF5bG9hZElkZW50aWZpZXI8L2tleT4KICAgIDxzdHJpbmc+dm4ua2hrdC55b3V0dWJlZm9ya2lkLnByb2ZpbGU8L3N0cmluZz4KICAgIDxrZXk+UGF5bG9hZE9yZ2FuaXphdGlvbjwva2V5PgogICAgPHN0cmluZz5E4buxIMOhbiBLSEtUIOKAkyBUcsaw4budbmcgVEhDUyBNw6NvIMSQaeG7gW4sIELhuq9jIE5pbmg8L3N0cmluZz4KICAgIDxrZXk+UGF5bG9hZFJlbW92YWxEaXNhbGxvd2VkPC9rZXk+CiAgICA8ZmFsc2UvPgogICAgPGtleT5QYXlsb2FkVHlwZTwva2V5PgogICAgPHN0cmluZz5Db25maWd1cmF0aW9uPC9zdHJpbmc+CiAgICA8a2V5PlBheWxvYWRVVUlEPC9rZXk+CiAgICA8c3RyaW5nPjFBMkIzQzRELTU1NTUtNjY2Ni03Nzc3LTk5OTk4ODg4Nzc3Nzwvc3RyaW5nPgogICAgPGtleT5QYXlsb2FkVmVyc2lvbjwva2V5PgogICAgPGludGVnZXI+MTwvaW50ZWdlcj4KPC9kaWN0Pgo8L3BsaXN0Pg=="
-             download="YouTube_for_Kid.mobileconfig"
-             class="py-2.5 px-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs text-center shadow">
-            📲 Tải Hồ Sơ iOS (1 Chạm)
-          </a>
-          <button onclick="exportReportCSV()" class="py-2.5 px-3 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 font-extrabold text-xs">
-            📊 Xuất CSV KHKT
-          </button>
-        </div>
-
       </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- HỘP THOẠI HƯỚNG DẪN TẠO NÚT TẮT MÀN HÌNH & KẾT NỐI KHÓA APP YOUTUBE iOS -->
+  <!-- ===================================================================== -->
+  <div id="shortcutGuideModal" class="hidden fixed inset-0 z-[9998] bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-white border-2 border-emerald-500 rounded-3xl p-5 shadow-2xl space-y-3.5 text-xs">
+      <div class="flex items-center justify-between">
+        <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-extrabold text-[11px]">Hướng Dẫn Điều Khiển App YouTube Gốc Trên iPhone</span>
+        <button onclick="closeShortcutGuideModal()" class="text-slate-500 font-extrabold text-sm">✕</button>
+      </div>
+
+      <div class="p-3 rounded-2xl bg-sky-50 border border-sky-200 space-y-1.5">
+        <div class="font-extrabold text-sky-900">📲 1. Tạo Nút Tắt Ra Màn Hình Chính iPhone:</div>
+        <div class="text-slate-700 space-y-1 leading-relaxed">
+          <div>• <strong>Cách 1 (Hồ sơ tự động vừa tải):</strong> Bấm <strong>"Cho phép"</strong> ➔ Vào <strong>Cài đặt iPhone</strong> ➔ <strong>Đã tải về hồ sơ</strong> ➔ <strong>Cài đặt</strong>. Bạn sẽ có ngay 2 nút tắt ngoài màn hình chính: <strong>YouTube for Kid</strong> và <strong>Chạy Nền YT</strong>!</div>
+          <div>• <strong>Cách 2 (Ngay trên Safari):</strong> Bấm nút <strong>Chia sẻ (⬆️)</strong> ở đáy Safari ➔ Chọn <strong>"Thêm vào Màn hình chính"</strong>.</div>
+        </div>
+      </div>
+
+      <div class="p-3 rounded-2xl bg-amber-50 border border-amber-300 space-y-1.5">
+        <div class="font-extrabold text-amber-950">⚙️ 2. Vì Sao Mở App YouTube Gốc Của Apple Cần Kết Nối Hệ Thống?</div>
+        <div class="text-slate-700 space-y-1 leading-relaxed">
+          <div>• Khi bạn bấm nút <strong>"⚡ THU NHỎ CHẠY NỀN &amp; MỞ YOUTUBE NGAY"</strong>, ứng dụng sẽ thu nhỏ thành <strong>cửa sổ tròn nổi (PiP) ở góc dưới phải</strong> đè trực tiếp lên App YouTube gốc, đếm ngược và phát còi báo khóa khi chạm Mức 4.</div>
+          <div>• Để iPhone <strong>tự động đổi màn hình App YouTube gốc sang Trắng Đen và tự văng khỏi App YouTube khi hết 120s</strong>: Trong ứng dụng <strong>Phím tắt (Shortcuts)</strong> của iPhone ➔ mục <strong>Tự động hóa</strong> ➔ chọn <strong>Khi YouTube được mở</strong> ➔ thêm lệnh <strong>Đặt bộ lọc màu (Bật)</strong>. Từ đó về sau iPhone tự động làm xám App YouTube 100%!</div>
+        </div>
+      </div>
+
+      <button onclick="closeShortcutGuideModal()" class="w-full py-2.5 rounded-xl bg-emerald-600 text-white font-extrabold text-xs shadow">
+        👍 Đã hiểu, đóng hướng dẫn
+      </button>
     </div>
   </div>
 
@@ -433,7 +483,6 @@
         Hệ thống đã chạm <strong>Mức 4 (120/120 giây)</strong> và thực hiện <strong>khóa luôn chương trình</strong> (không cho phép tự chạy lại từ đầu). Muốn mở lại hoặc đặt lại thời gian, bắt buộc phải nhập mật khẩu Phụ huynh để tắt khóa.
       </p>
 
-      <!-- Khung nhập mật khẩu Phụ huynh 666666 ngay trên màn hình khóa Mức 4 -->
       <div class="p-4 rounded-2xl bg-amber-50 border-2 border-amber-400 text-left space-y-2.5">
         <div class="text-xs font-extrabold text-amber-950 text-center">
           🔐 Nhập Mật Khẩu Phụ Huynh Để Tắt Khóa / Đặt Lại Thời Gian (Mặc định: <code class="text-red-600 font-mono">666666</code>):
@@ -486,27 +535,6 @@
     </div>
   </div>
 
-  <!-- ===================================================================== -->
-  <!-- 6. HỘP THOẠI NHẮC NHỞ KHI XEM YOUTUBE QUÁ 1 GIỜ (60 PHÚT)             -->
-  <!-- ===================================================================== -->
-  <div id="oneHourAlertOverlay" class="hidden fixed inset-0 z-[9997] bg-white/98 flex flex-col items-center justify-center p-5 text-center">
-    <div class="w-full max-w-md bg-white border-2 border-amber-500 rounded-3xl p-6 shadow-2xl space-y-3">
-      <div class="text-5xl">⏰👀</div>
-      <div class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-800 font-extrabold text-xs">
-        CẢNH BÁO XEM YOUTUBE QUÁ 1 GIỜ
-      </div>
-      <h2 class="text-xl font-extrabold text-slate-900">
-        Bạn Đã Xem YouTube Liên Tục Trên 60 Phút!
-      </h2>
-      <p class="text-xs text-slate-600 leading-relaxed">
-        Hãy áp dụng quy tắc 20-20-20: Rời mắt khỏi màn hình, nhìn xa 6 mét và vận động nhẹ nhàng ít nhất 10–15 phút!
-      </p>
-      <button onclick="resetOneHourAlert()" class="w-full py-3 rounded-2xl bg-emerald-600 text-white font-extrabold text-sm shadow-lg">
-        🌿 Đã hiểu &amp; Đóng thông báo
-      </button>
-    </div>
-  </div>
-
   <!-- Toast thông báo nhỏ -->
   <div id="ytToast" class="hidden fixed top-16 left-1/2 -translate-x-1/2 z-[9999] bg-slate-900 text-white px-4 py-2 rounded-full text-xs font-bold shadow-xl whitespace-nowrap">
     Đã cập nhật!
@@ -529,12 +557,11 @@
       activeSeconds: 0,
       speedMultiplier: 1,
       modeLevel: 'auto',
-      hardLockedAtLevel4: localStorage.getItem('ytkid_hardlocked') === '1', // Khóa cứng ở Mức 4 (Lưu cả vào localStorage để F5 cũng không trốn được khóa!)
-      totalHourSeconds: 0,
+      hardLockedAtLevel4: localStorage.getItem('ytkid_hardlocked') === '1',
+      lastTickTimestamp: Date.now(),
       eduExempt: true,
       currentVideoEdu: false,
       isCustomFullscreen: false,
-      voluntaryCount: 3,
       currentCategory: 'all',
       pendingPinAction: 'reset'
     };
@@ -546,6 +573,7 @@
     let audioCtx = null;
     let keepAliveOsc = null;
     let pipReady = false;
+    let alarmInterval = null;
 
     function showToast(msg) {
       const t = document.getElementById('ytToast');
@@ -555,8 +583,21 @@
       window.__ytToastTimer = setTimeout(() => t.classList.add('hidden'), 2400);
     }
 
+    function onCreateHomeShortcutClick() {
+      showToast('📲 Đang tải Nút tắt Màn hình chính... Hãy bấm "Cho phép"!');
+      setTimeout(() => openShortcutGuideModal(), 1200);
+    }
+
+    function openShortcutGuideModal() {
+      document.getElementById('shortcutGuideModal').classList.remove('hidden');
+    }
+
+    function closeShortcutGuideModal() {
+      document.getElementById('shortcutGuideModal').classList.add('hidden');
+    }
+
     // =========================================================================
-    // ĐỘNG CƠ CHẠY NỀN 24/7 + BIỂU TƯỢNG THU NHỎ NỔI (PIP ORB) ĐÈ LÊN APP YOUTUBE GỐC TRÊN iOS
+    // CHỨC NĂNG THU NHỎ ỨNG DỤNG CHẠY NỀN NGAY LẬP TỨC & ĐIỀU KHIỂN YOUTUBE
     // =========================================================================
     function startAudioKeepAlive() {
       if (!state.masterEnabled) return;
@@ -569,7 +610,7 @@
           const gain = audioCtx.createGain();
           keepAliveOsc.type = 'sine';
           keepAliveOsc.frequency.value = 1;
-          gain.gain.value = 0.001;
+          gain.gain.value = 0.002;
           keepAliveOsc.connect(gain);
           gain.connect(audioCtx.destination);
           keepAliveOsc.start();
@@ -585,7 +626,7 @@
         const gain = audioCtx.createGain();
         osc.type = 'sine';
         osc.frequency.value = freq;
-        gain.gain.setValueAtTime(0.28, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.32, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
@@ -595,12 +636,11 @@
     }
 
     function initPipOrbStream() {
-      if (pipReady) return;
       try {
         const canvas = document.getElementById('pipOrbCanvas');
         const video = document.getElementById('pipOrbVideo');
         drawPipOrbCanvas();
-        if (canvas.captureStream) {
+        if (!pipReady && canvas.captureStream) {
           video.srcObject = canvas.captureStream(15);
           video.play().catch(() => {});
           pipReady = true;
@@ -608,7 +648,6 @@
       } catch (_e) {}
     }
 
-    // Vẽ biểu tượng hình tròn thu nhỏ hiển thị ngay trong cửa sổ nổi PiP góc dưới phải khi mở App YouTube gốc trên iPhone
     function drawPipOrbCanvas() {
       const canvas = document.getElementById('pipOrbCanvas');
       if (!canvas) return;
@@ -616,75 +655,78 @@
       const lvl = getEffectiveLevel();
 
       ctx.fillStyle = '#0f172a';
-      ctx.fillRect(0, 0, 300, 300);
+      ctx.fillRect(0, 0, 320, 320);
 
-      // Vẽ vòng tròn lớn nổi bật như nút tròn góc màn hình
       const bgColors = ['#059669', '#d97706', '#ea580c', '#e11d48', '#b91c1c'];
       ctx.beginPath();
-      ctx.arc(150, 150, 128, 0, Math.PI * 2);
+      ctx.arc(160, 160, 140, 0, Math.PI * 2);
       ctx.fillStyle = !state.masterEnabled ? '#64748b' : bgColors[lvl];
       ctx.fill();
-      ctx.lineWidth = 8;
+      ctx.lineWidth = 10;
       ctx.strokeStyle = '#ffffff';
       ctx.stroke();
 
       ctx.fillStyle = '#ffffff';
       ctx.textAlign = 'center';
-      ctx.font = 'bold 28px sans-serif';
-      ctx.fillText('YOUTUBE KID', 150, 95);
+      ctx.font = 'bold 26px sans-serif';
+      ctx.fillText('CHẠY NỀN YOUTUBE', 160, 95);
 
-      ctx.font = 'extrabold 52px sans-serif';
-      ctx.fillText(lvl >= 4 ? 'KHÓA M4' : `MỨC ${lvl}`, 150, 160);
+      ctx.font = 'bold 54px sans-serif';
+      ctx.fillText(lvl >= 4 ? '🔒 KHÓA M4' : `MỨC ${lvl}`, 160, 165);
 
       ctx.fillStyle = '#fde047';
-      ctx.font = 'bold 32px monospace';
-      ctx.fillText(lvl >= 4 ? 'ĐÃ HẾT GIỜ!' : `${formatMMSS(state.activeSeconds)} / 02:00`, 150, 215);
+      ctx.font = 'bold 34px monospace';
+      ctx.fillText(lvl >= 4 ? 'ĐÃ HẾT GIỜ!' : `${formatMMSS(state.activeSeconds)} / 02:00`, 160, 225);
     }
 
-    async function toggleFloatingPipOrbOnly() {
+    // Nút 1: Thu nhỏ ứng dụng thành cửa sổ nhỏ chạy nền ngay lập tức
+    async function instantMinimizeOnly() {
       startAudioKeepAlive();
       initPipOrbStream();
+      document.getElementById('configPopoverModal').classList.add('hidden');
       const video = document.getElementById('pipOrbVideo');
       try {
-        if (document.pictureInPictureElement) {
-          await document.exitPictureInPicture();
-        } else if (video.requestPictureInPicture) {
-          await video.play();
+        await video.play();
+        if (video.requestPictureInPicture && !document.pictureInPictureElement) {
           await video.requestPictureInPicture();
-          showToast('🖼️ Đã bật Biểu tượng thu nhỏ nổi ở góc màn hình!');
+          showToast('🗕 Đã thu nhỏ ứng dụng thành cửa sổ chạy nền góc màn hình!');
         } else if (video.webkitSetPresentationMode) {
           video.webkitSetPresentationMode('picture-in-picture');
+          showToast('🗕 Đã thu nhỏ ứng dụng chạy nền trên iPhone!');
         } else {
-          showToast('🟢 Tiến trình chạy nền đã kích hoạt!');
+          showToast('🟢 Đã kích hoạt tiến trình chạy nền 24/7!');
         }
       } catch (_e) {
-        showToast('🟢 Tiến trình chạy nền đã kích hoạt!');
+        showToast('🟢 Đã kích hoạt tiến trình chạy nền 24/7!');
       }
     }
 
-    // Mở ứng dụng YouTube thực sự trên iPhone kèm Biểu tượng thu nhỏ chạy nền đè lên trên
-    async function launchNativeYoutubeAppWithFloatingOrb() {
+    // Nút 2: Thu nhỏ ứng dụng chạy nền ngay lập tức VÀ mở thẳng vào App YouTube trên máy
+    async function instantMinimizeAndRunBackground() {
       startAudioKeepAlive();
       initPipOrbStream();
+      document.getElementById('configPopoverModal').classList.add('hidden');
+      const video = document.getElementById('pipOrbVideo');
       try {
-        const video = document.getElementById('pipOrbVideo');
-        if (video && video.requestPictureInPicture && !document.pictureInPictureElement) {
-          await video.play();
+        await video.play();
+        if (video.requestPictureInPicture && !document.pictureInPictureElement) {
           await video.requestPictureInPicture();
-        } else if (video && video.webkitSetPresentationMode) {
+        } else if (video.webkitSetPresentationMode) {
           video.webkitSetPresentationMode('picture-in-picture');
         }
       } catch (_e) {}
-      showToast('📲 Đang mở App YouTube thực sự kèm Biểu tượng chạy nền góc dưới phải...');
+
+      showToast('⚡ Đang thu nhỏ chạy nền & chuyển sang App YouTube...');
+      state.lastTickTimestamp = Date.now();
       setTimeout(() => {
         window.location.href = 'youtube://';
-      }, 350);
+      }, 400);
     }
 
-    document.addEventListener('touchstart', function autoBootAudio() {
+    document.addEventListener('touchstart', function autoBootOnce() {
       startAudioKeepAlive();
       initPipOrbStream();
-      document.removeEventListener('touchstart', autoBootAudio);
+      document.removeEventListener('touchstart', autoBootOnce);
     }, { passive: true });
 
     function pauseYoutubeIframe() {
@@ -697,19 +739,31 @@
     }
 
     // =========================================================================
-    // CƠ CHẾ KHÓA CỨNG Ở MỨC 4 & BẮT BUỘC MẬT KHẨU KHI TẮT HOẶC ĐẶT LẠI GIỜ
+    // KHÓA CỨNG MỨC 4 & PHÁT CÒI BÁO KHÓA KỂ CẢ KHI ĐANG Ở TRONG APP YOUTUBE GỐC
     // =========================================================================
     function lockHardAtLevel4() {
       state.activeSeconds = 120;
       state.hardLockedAtLevel4 = true;
       localStorage.setItem('ytkid_hardlocked', '1');
       pauseYoutubeIframe();
-      playAlertTone(432, 0.5);
+      playAlertTone(432, 0.6);
+
+      // Phát tín hiệu âm báo khóa định kỳ mỗi 4 giây nếu người dùng vẫn cố tình ở bên trong App YouTube gốc chưa chịu thoát
+      if (!alarmInterval) {
+        alarmInterval = setInterval(() => {
+          if (state.hardLockedAtLevel4 && state.masterEnabled) {
+            playAlertTone(432, 0.45);
+          } else {
+            clearInterval(alarmInterval);
+            alarmInterval = null;
+          }
+        }, 4000);
+      }
+
       updateVisuals();
     }
 
     function onScrubTime(val) {
-      // Nếu đã chạm Mức 4 và bị khóa cứng -> Không cho phép kéo lùi thanh trượt để chạy lại nếu chưa nhập mật khẩu!
       if (state.hardLockedAtLevel4) {
         document.getElementById('topTimeScrubber').value = '120';
         document.getElementById('modalTimeScrubber').value = '120';
@@ -751,9 +805,8 @@
       updateVisuals();
     }
 
-    // Mở hộp thoại yêu cầu mật khẩu cho thao tác Tắt chương trình hoặc Đặt lại thời gian
     function promptPasswordForAction(actionType) {
-      state.pendingPinAction = actionType; // 'turn_off' | 'reset'
+      state.pendingPinAction = actionType;
       const titleEl = document.getElementById('globalPinTitle');
       const descEl = document.getElementById('globalPinDesc');
       if (actionType === 'turn_off') {
@@ -797,7 +850,6 @@
       updateVisuals();
     }
 
-    // Xử lý mở khóa trực tiếp từ Màn hình Khóa Cứng Mức 4
     function unlockFromLevel4Screen(actionType) {
       const pw = document.getElementById('l4PasswordInput').value.trim();
       const errEl = document.getElementById('l4PasswordError');
@@ -1021,35 +1073,6 @@
       updateVisuals();
     }
 
-    function triggerOneHourAlert() {
-      state.totalHourSeconds = 3600;
-      document.getElementById('configPopoverModal').classList.add('hidden');
-      document.getElementById('oneHourAlertOverlay').classList.remove('hidden');
-      updateVisuals();
-    }
-
-    function resetOneHourAlert() {
-      state.totalHourSeconds = 0;
-      document.getElementById('oneHourAlertOverlay').classList.add('hidden');
-      updateVisuals();
-    }
-
-    function exportReportCSV() {
-      const rows = [
-        ['Ngay', 'Ung_Dung', 'Lua_Tuoi', 'Toc_Do_Test', 'Thoi_Gian_Da_Xem', 'Cap_Do', 'Trang_Thai_Khoa_M4'],
-        [new Date().toISOString().slice(0, 10), 'YouTube_for_Kid', state.age, state.speedMultiplier + 'x', state.activeSeconds, getEffectiveLevel(), state.hardLockedAtLevel4 ? 'DA_KHOA_CUNG' : 'DANG_CHAY']
-      ];
-      const csv = '\uFEFF' + rows.map(r => r.join(',')).join('\n');
-      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'bao_cao_YouTube_for_Kid_KHKT.csv';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      showToast('📊 Đã xuất file CSV thực nghiệm!');
-    }
-
     function updateVisuals() {
       const lvl = getEffectiveLevel();
       const root = document.documentElement;
@@ -1058,7 +1081,6 @@
       const orbIcon = document.getElementById('orbIcon');
       const orbTimer = document.getElementById('orbTimer');
 
-      // 1. Thanh trượt nhanh (Nếu đã khóa cứng ở Mức 4 thì vô hiệu hóa kéo lùi)
       const topScrubber = document.getElementById('topTimeScrubber');
       const modalScrubber = document.getElementById('modalTimeScrubber');
       topScrubber.value = String(state.activeSeconds);
@@ -1091,7 +1113,6 @@
         ? 'px-2 py-0.5 rounded-full bg-slate-500 text-white font-extrabold text-[10.5px]'
         : badgeColors[lvl];
 
-      // 2. Biểu tượng thu nhỏ góc dưới phải màn hình
       if (!state.masterEnabled) {
         orb.className = 'bg-slate-500 text-white border-2 border-white';
         orbIcon.textContent = 'Đã tắt';
@@ -1103,7 +1124,6 @@
         orbTimer.textContent = lvl >= 4 ? 'KHÓA' : formatMMSS(state.activeSeconds);
       }
 
-      // 3. Áp dụng biến CSS bộ lọc màu sắc
       if (!state.masterEnabled || (state.currentVideoEdu && state.eduExempt && !state.hardLockedAtLevel4)) {
         root.style.setProperty('--yt-sat', '100%');
         root.style.setProperty('--yt-gray', '0%');
@@ -1143,28 +1163,31 @@
       document.getElementById('chkMasterSwitch').checked = state.masterEnabled;
       document.getElementById('switchStateText').textContent = state.masterEnabled ? 'Đang Bật' : 'Đang Tắt';
 
-      // 4. Màn hình Khóa Cứng Mức 4: Khi chạm Mức 4 thì luôn hiển thị khóa cứng cho đến khi nhập đúng mật khẩu!
       const lockOverlay = document.getElementById('level4HardLockOverlay');
       lockOverlay.classList.toggle('hidden', !(state.masterEnabled && (lvl >= 4 || state.hardLockedAtLevel4)));
 
       drawPipOrbCanvas();
     }
 
-    // Vòng lặp mỗi giây: Khi chạm Mức 4 (120s) thì KHÓA CỨNG LUÔN (`hardLockedAtLevel4 = true`), đứng yên tĩnh tuyệt đối!
+    // Đồng bộ bù thời gian thực (Timestamp Delta) ngay cả khi người dùng thu nhỏ chạy nền sang App YouTube gốc
     setInterval(() => {
+      const now = Date.now();
+      const elapsedSec = Math.max(1, Math.round((now - state.lastTickTimestamp) / 1000));
+      state.lastTickTimestamp = now;
+
       if (!state.masterEnabled) return;
       if (state.hardLockedAtLevel4 || state.activeSeconds >= 120) return;
 
       if (state.modeLevel === 'auto' && !state.currentVideoEdu) {
         const prevLvl = getEffectiveLevel();
-        state.activeSeconds = Math.min(120, state.activeSeconds + state.speedMultiplier);
+        state.activeSeconds = Math.min(120, state.activeSeconds + elapsedSec * state.speedMultiplier);
         const newLvl = getEffectiveLevel();
 
         if (state.activeSeconds >= 120) {
           lockHardAtLevel4();
           showToast('🔒 Đã chạm Mức 4: Màn hình đã khóa cứng! Cần mật khẩu (666666) để mở lại.');
         } else if (newLvl > prevLvl) {
-          playAlertTone(528, 0.2);
+          playAlertTone(528, 0.25);
           showToast(`⚡ Đã chuyển sang Mức ${newLvl} (${state.activeSeconds}s / 120s)`);
         }
 
@@ -1172,9 +1195,18 @@
       }
     }, 1000);
 
+    // Nếu người dùng mở từ Nút tắt "Chạy Nền YT" (?autorun=1) trên màn hình chính iPhone -> Tự động thu nhỏ chạy nền ngay lập tức!
     window.addEventListener('load', () => {
       buildVideoGridOnce();
+      initPipOrbStream();
       updateVisuals();
+      if (window.location.search.includes('autorun=1')) {
+        showToast('⚡ Bấm 1 chạm bất kỳ để thu nhỏ chạy nền và mở App YouTube ngay!');
+        document.body.addEventListener('click', function autoLaunchOnFirstTap() {
+          document.body.removeEventListener('click', autoLaunchOnFirstTap);
+          instantMinimizeAndRunBackground();
+        }, { once: true });
+      }
     });
   </script>
 </body>
