@@ -4,7 +4,7 @@
 <dict>
     <key>PayloadContent</key>
     <array>
-        <!-- NÚT TẮT 1 TRÊN MÀN HÌNH CHÍNH: YOUTUBE FOR KID -->
+        <!-- NÚT TẮT 1 TRÊN MÀN HÌNH CHÍNH: YOUTUBE & TIKTOK FOR KID (KÉN AN TOÀN LÀM XÁM TỰ ĐỘNG) -->
         <dict>
             <key>FullScreen</key>
             <true/>
@@ -15,11 +15,11 @@
             <key>IsRemovable</key>
             <true/>
             <key>Label</key>
-            <string>YouTube for Kid</string>
+            <string>YT &amp; TikTok Kid</string>
             <key>PayloadDescription</key>
-            <string>Nút tắt mở ứng dụng YouTube for Kid trên Màn hình chính iPhone</string>
+            <string>Ứng dụng YouTube &amp; TikTok for Kid tích hợp bộ lọc Tự Phân Huỷ Độ Hấp Dẫn Màn Hình</string>
             <key>PayloadDisplayName</key>
-            <string>YouTube for Kid</string>
+            <string>YouTube &amp; TikTok for Kid</string>
             <key>PayloadIdentifier</key>
             <string>vn.khkt.youtubeforkid.mainclip</string>
             <key>PayloadType</key>
@@ -31,10 +31,10 @@
             <key>Precomposed</key>
             <true/>
             <key>URL</key>
-            <string>https://thaytruongit.github.io/Dopamine_Decay/</string>
+            <string>https://thaytruongit.github.io/TuPhanHuyDoHapDan_IOS/</string>
         </dict>
 
-        <!-- NÚT TẮT 2 TRÊN MÀN HÌNH CHÍNH: THU NHỎ CHẠY NỀN & MỞ YOUTUBE NGAY -->
+        <!-- NÚT TẮT 2 TRÊN MÀN HÌNH CHÍNH: THU NHỎ CHẠY NỀN & MỞ YOUTUBE GỐC -->
         <dict>
             <key>FullScreen</key>
             <true/>
@@ -47,11 +47,11 @@
             <key>Label</key>
             <string>Chạy Nền YT</string>
             <key>PayloadDescription</key>
-            <string>Nút tắt thu nhỏ ứng dụng chạy nền ngay lập tức và điều khiển YouTube</string>
+            <string>Nút tắt thu nhỏ chạy nền (PiP) ngay lập tức và mở App YouTube gốc</string>
             <key>PayloadDisplayName</key>
-            <string>Nút Tắt Thu Nhỏ Chạy Nền YouTube</string>
+            <string>Thu Nhỏ Chạy Nền YouTube</string>
             <key>PayloadIdentifier</key>
-            <string>vn.khkt.youtubeforkid.autorunclip</string>
+            <string>vn.khkt.youtubeforkid.autorunyt</string>
             <key>PayloadType</key>
             <string>com.apple.webClip.managed</string>
             <key>PayloadUUID</key>
@@ -61,15 +61,45 @@
             <key>Precomposed</key>
             <true/>
             <key>URL</key>
-            <string>https://thaytruongit.github.io/Dopamine_Decay/?autorun=1</string>
+            <string>https://thaytruongit.github.io/TuPhanHuyDoHapDan_IOS/?autorun=youtube</string>
+        </dict>
+
+        <!-- NÚT TẮT 3 TRÊN MÀN HÌNH CHÍNH: THU NHỎ CHẠY NỀN & MỞ TIKTOK GỐC -->
+        <dict>
+            <key>FullScreen</key>
+            <true/>
+            <key>Icon</key>
+            <data>iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAD8klEQVR4nO3ZW27bMBRFUbno/KfsfhQK0tRxJD4vL9eagAlo54SyjwMAAAAAAIBLHrMPUOp5HM/ZZ8jusWAfSxxYvHFEjzzs4UQcX8S4wx1IyOuJFHaIg4g4j9lxT/1wIec1K+xfMz70OMSc3aznO/yvSMj7GbnWQxdazHsa+dyHBS3mvY16/t3/FQiZr3peQboutJh5pWcX3YIWM+/06qNL0GLmih6dNA9azNzRupemQYuZEi27mfZLIfTQLGjrTI1W/TQJWsy00KKj6qDFTEu1PblDk0pV0NaZHmq6Kg5azPRU2pcrB6kUBW2dGaGkMwtNKoImldtBu24w0t3eLDSp3AraOjPDne4sNKkImlQuB+26wUxX+7PQpCJoUhE0qQiaVC4F7YWQCK50aKFJRdCkImhSETSpCJpUBE0qgiaVvYN++no9m72DPo6/UQs7DUGfhJ2CoL8S9dIE/Yq1Xpag3xH2cgR9hbCXIeg7hB2eoEsIOyxB1xB1OIKuZa1DEXQrwg5B0K0JeypB9yLsKQTdm7CHEvQooh5C0CNZ6+4EPYOwuxH0TMJuTtARCLsZQUci7GqCjkjUxQQdlbUuIujohH2LoFch7EsEvRphvyXoVQn7JUGvTtT/EHQG1vqDoDMRtqBT2jhsQWe2YdiC3sFGYQt6JxtELejdJF9rQe8qadiC3l2ysH/PPgCTPR6zT9CUoHeVLOSToHeTNOSToHeRPOSTl8IdbBLzcVjo3DYK+STojDYM+SToTDYO+SToDIT8QdArE/J/BL0iIX9L0CsR8o8EvQIhX+aHlejEfIuFjkrIRQQdjZCrCDoKITch6NmE3JSgZxFyF4IeTchdCXoUIQ/he+gRxDyMhe5JyMMJugchTyPoloQ8naBbEHIYgq4h5HAEXULIYQn6DiGHJ+grhLwMP6z8RMxLsdDfEfKSBP2VkJcm6JOQUxC0kFPZ+6VQzOnsHTTpCJpUBE0qgiYVQZOKoElF0KQiaFK5FPTjOPwCwXRXOrTQpCJoUhE0qQiaVC4H7cWQma72Z6FJRdCkcito1w5muNOdhSaV20FbaUa625uFJhVBk0pR0K4djFDSmYUmleKgrTQ9lfZVtdCipoearlw5SKU6aCtNS7U9NVloUdNCi46aXTlETY1W/bhDk0rToK00JVp203yhRc0drXvpcuUQNVf06KTbHVrUvNOrj64vhaLmlZ5dDAvueRzPUZ9FTCMGbtjXdtZ6b6Oe/9DvoUW9p5HPfVpgriD5zRiwab8UWuvcZj3fEFFZ6zxmD1WIoD8T93pmR/xZmIN8Jez4IoV8CnegV8QdR8SIPwt9uHdE3l/0eAEAAAAAYLQ/RybtONXuV4cAAAAASUVORK5CYII=</data>
+            <key>IgnoreManifestScope</key>
+            <true/>
+            <key>IsRemovable</key>
+            <true/>
+            <key>Label</key>
+            <string>Chạy Nền TikTok</string>
+            <key>PayloadDescription</key>
+            <string>Nút tắt thu nhỏ chạy nền (PiP) ngay lập tức và mở App TikTok gốc</string>
+            <key>PayloadDisplayName</key>
+            <string>Thu Nhỏ Chạy Nền TikTok</string>
+            <key>PayloadIdentifier</key>
+            <string>vn.khkt.youtubeforkid.autoruntiktok</string>
+            <key>PayloadType</key>
+            <string>com.apple.webClip.managed</string>
+            <key>PayloadUUID</key>
+            <string>8A7B6C5D-1111-2222-3333-999988883333</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>Precomposed</key>
+            <true/>
+            <key>URL</key>
+            <string>https://thaytruongit.github.io/TuPhanHuyDoHapDan_IOS/?autorun=tiktok</string>
         </dict>
     </array>
     <key>PayloadDescription</key>
-    <string>Tạo nút tắt YouTube for Kid và nút tắt Thu nhỏ chạy nền ngay lập tức ra Màn hình chính iPhone.</string>
+    <string>Tạo bộ 3 nút tắt: YouTube &amp; TikTok Kid, Chạy Nền YouTube và Chạy Nền TikTok ra Màn hình chính iPhone/iPad.</string>
     <key>PayloadDisplayName</key>
-    <string>Nút Tắt Màn Hình &amp; Thu Nhỏ Chạy Nền YouTube (KHKT)</string>
+    <string>Tự Phân Huỷ Độ Hấp Dẫn iOS – YouTube &amp; TikTok (KHKT)</string>
     <key>PayloadIdentifier</key>
-    <string>vn.khkt.youtubeforkid.profile.v7</string>
+    <string>vn.khkt.youtubeforkid.profile.v8</string>
     <key>PayloadOrganization</key>
     <string>Dự án KHKT – Trường THCS Mão Điền, Bắc Ninh</string>
     <key>PayloadRemovalDisallowed</key>
@@ -77,7 +107,7 @@
     <key>PayloadType</key>
     <string>Configuration</string>
     <key>PayloadUUID</key>
-    <string>1A2B3C4D-5555-6666-7777-999988887777</string>
+    <string>1A2B3C4D-5555-6666-7777-999988888888</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
 </dict>
