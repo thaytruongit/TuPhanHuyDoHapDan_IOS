@@ -3,7 +3,7 @@
 *Trường THCS Mão Điền – Tỉnh Bắc Ninh*
 
 ## 🌐 Đường link cài đặt & kiểm chứng trực tiếp trên iPhone / iPad / Máy tính:
-👉 **https://thaytruongit.github.io/Dopamine_Decay/**
+👉 **https://github.com/thaytruongit/TuPhanHuyDoHapDan_IOS/**
 
 ## ✨ Tính năng nổi bật:
 1. **Giao diện Trắng Sáng trực quan:** Tự động chạy nền hiển nhiên ngay khi mở ứng dụng.
